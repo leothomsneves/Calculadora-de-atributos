@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="Script.js"></script>
+    <style>
+        th, td{
+            border: 1px solid black;
+            margin: auto;
+        }
+        table{
+            width: 80%;
+        }
+    </style>
+    <title>Calculadora de atributos</title>
+</head>
+<body>
+    <div>
+        <div id="seletor">
+            <select id="racas" onchange="Bonusderaca()">
+                <option selected>Selecione uma raça</option>
+                <option value="humano">Humano</option>
+                <option value="anao">Anão</option>
+                <option value="dahllan">Dahllan</option>
+                <option value="elfo">Elfo</option>
+                <option value="goblin">Goblin</option>
+                <option value="lefou">Lefou</option>
+                <option value="minotauro">Minotauro</option>
+                <option value="qareen">Qareen</option>
+                <option value="golem">Golem</option>
+                <option value="hynne">Hynne</option>
+                <option value="kliren">Kliren</option>
+                <option value="medusa">Medusa</option>
+                <option value="osteon">Osteon</option>
+                <option value="sereia">Sereia/tritão</option>
+                <option value="silfide">Sílfide</option>
+                <option value="aggelus">Aggelus</option>
+                <option value="sulfure">Sulfure</option>
+                <option value="trog">Trog</option>
+            </select>
+        </div>
+        <div id="checkracas"></div>
+        <div style="padding-left: 1450px;">
+            <span>Pontos</span><br>
+            <span id="custo">10</span>
+        </div>
+    </div>
+    <table>
+    <tr>
+        <th style="border: 0px;"></th>
+        <th>Valor</th>
+        <th>Raça</th>
+        <th>Bonus</th>
+        <th>Total</th>
+        <th>Custo</th>
+    </tr>
+    <tr>
+        <th>FOR <br> Força</th>
+        <td><input type="number" id="val_for" inputmode="numeric"></td>
+        <td><p id="raca_for"></p></td>
+        <td><input type="number" id="bon_for" inputmode="numeric" oninput="SomarTotal('bon_for')"></td>
+        <td><p id="tot_for">0</p></td>
+        <td><p id="cus_for">0</p></td>
+    </tr>
+    <tr>
+        <th>DES <br> Destreza</th>
+        <td><input type="number" id="val_des" inputmode="numeric"></td>
+        <td><p id="raca_des"></p></td>
+        <td><input type="number" id="bon_des" inputmode="numeric" oninput="SomarTotal('bon_des')"></td>
+        <td><p id="tot_des">0</p></td>
+        <td><p id="cus_des">0</p></td>
+    </tr>
+    <tr>
+        <th>CON <br> Constituição</th>
+        <td><input type="number" id="val_con" inputmode="numeric"></td>
+        <td><p id="raca_con"></p></td>
+        <td><input type="number" id="bon_con" inputmode="numeric" oninput="SomarTotal('bon_con')"></td>
+        <td><p id="tot_con">0</p></td>
+        <td><p id="cus_con">0</p></td>
+    </tr>
+    <tr>
+        <th>INT <br> Inteligência</th>
+        <td><input type="number" id="val_int" inputmode="numeric"></td>
+        <td><p id="raca_int"></p></td>
+        <td><input type="number" id="bon_int" inputmode="numeric" oninput="SomarTotal('bon_int')"></td>
+        <td><p id="tot_int">0</p></td>
+        <td><p id="cus_int">0</p></td>
+    </tr>
+    <tr>
+        <th>SAB <br> Sabedoria</th>
+        <td><input type="number" id="val_sab" inputmode="numeric"></td>
+        <td><p id="raca_sab"></p></td>
+        <td><input type="number" id="bon_sab" inputmode="numeric" oninput="SomarTotal('bon_sab')"></td>
+        <td><p id="tot_sab">0</p></td>
+        <td><p id="cus_sab">0</p></td>
+    </tr>
+    <tr>
+        <th>CAR <br> Carisma</th>
+        <td><input type="number" id="val_car" inputmode="numeric"></td>
+        <td><p id="raca_car"></p></td>
+        <td><input type="number" id="bon_car"  inputmode="numeric" oninput="SomarTotal('bon_car')"></td>
+        <td><p id="tot_car">0</p></td>
+        <td><p id="cus_car">0</p></td>
+    </tr>
+
+</table>
+
+
+<script>
+    var inputfor=document.getElementById("val_for");
+    var inputdes=document.getElementById("val_des");
+    var inputcon=document.getElementById("val_con");
+    var inputint=document.getElementById("val_int");
+    var inputsab=document.getElementById("val_sab");
+    var inputcar=document.getElementById("val_car");
+
+    inputfor.addEventListener("keydown",function(event){
+        if(event.keyCode==13){
+            CalculaCusto("val_for","tot_for","cus_for");
+        }
+    });
+    inputdes.addEventListener("keydown",function(event){
+        if(event.keyCode==13){
+            CalculaCusto("val_des","tot_des","cus_des");
+        }
+    });
+    inputcon.addEventListener("keydown",function(event){
+        if(event.keyCode==13){
+            CalculaCusto("val_con","tot_con","cus_con");
+        }
+    });
+    inputint.addEventListener("keydown",function(event){
+        if(event.keyCode==13){
+            CalculaCusto("val_int","tot_int","cus_int");
+        }
+    });
+    inputsab.addEventListener("keydown",function(event){
+        if(event.keyCode==13){
+            CalculaCusto("val_sab","tot_sab","cus_sab");
+        }
+    });
+    inputcar.addEventListener("keydown",function(event){
+        if(event.keyCode==13){
+            CalculaCusto("val_car","tot_car","cus_car");
+        }
+    });
+</script>
+</body>
+</html>
