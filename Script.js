@@ -655,6 +655,7 @@ function ApagarCheckbox(ultimaraca){
 }
 
 function SomarTotal(valor){
+    var diferenca=0;
     var atributo;
     atributo=document.getElementById(valor);
     var valorasomar=Number(atributo.value);
@@ -666,8 +667,13 @@ function SomarTotal(valor){
             totalfor=totalfor-ultimovalor;
         }
         else{
+            diferenca=ultimovalor-valorasomar;
             console.log(ultimovalor);
-            totalfor+=valorasomar;
+            if(diferenca<0){
+                totalfor+=-diferenca;
+            }else if(diferenca>0){
+                totalfor-=diferenca;
+            }
         }
 
         console.log("vai somar")
