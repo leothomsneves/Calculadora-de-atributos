@@ -7,7 +7,12 @@ var totalint=0;
 var totalsab=0;
 var totalcar=0;
 var custototal=10;
-var ultimovalor=0;
+var ultimovalorFor=0;
+var ultimovalorDes=0;
+var ultimovalorCon=0;
+var ultimovalorInt=0;
+var ultimovalorSab=0;
+var ultimovalorCar=0;
 var custoanterior=0;
 function CalculaCusto(valor,total,custo){
     console.log("Entrou");
@@ -30,14 +35,52 @@ function CalculaCusto(valor,total,custo){
             custototal-=-1;
             custoanterior=-1;
             window.document.getElementById("custo").innerHTML=custototal;
-            ultimovalor=n1;
+            switch(valor){
+                case 'val_for':
+                    ultimovalorFor=n1;
+                    break;
+                case 'val_des':
+                    ultimovalorDes=n1;
+                    break; 
+                case 'val_con':
+                    ultimovalorCon=n1;
+                    break;
+                case 'val_int':
+                    ultimovalorInt=n1;
+                    break;
+                case 'val_sab':
+                    ultimovalorSab=n1;
+                    break;
+                case 'val_car':
+                    ultimovalorCar=n1;
+                    break; 
+            }
             break;
         case 0:
             window.document.getElementById(custo).innerHTML=0;
             SomarTotal(valor);
             custototal+=custoanterior;
             window.document.getElementById("custo").innerHTML=custototal;
-            ultimovalor=n1;
+            switch(valor){
+                case 'val_for':
+                    ultimovalorFor=n1;
+                    break;
+                case 'val_des':
+                    ultimovalorDes=n1;
+                    break; 
+                case 'val_con':
+                    ultimovalorCon=n1;
+                    break;
+                case 'val_int':
+                    ultimovalorInt=n1;
+                    break;
+                case 'val_sab':
+                    ultimovalorSab=n1;
+                    break;
+                case 'val_car':
+                    ultimovalorCar=n1;
+                    break; 
+            }
             break;
         case 1:
             window.document.getElementById(custo).innerHTML=1;
@@ -45,7 +88,26 @@ function CalculaCusto(valor,total,custo){
             custototal-=1
             custoanterior=1
             window.document.getElementById("custo").innerHTML=custototal
-            ultimovalor=n1;
+            switch(valor){
+                case 'val_for':
+                    ultimovalorFor=n1;
+                    break;
+                case 'val_des':
+                    ultimovalorDes=n1;
+                    break; 
+                case 'val_con':
+                    ultimovalorCon=n1;
+                    break;
+                case 'val_int':
+                    ultimovalorInt=n1;
+                    break;
+                case 'val_sab':
+                    ultimovalorSab=n1;
+                    break;
+                case 'val_car':
+                    ultimovalorCar=n1;
+                    break; 
+            }
             break;
         case 2:
             window.document.getElementById(custo).innerHTML=2;
@@ -54,7 +116,26 @@ function CalculaCusto(valor,total,custo){
             custototal-=2;
             custoanterior=2;
             window.document.getElementById("custo").innerHTML=custototal
-            ultimovalor=n1;
+            switch(valor){
+                case 'val_for':
+                    ultimovalorFor=n1;
+                    break;
+                case 'val_des':
+                    ultimovalorDes=n1;
+                    break; 
+                case 'val_con':
+                    ultimovalorCon=n1;
+                    break;
+                case 'val_int':
+                    ultimovalorInt=n1;
+                    break;
+                case 'val_sab':
+                    ultimovalorSab=n1;
+                    break;
+                case 'val_car':
+                    ultimovalorCar=n1;
+                    break; 
+            }
             break;
         case 3:
             window.document.getElementById(custo).innerHTML=4;
@@ -62,7 +143,26 @@ function CalculaCusto(valor,total,custo){
             custototal-=4;
             custoanterior=4;
             window.document.getElementById("custo").innerHTML=custototal
-            ultimovalor=n1;
+            switch(valor){
+                case 'val_for':
+                    ultimovalorFor=n1;
+                    break;
+                case 'val_des':
+                    ultimovalorDes=n1;
+                    break; 
+                case 'val_con':
+                    ultimovalorCon=n1;
+                    break;
+                case 'val_int':
+                    ultimovalorInt=n1;
+                    break;
+                case 'val_sab':
+                    ultimovalorSab=n1;
+                    break;
+                case 'val_car':
+                    ultimovalorCar=n1;
+                    break; 
+            }
             break;
         case 4:
             window.document.getElementById(custo).innerHTML=7;
@@ -70,7 +170,26 @@ function CalculaCusto(valor,total,custo){
             custototal-=7;
             custoanterior=7;
             window.document.getElementById("custo").innerHTML=custototal
-            ultimovalor=n1;
+            switch(valor){
+                case 'val_for':
+                    ultimovalorFor=n1;
+                    break;
+                case 'val_des':
+                    ultimovalorDes=n1;
+                    break; 
+                case 'val_con':
+                    ultimovalorCon=n1;
+                    break;
+                case 'val_int':
+                    ultimovalorInt=n1;
+                    break;
+                case 'val_sab':
+                    ultimovalorSab=n1;
+                    break;
+                case 'val_car':
+                    ultimovalorCar=n1;
+                    break; 
+            }
             break;
     }
 }
@@ -663,12 +782,12 @@ function SomarTotal(valor){
     if(valor=="val_for" || valor=="raca_for" || valor=="bon_for"){
         if(valorasomar==0){
             console.log("é zero");
-            console.log(ultimovalor);
-            totalfor=totalfor-ultimovalor;
+            console.log(ultimovalorFor);
+            totalfor=totalfor-ultimovalorFor;
         }
         else{
-            diferenca=ultimovalor-valorasomar;
-            console.log(ultimovalor);
+            diferenca=ultimovalorFor-valorasomar;
+            console.log(ultimovalorFor);
             if(diferenca<0){
                 totalfor+=-diferenca;
             }else if(diferenca>0){
@@ -682,34 +801,104 @@ function SomarTotal(valor){
 
     }
     else if(valor=="val_des" || valor=="raca_des" || valor=="bon_des"){
-        totaldes+=valorasomar;
+        if(valorasomar==0){
+            console.log("é zero");
+            console.log(ultimovalorDes);
+            totaldes=totaldes-ultimovalorDes;
+        }
+        else{
+            diferenca=ultimovalorDes-valorasomar;
+            console.log(ultimovalorDes);
+            if(diferenca<0){
+                totaldes+=-diferenca;
+            }else if(diferenca>0){
+                totaldes-=diferenca;
+            }
+        }
+
         console.log("vai somar")
         window.document.getElementById("tot_des").innerHTML=totaldes;
         console.log(totaldes);
 
     }
     else if(valor=="val_con" || valor=="raca_con" || valor=="bon_con"){
-        totalcon+=valorasomar;
+        if(valorasomar==0){
+            console.log("é zero");
+            console.log(ultimovalorCon);
+            totalcon=totalcon-ultimovalorCon;
+        }
+        else{
+            diferenca=ultimovalorCon-valorasomar;
+            console.log(ultimovalorCon);
+            if(diferenca<0){
+                totalcon+=-diferenca;
+            }else if(diferenca>0){
+                totalcon-=diferenca;
+            }
+        }
+
         console.log("vai somar")
         window.document.getElementById("tot_con").innerHTML=totalcon;
         console.log(totalcon);
 
     }
     else if(valor=="val_int" || valor=="raca_int" || valor=="bon_int"){
-        totalint+=valorasomar;
+        if(valorasomar==0){
+            console.log("é zero");
+            console.log(ultimovalorInt);
+            totalint=totalint-ultimovalorInt;
+        }
+        else{
+            diferenca=ultimovalorInt-valorasomar;
+            console.log(ultimovalorInt);
+            if(diferenca<0){
+                totalint+=-diferenca;
+            }else if(diferenca>0){
+                totalint-=diferenca;
+            }
+        }
+
         console.log("vai somar")
         window.document.getElementById("tot_int").innerHTML=totalint;
         console.log(totalint);
 
     }
     else if(valor=="val_sab" || valor=="raca_sab" || valor=="bon_sab"){
-        totalsab+=valorasomar;
+        if(valorasomar==0){
+            console.log("é zero");
+            console.log(ultimovalorSab);
+            totalsab=totalsab-ultimovalorSab;
+        }
+        else{
+            diferenca=ultimovalorSab-valorasomar;
+            console.log(ultimovalorSab);
+            if(diferenca<0){
+                totalsab+=-diferenca;
+            }else if(diferenca>0){
+                totalsab-=diferenca;
+            }
+        }
+
         console.log("vai somar")
         window.document.getElementById("tot_sab").innerHTML=totalsab;
         console.log(totalsab);
     }
     else if(valor=="val_car" || valor=="raca_car" || valor=="bon_car"){
-        totalcar+=valorasomar;
+        if(valorasomar==0){
+            console.log("é zero");
+            console.log(ultimovalorCar);
+            totalcar=totalcar-ultimovalorCar;
+        }
+        else{
+            diferenca=ultimovalorCar-valorasomar;
+            console.log(ultimovalorCar);
+            if(diferenca<0){
+                totalcar+=-diferenca;
+            }else if(diferenca>0){
+                totalcar-=diferenca;
+            }
+        }
+
         console.log("vai somar")
         window.document.getElementById("tot_car").innerHTML=totalcar;
         console.log(totalcar);
