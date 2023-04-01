@@ -258,7 +258,7 @@ function Bonusderaca(){
             ultimobonusracafor=0;
             ultimobonusracades=1;
             ultimobonusracacon=0;
-            ultimobonusracaint=1;
+            ultimobonusracaint=-1;
             ultimobonusracasab=2;
             ultimobonusracacar=0;
         break;
@@ -369,8 +369,8 @@ function Bonusderaca(){
             ResetarValor("raca_int");
             ResetarValor("raca_sab");
             ultimobonusracafor=2;
-            ultimobonusracades=1;
-            ultimobonusracacon=0;
+            ultimobonusracades=0;
+            ultimobonusracacon=1;
             ultimobonusracaint=0;
             ultimobonusracasab=0;
             ultimobonusracacar=-1;
@@ -467,7 +467,6 @@ function Bonusderaca(){
             if(!document.getElementById("label_for")){
                 CriarCheckbox(valor);
             }
-            console.log("colocar sereia aqui")
          break;
 
          case "silfide":
@@ -477,11 +476,11 @@ function Bonusderaca(){
             ultimaraca=valor;
             ValorMaior("raca_car");
             ValorMenor("raca_des");
-            Penalidade("raca_for");
+            PenalidadeMaior("raca_for");
             ResetarValor("raca_con");
             ResetarValor("raca_int");
             ResetarValor("raca_sab");
-            ultimobonusracafor=-1;
+            ultimobonusracafor=-2;
             ultimobonusracades=1;
             ultimobonusracacon=0;
             ultimobonusracaint=0;
@@ -632,6 +631,12 @@ function ValorMenor(valor){
 function Penalidade(valor){
     var b1 =document.getElementById(valor);
     b1.value=parseInt(-1);
+    SomarTotal(valor);
+}
+
+function PenalidadeMaior(valor){
+    var b1 =document.getElementById(valor);
+    b1.value=parseInt(-2);
     SomarTotal(valor);
 }
 
@@ -1082,7 +1087,7 @@ function SomarTotal(valor){
 
         console.log("vai somar")
         window.document.getElementById("tot_sab").innerHTML=totalsab;
-        console.log(totalfor);
+        console.log(totalsab);
 
     }
     else if(valor=="val_car" || valor=="bon_car"){
