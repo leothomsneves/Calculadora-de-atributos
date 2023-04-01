@@ -13,8 +13,15 @@ var ultimovalorCon=0;
 var ultimovalorInt=0;
 var ultimovalorSab=0;
 var ultimovalorCar=0;
+var ultimobonusracafor=0;
+var ultimobonusracades=0;
+var ultimobonusracacon=0;
+var ultimobonusracaint=0;
+var ultimobonusracasab=0;
+var ultimobonusracacar=0;
 var custoanterior=0;
-function CalculaCusto(valor,total,custo){
+
+function CalculaCusto(valor,custo){
     console.log("Entrou");
     var v1=window.document.getElementById(valor);
     var n1=Number(v1.value);
@@ -228,6 +235,12 @@ function Bonusderaca(){
             ResetarValor("raca_for");
             ResetarValor("raca_int");
             ResetarValor("raca_car");
+            ultimobonusracafor=0;
+            ultimobonusracades=-1;
+            ultimobonusracacon=2;
+            ultimobonusracaint=0;
+            ultimobonusracasab=1;
+            ultimobonusracacar=0;
         break;
 
         case "dahllan":
@@ -242,6 +255,12 @@ function Bonusderaca(){
             ResetarValor("raca_for");
             ResetarValor("raca_con");
             ResetarValor("raca_car");
+            ultimobonusracafor=0;
+            ultimobonusracades=1;
+            ultimobonusracacon=0;
+            ultimobonusracaint=1;
+            ultimobonusracasab=2;
+            ultimobonusracacar=0;
         break;
 
         case "elfo":
@@ -255,6 +274,12 @@ function Bonusderaca(){
             ResetarValor("raca_for");
             ResetarValor("raca_sab");
             ResetarValor("raca_car");
+            ultimobonusracafor=0;
+            ultimobonusracades=1;
+            ultimobonusracacon=-1;
+            ultimobonusracaint=2;
+            ultimobonusracasab=0;
+            ultimobonusracacar=0;
          break;
 
          case "goblin":
@@ -268,6 +293,12 @@ function Bonusderaca(){
             ResetarValor("raca_for");
             ResetarValor("raca_con");
             ResetarValor("raca_sab");
+            ultimobonusracafor=0;
+            ultimobonusracades=2;
+            ultimobonusracacon=0;
+            ultimobonusracaint=1;
+            ultimobonusracasab=0;
+            ultimobonusracacar=-1;
          break;
 
          case "lefou":
@@ -285,7 +316,7 @@ function Bonusderaca(){
                 CriarCheckbox(valor);
             }
             Penalidade("raca_car");
-            console.log("Colocar lefou aqui");
+            ultimobonusracacar=-1;
          break;
 
          case "minotauro":
@@ -299,6 +330,12 @@ function Bonusderaca(){
             ResetarValor("raca_des");
             ResetarValor("raca_int");
             ResetarValor("raca_car");
+            ultimobonusracafor=2;
+            ultimobonusracades=0;
+            ultimobonusracacon=1;
+            ultimobonusracaint=0;
+            ultimobonusracasab=-1;
+            ultimobonusracacar=0;
          break;
 
          case "qareen":
@@ -312,6 +349,12 @@ function Bonusderaca(){
             ResetarValor("raca_for");
             ResetarValor("raca_des");
             ResetarValor("raca_con");
+            ultimobonusracafor=0;
+            ultimobonusracades=0;
+            ultimobonusracacon=0;
+            ultimobonusracaint=1;
+            ultimobonusracasab=-1;
+            ultimobonusracacar=2;
          break;
 
          case "golem":
@@ -325,6 +368,12 @@ function Bonusderaca(){
             ResetarValor("raca_des");
             ResetarValor("raca_int");
             ResetarValor("raca_sab");
+            ultimobonusracafor=2;
+            ultimobonusracades=1;
+            ultimobonusracacon=0;
+            ultimobonusracaint=0;
+            ultimobonusracasab=0;
+            ultimobonusracacar=-1;
          break;
 
          case "hynne":
@@ -338,6 +387,12 @@ function Bonusderaca(){
             ResetarValor("raca_con");
             ResetarValor("raca_int");
             ResetarValor("raca_sab");
+            ultimobonusracafor=-1;
+            ultimobonusracades=2;
+            ultimobonusracacon=0;
+            ultimobonusracaint=0;
+            ultimobonusracasab=0;
+            ultimobonusracacar=1;
          break;
 
          case "kliren":
@@ -351,6 +406,12 @@ function Bonusderaca(){
             ResetarValor("raca_des");
             ResetarValor("raca_con");
             ResetarValor("raca_sab");
+            ultimobonusracafor=-1;
+            ultimobonusracades=0;
+            ultimobonusracacon=0;
+            ultimobonusracaint=2;
+            ultimobonusracasab=0;
+            ultimobonusracacar=1;
          break;
 
          case "medusa":
@@ -364,6 +425,12 @@ function Bonusderaca(){
             ResetarValor("raca_con");
             ResetarValor("raca_int");
             ResetarValor("raca_sab");
+            ultimobonusracafor=0;
+            ultimobonusracades=2;
+            ultimobonusracacon=0;
+            ultimobonusracaint=0;
+            ultimobonusracasab=0;
+            ultimobonusracacar=1;
          break;
 
          case "osteon":
@@ -382,7 +449,7 @@ function Bonusderaca(){
                 CriarCheckbox(valor);
             }
             Penalidade("raca_con");
-            console.log("colocar osteon aqui")
+            ultimobonusracacon=-1;
          break;
 
          case "sereia":
@@ -414,6 +481,12 @@ function Bonusderaca(){
             ResetarValor("raca_con");
             ResetarValor("raca_int");
             ResetarValor("raca_sab");
+            ultimobonusracafor=-1;
+            ultimobonusracades=1;
+            ultimobonusracacon=0;
+            ultimobonusracaint=0;
+            ultimobonusracasab=0;
+            ultimobonusracacar=2;
          break;
 
          case "aggelus":
@@ -427,6 +500,12 @@ function Bonusderaca(){
             ResetarValor("raca_des");
             ResetarValor("raca_con");
             ResetarValor("raca_int");
+            ultimobonusracafor=0;
+            ultimobonusracades=0;
+            ultimobonusracacon=0;
+            ultimobonusracaint=0;
+            ultimobonusracasab=2;
+            ultimobonusracacar=1;
 
          break;
          case "sulfure":
@@ -440,6 +519,12 @@ function Bonusderaca(){
             ResetarValor("raca_con");
             ResetarValor("raca_sab");
             ResetarValor("raca_car");
+            ultimobonusracafor=0;
+            ultimobonusracades=2;
+            ultimobonusracacon=0;
+            ultimobonusracaint=1;
+            ultimobonusracasab=0;
+            ultimobonusracacar=0;
          break;
 
          case "trog":
@@ -453,6 +538,12 @@ function Bonusderaca(){
             ResetarValor("raca_des");
             ResetarValor("raca_sab");
             ResetarValor("raca_car");
+            ultimobonusracafor=1;
+            ultimobonusracades=0;
+            ultimobonusracacon=2;
+            ultimobonusracaint=-1;
+            ultimobonusracasab=0;
+            ultimobonusracacar=0;
          break;
     }
 }
@@ -528,22 +619,26 @@ function BonusRacaCheckbox(checkbox){
 
 function ValorMaior(valor){
     var b1 =document.getElementById(valor);
-    b1.innerText=parseInt(2);
+    b1.value=parseInt(2);
+    SomarTotal(valor);
 }
 
 function ValorMenor(valor){
     var b1 =document.getElementById(valor);
-    b1.innerText=parseInt(1);
+    b1.value=parseInt(1);
+    SomarTotal(valor);
 }
 
 function Penalidade(valor){
     var b1 =document.getElementById(valor);
-    b1.innerText=parseInt(-1);
+    b1.value=parseInt(-1);
+    SomarTotal(valor);
 }
 
 function ResetarValor(valor){
     var b1 =document.getElementById(valor);
-    b1.innerText="";
+    b1.value=0;
+    SomarTotal(valor);
 }
 
 function CriarCheckbox(raca){
@@ -779,7 +874,7 @@ function SomarTotal(valor){
     atributo=document.getElementById(valor);
     var valorasomar=Number(atributo.value);
     console.log(valorasomar);
-    if(valor=="val_for" || valor=="raca_for" || valor=="bon_for"){
+    if(valor=="val_for" || valor=="bon_for"){
         if(valorasomar==0){
             console.log("é zero");
             console.log(ultimovalorFor);
@@ -799,8 +894,29 @@ function SomarTotal(valor){
         window.document.getElementById("tot_for").innerHTML=totalfor;
         console.log(totalfor);
 
+    } 
+    else if(valor=="raca_for"){
+        if(valorasomar==0){
+            console.log("é zero");
+            console.log(ultimobonusracafor);
+            totalfor=totalfor-ultimobonusracafor;
+        }
+        else{
+            diferenca=ultimobonusracafor-valorasomar;
+            console.log(ultimobonusracafor);
+            if(diferenca<0){
+                totalfor+=-diferenca;
+            }else if(diferenca>0){
+                totalfor-=diferenca;
+            }
+        }
+
+        console.log("vai somar")
+        window.document.getElementById("tot_for").innerHTML=totalfor;
+        console.log(totalfor);
+
     }
-    else if(valor=="val_des" || valor=="raca_des" || valor=="bon_des"){
+    else if(valor=="val_des" || valor=="bon_des"){
         if(valorasomar==0){
             console.log("é zero");
             console.log(ultimovalorDes);
@@ -821,7 +937,28 @@ function SomarTotal(valor){
         console.log(totaldes);
 
     }
-    else if(valor=="val_con" || valor=="raca_con" || valor=="bon_con"){
+    else if(valor=="raca_des"){
+        if(valorasomar==0){
+            console.log("é zero");
+            console.log(ultimobonusracades);
+            totaldes=totaldes-ultimobonusracades;
+        }
+        else{
+            diferenca=ultimobonusracades-valorasomar;
+            console.log(ultimobonusracades);
+            if(diferenca<0){
+                totaldes+=-diferenca;
+            }else if(diferenca>0){
+                totaldes-=diferenca;
+            }
+        }
+
+        console.log("vai somar")
+        window.document.getElementById("tot_des").innerHTML=totaldes;
+        console.log(totaldes);
+
+    }
+    else if(valor=="val_con" || valor=="bon_con"){
         if(valorasomar==0){
             console.log("é zero");
             console.log(ultimovalorCon);
@@ -842,7 +979,30 @@ function SomarTotal(valor){
         console.log(totalcon);
 
     }
-    else if(valor=="val_int" || valor=="raca_int" || valor=="bon_int"){
+    else if(valor=="raca_con"){
+        if(valorasomar==0){
+            console.log("AQUI LEONARDO");
+            console.log(ultimobonusracacon);
+            console.log(totalcon);
+            totalcon-=ultimobonusracacon;
+            console.log(totalcon);
+        }
+        else{
+            diferenca=ultimobonusracacon-valorasomar;
+            console.log(ultimobonusracacon);
+            if(diferenca<0){
+                totalcon+=-diferenca;
+            }else if(diferenca>0){
+                totalcon-=diferenca;
+            }
+        }
+
+        console.log("vai somar")
+        window.document.getElementById("tot_con").innerHTML=totalcon;
+        console.log(totalcon);
+
+    }
+    else if(valor=="val_int" || valor=="bon_int"){
         if(valorasomar==0){
             console.log("é zero");
             console.log(ultimovalorInt);
@@ -863,7 +1023,28 @@ function SomarTotal(valor){
         console.log(totalint);
 
     }
-    else if(valor=="val_sab" || valor=="raca_sab" || valor=="bon_sab"){
+    else if(valor=="raca_int"){
+        if(valorasomar==0){
+            console.log("é zero");
+            console.log(ultimobonusracaint);
+            totalint=totalint-ultimobonusracaint;
+        }
+        else{
+            diferenca=ultimobonusracaint-valorasomar;
+            console.log(ultimobonusracaint);
+            if(diferenca<0){
+                totalint+=-diferenca;
+            }else if(diferenca>0){
+                totalint-=diferenca;
+            }
+        }
+
+        console.log("vai somar")
+        window.document.getElementById("tot_int").innerHTML=totalint;
+        console.log(totalint);
+
+    }
+    else if(valor=="val_sab" || valor=="bon_sab"){
         if(valorasomar==0){
             console.log("é zero");
             console.log(ultimovalorSab);
@@ -883,7 +1064,28 @@ function SomarTotal(valor){
         window.document.getElementById("tot_sab").innerHTML=totalsab;
         console.log(totalsab);
     }
-    else if(valor=="val_car" || valor=="raca_car" || valor=="bon_car"){
+    else if(valor=="raca_sab"){
+        if(valorasomar==0){
+            console.log("é zero");
+            console.log(ultimobonusracasab);
+            totalsab=totalsab-ultimobonusracasab;
+        }
+        else{
+            diferenca=ultimobonusracasab-valorasomar;
+            console.log(ultimobonusracasab);
+            if(diferenca<0){
+                totalsab+=-diferenca;
+            }else if(diferenca>0){
+                totalsab-=diferenca;
+            }
+        }
+
+        console.log("vai somar")
+        window.document.getElementById("tot_sab").innerHTML=totalsab;
+        console.log(totalfor);
+
+    }
+    else if(valor=="val_car" || valor=="bon_car"){
         if(valorasomar==0){
             console.log("é zero");
             console.log(ultimovalorCar);
@@ -892,6 +1094,27 @@ function SomarTotal(valor){
         else{
             diferenca=ultimovalorCar-valorasomar;
             console.log(ultimovalorCar);
+            if(diferenca<0){
+                totalcar+=-diferenca;
+            }else if(diferenca>0){
+                totalcar-=diferenca;
+            }
+        }
+
+        console.log("vai somar")
+        window.document.getElementById("tot_car").innerHTML=totalcar;
+        console.log(totalcar);
+
+    }
+    else if(valor=="raca_car"){
+        if(valorasomar==0){
+            console.log("é zero");
+            console.log(ultimobonusracacar);
+            totalcar=totalcar-ultimobonusracacar;
+        }
+        else{
+            diferenca=ultimobonusracacar-valorasomar;
+            console.log(ultimobonusracacar);
             if(diferenca<0){
                 totalcar+=-diferenca;
             }else if(diferenca>0){
