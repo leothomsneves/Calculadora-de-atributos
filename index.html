@@ -60,7 +60,7 @@
         <th>FOR <br> Força</th>
         <td><input type="number" id="val_for" inputmode="numeric"></td>
         <td><input type="number" id="raca_for" inputmode="numeric" disabled></td>
-        <td><input type="number" id="bon_for" inputmode="numeric" oninput="SomarTotal('bon_for')"></td>
+        <td><input type="number" id="bon_for" inputmode="numeric"></td>
         <td><p id="tot_for">0</p></td>
         <td><p id="cus_for">0</p></td>
     </tr>
@@ -68,7 +68,7 @@
         <th>DES <br> Destreza</th>
         <td><input type="number" id="val_des" inputmode="numeric"></td>
         <td><input type="number" id="raca_des" inputmode="numeric" disabled></td>
-        <td><input type="number" id="bon_des" inputmode="numeric" oninput="SomarTotal('bon_des')"></td>
+        <td><input type="number" id="bon_des" inputmode="numeric"></td>
         <td><p id="tot_des">0</p></td>
         <td><p id="cus_des">0</p></td>
     </tr>
@@ -76,7 +76,7 @@
         <th>CON <br> Constituição</th>
         <td><input type="number" id="val_con" inputmode="numeric"></td>
         <td><input type="number" id="raca_con" inputmode="numeric" disabled></td>
-        <td><input type="number" id="bon_con" inputmode="numeric" oninput="SomarTotal('bon_con')"></td>
+        <td><input type="number" id="bon_con" inputmode="numeric"></td>
         <td><p id="tot_con">0</p></td>
         <td><p id="cus_con">0</p></td>
     </tr>
@@ -84,7 +84,7 @@
         <th>INT <br> Inteligência</th>
         <td><input type="number" id="val_int" inputmode="numeric"></td>
         <td><input type="number" id="raca_int" inputmode="numeric" disabled></td>
-        <td><input type="number" id="bon_int" inputmode="numeric" oninput="SomarTotal('bon_int')"></td>
+        <td><input type="number" id="bon_int" inputmode="numeric"></td>
         <td><p id="tot_int">0</p></td>
         <td><p id="cus_int">0</p></td>
     </tr>
@@ -92,7 +92,7 @@
         <th>SAB <br> Sabedoria</th>
         <td><input type="number" id="val_sab" inputmode="numeric"></td>
         <td><input type="number" id="raca_sab" inputmode="numeric" disabled></td>
-        <td><input type="number" id="bon_sab" inputmode="numeric" oninput="SomarTotal('bon_sab')"></td>
+        <td><input type="number" id="bon_sab" inputmode="numeric"></td>
         <td><p id="tot_sab">0</p></td>
         <td><p id="cus_sab">0</p></td>
     </tr>
@@ -100,7 +100,7 @@
         <th>CAR <br> Carisma</th>
         <td><input type="number" id="val_car" inputmode="numeric"></td>
         <td><input type="number" id="raca_car" inputmode="numeric" disabled></td>
-        <td><input type="number" id="bon_car"  inputmode="numeric" oninput="SomarTotal('bon_car')"></td>
+        <td><input type="number" id="bon_car"  inputmode="numeric"></td>
         <td><p id="tot_car">0</p></td>
         <td><p id="cus_car">0</p></td>
     </tr>
@@ -115,6 +115,12 @@
     var inputint=document.getElementById("val_int");
     var inputsab=document.getElementById("val_sab");
     var inputcar=document.getElementById("val_car");
+    var inputBonusfor=document.getElementById("bon_for");
+    var inputBonusdes=document.getElementById("bon_des");
+    var inputBonuscon=document.getElementById("bon_con");
+    var inputBonusint=document.getElementById("bon_int");
+    var inputBonussab=document.getElementById("bon_sab");
+    var inputBonuscar=document.getElementById("bon_car");
 
     inputfor.addEventListener("keydown",function(event){
         if(event.keyCode==13){
@@ -144,6 +150,36 @@
     inputcar.addEventListener("keydown",function(event){
         if(event.keyCode==13){
             CalculaCusto("val_car","cus_car");
+        }
+    });
+    inputBonusfor.addEventListener("keydown",function(event){
+        if(event.keyCode==13){
+            SomarTotal("bon_for");
+        }
+    });
+    inputBonusdes.addEventListener("keydown",function(event){
+        if(event.keyCode==13){
+            SomarTotal("bon_des");
+        }
+    });
+    inputBonuscon.addEventListener("keydown",function(event){
+        if(event.keyCode==13){
+            SomarTotal("bon_con");
+        }
+    });
+    inputBonusint.addEventListener("keydown",function(event){
+        if(event.keyCode==13){
+            SomarTotal("bon_int");
+        }
+    });
+    inputBonussab.addEventListener("keydown",function(event){
+        if(event.keyCode==13){
+            SomarTotal("bon_sab");
+        }
+    });
+    inputBonuscar.addEventListener("keydown",function(event){
+        if(event.keyCode==13){
+            SomarTotal("bon_car");
         }
     });
 </script>
