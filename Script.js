@@ -218,6 +218,12 @@ function Bonusderaca(){
             ResetarValor("raca_int");
             ResetarValor("raca_sab");
             ResetarValor("raca_car");
+            ultimobonusracafor=0;
+            ultimobonusracades=0;
+            ultimobonusracacon=0;
+            ultimobonusracaint=0;
+            ultimobonusracasab=0;
+            ultimobonusracacar=0;
             if(!document.getElementById("label_for")){
                 CriarCheckbox(valor);
             }
@@ -312,6 +318,12 @@ function Bonusderaca(){
             ResetarValor("raca_con");
             ResetarValor("raca_int");
             ResetarValor("raca_sab");
+            ultimobonusracafor=0;
+            ultimobonusracades=0;
+            ultimobonusracacon=0;
+            ultimobonusracaint=0;
+            ultimobonusracasab=0;
+            ultimobonusracacar=0;
             if(!document.getElementById("label_for")){
                 CriarCheckbox(valor);
             }
@@ -445,6 +457,12 @@ function Bonusderaca(){
             ResetarValor("raca_int");
             ResetarValor("raca_sab");
             ResetarValor("raca_car");
+            ultimobonusracafor=0;
+            ultimobonusracades=0;
+            ultimobonusracacon=0;
+            ultimobonusracaint=0;
+            ultimobonusracasab=0;
+            ultimobonusracacar=0;
             if(!document.getElementById("label_for")){
                 CriarCheckbox(valor);
             }
@@ -464,6 +482,12 @@ function Bonusderaca(){
             ResetarValor("raca_int");
             ResetarValor("raca_sab");
             ResetarValor("raca_car");
+            ultimobonusracafor=0;
+            ultimobonusracades=0;
+            ultimobonusracacon=0;
+            ultimobonusracaint=0;
+            ultimobonusracasab=0;
+            ultimobonusracacar=0;
             if(!document.getElementById("label_for")){
                 CriarCheckbox(valor);
             }
@@ -554,26 +578,32 @@ function BonusRacaCheckbox(checkbox){
             switch(checkbox){
                 case "selet_for":
                     ValorMenor("raca_for");
+                    ultimobonusracafor=1;
                     checkboxselecionadas++;
                 break;
                 case "selet_des":
                     ValorMenor("raca_des");
+                    ultimobonusracades=1;
                     checkboxselecionadas++;
                 break;
                 case "selet_con":
                     ValorMenor("raca_con");
+                    ultimobonusracacon=1;
                     checkboxselecionadas++;
                 break;
                 case "selet_int":
                     ValorMenor("raca_int");
+                    ultimobonusracaint=1;
                     checkboxselecionadas++;
                 break;
                 case "selet_sab":
                     ValorMenor("raca_sab");
+                    ultimobonusracasab=1;
                     checkboxselecionadas++;
                 break;
                 case "selet_car":
                     ValorMenor("raca_car");
+                    ultimobonusracacar=1;
                     checkboxselecionadas++;
                 break;
 
@@ -588,26 +618,32 @@ function BonusRacaCheckbox(checkbox){
             switch(checkbox){
                 case "selet_for":
                     ResetarValor("raca_for");
+                    ultimobonusracafor=0;
                     checkboxselecionadas--;
                 break;
                 case "selet_des":
                     ResetarValor("raca_des");
+                    ultimobonusracades=0;
                     checkboxselecionadas--;
                 break;
                 case "selet_con":
                     ResetarValor("raca_con");
+                    ultimobonusracacon=0;
                     checkboxselecionadas--;
                 break;
                 case "selet_int":
                     ResetarValor("raca_int");
+                    ultimobonusracaint=0;
                     checkboxselecionadas--;
                 break;
                 case "selet_sab":
                     ResetarValor("raca_sab");
+                    ultimobonusracasab=0;
                     checkboxselecionadas--;
                 break;
                 case "selet_car":
                     ResetarValor("raca_car");
+                    ultimobonusracacar=0;
                     checkboxselecionadas--;
                 break;
 
