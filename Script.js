@@ -25,9 +25,15 @@ var ultimoBonusCon=0;
 var ultimoBonusInt=0;
 var ultimoBonusSab=0;
 var ultimoBonusCar=0;
-var custoanterior=0;
+var custoanteriorFor=0;
+var custoanteriorDes=0;
+var custoanteriorCon=0;
+var custoanteriorInt=0;
+var custoanteriorSab=0;
+var custoanteriorCar=0;
 
 function CalculaCusto(valor,custo){
+    var diferencaCusto=0;
     console.log("Entrou");
     var v1=window.document.getElementById(valor);
     var n1=Number(v1.value);
@@ -45,26 +51,125 @@ function CalculaCusto(valor,custo){
             console.log(n1);
             window.document.getElementById(custo).innerHTML=-1;
             SomarTotal(valor);
-            custoTotal-=-1;
-            custoanterior=-1;
-            window.document.getElementById("custo").innerHTML=custoTotal;
             switch(valor){
                 case 'val_for':
+                    if(custoanteriorFor==0){
+                        custoTotal-=-1;
+                    }
+                    else if(custoanteriorFor==1){
+                        custoTotal-=-2
+                    }
+                    else if(custoanteriorFor==2){
+                        custoTotal-=-3
+                    }
+                    else if(custoanteriorFor==4){
+                        custoTotal-=-5
+                    }
+                    else if(custoanteriorFor==7){
+                        custoTotal-=-8
+                    }
+                    custoanteriorFor=-1;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorFor=n1;
                     break;
                 case 'val_des':
+                    if(custoanteriorDes==0){
+                        custoTotal-=-1;
+                    }
+                    else if(custoanteriorDes==1){
+                        custoTotal-=-2
+                    }
+                    else if(custoanteriorDes==2){
+                        custoTotal-=-3
+                    }
+                    else if(custoanteriorDes==4){
+                        custoTotal-=-5
+                    }
+                    else if(custoanteriorDes==7){
+                        custoTotal-=-8
+                    }
+                    custoanteriorDes=-1;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorDes=n1;
                     break; 
                 case 'val_con':
+                    if(custoanteriorCon==0){
+                        custoTotal-=-1;
+                    }
+                    else if(custoanteriorCon==1){
+                        custoTotal-=-2
+                    }
+                    else if(custoanteriorCon==2){
+                        custoTotal-=-3
+                    }
+                    else if(custoanteriorCon==4){
+                        custoTotal-=-5
+                    }
+                    else if(custoanteriorCon==7){
+                        custoTotal-=-8
+                    }
+                    custoanteriorCon=-1;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorCon=n1;
                     break;
                 case 'val_int':
+                    if(custoanteriorInt==0){
+                        custoTotal-=-1;
+                    }
+                    else if(custoanteriorInt==1){
+                        custoTotal-=-2
+                    }
+                    else if(custoanteriorInt==2){
+                        custoTotal-=-3
+                    }
+                    else if(custoanteriorInt==4){
+                        custoTotal-=-5
+                    }
+                    else if(custoanteriorInt==7){
+                        custoTotal-=-8
+                    }
+                    custoanteriorInt=-1;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorInt=n1;
                     break;
                 case 'val_sab':
+                    if(custoanteriorSab==0){
+                        custoTotal-=-1;
+                    }
+                    else if(custoanteriorSab==1){
+                        custoTotal-=-2
+                    }
+                    else if(custoanteriorSab==2){
+                        custoTotal-=-3
+                    }
+                    else if(custoanteriorSab==4){
+                        custoTotal-=-5
+                    }
+                    else if(custoanteriorSab==7){
+                        custoTotal-=-8
+                    }
+                    custoanteriorSab=-1;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorSab=n1;
                     break;
                 case 'val_car':
+                    if(custoanteriorCar==0){
+                        custoTotal-=-1;
+                    }
+                    else if(custoanteriorCar==1){
+                        custoTotal-=-2
+                    }
+                    else if(custoanteriorCar==2){
+                        custoTotal-=-3
+                    }
+                    else if(custoanteriorCar==4){
+                        custoTotal-=-5
+                    }
+                    else if(custoanteriorCar==7){
+                        custoTotal-=-8
+                    }
+                    custoanteriorCar=-1;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorCar=n1;
                     break; 
             }
@@ -72,25 +177,41 @@ function CalculaCusto(valor,custo){
         case 0:
             window.document.getElementById(custo).innerHTML=0;
             SomarTotal(valor);
-            custoTotal+=custoanterior;
-            window.document.getElementById("custo").innerHTML=custoTotal;
             switch(valor){
                 case 'val_for':
+                    custoTotal-=custoanteriorFor;
+                    custoanteriorFor=0;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorFor=n1;
                     break;
                 case 'val_des':
+                    custoTotal-=custoanteriorDes;
+                    custoanteriorDes=0;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorDes=n1;
                     break; 
                 case 'val_con':
+                    custoTotal-=custoanteriorCon;
+                    custoanteriorCon=0;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorCon=n1;
                     break;
                 case 'val_int':
+                    custoTotal-=custoanteriorInt;
+                    custoanteriorInt=0;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorInt=n1;
                     break;
                 case 'val_sab':
+                    custoTotal-=custoanteriorSab;
+                    custoanteriorSab=0;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorSab=n1;
                     break;
                 case 'val_car':
+                    custoTotal-=custoanteriorCar;
+                    custoanteriorCar=0;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorCar=n1;
                     break; 
             }
@@ -98,54 +219,251 @@ function CalculaCusto(valor,custo){
         case 1:
             window.document.getElementById(custo).innerHTML=1;
             SomarTotal(valor);
-            custoTotal-=1
-            custoanterior=1
-            window.document.getElementById("custo").innerHTML=custoTotal
             switch(valor){
                 case 'val_for':
+                    if(custoanteriorFor==-1){
+                        custoTotal-=2;
+                    }
+                    else if(custoanteriorFor==0){
+                        custoTotal-=1
+                    }
+                    else if(custoanteriorFor==2){
+                        custoTotal-=-1
+                    }
+                    else if(custoanteriorFor==4){
+                        custoTotal-=-3
+                    }
+                    else if(custoanteriorFor==7){
+                        custoTotal-=-6
+                    }
+                    custoanteriorFor=1;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorFor=n1;
                     break;
                 case 'val_des':
+                    if(custoanteriorDes==-1){
+                        custoTotal-=2;
+                    }
+                    else if(custoanteriorDes==0){
+                        custoTotal-=1
+                    }
+                    else if(custoanteriorDes==2){
+                        custoTotal-=-1
+                    }
+                    else if(custoanteriorDes==4){
+                        custoTotal-=-3
+                    }
+                    else if(custoanteriorDes==7){
+                        custoTotal-=-6
+                    }
+                    custoanteriorDes=1;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorDes=n1;
                     break; 
                 case 'val_con':
+                    if(custoanteriorCon==-1){
+                        custoTotal-=2;
+                    }
+                    else if(custoanteriorCon==0){
+                        custoTotal-=1
+                    }
+                    else if(custoanteriorCon==2){
+                        custoTotal-=-1
+                    }
+                    else if(custoanteriorCon==4){
+                        custoTotal-=-3
+                    }
+                    else if(custoanteriorCon==7){
+                        custoTotal-=-6
+                    }
+                    custoanteriorCon=1;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorCon=n1;
                     break;
                 case 'val_int':
+                    if(custoanteriorInt==-1){
+                        custoTotal-=2;
+                    }
+                    else if(custoanteriorInt==0){
+                        custoTotal-=1
+                    }
+                    else if(custoanteriorInt==2){
+                        custoTotal-=-1
+                    }
+                    else if(custoanteriorInt==4){
+                        custoTotal-=-3
+                    }
+                    else if(custoanteriorInt==7){
+                        custoTotal-=-6
+                    }
+                    custoanteriorInt=1;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorInt=n1;
                     break;
                 case 'val_sab':
+                    if(custoanteriorSab==-1){
+                        custoTotal-=2;
+                    }
+                    else if(custoanteriorSab==0){
+                        custoTotal-=1
+                    }
+                    else if(custoanteriorSab==2){
+                        custoTotal-=-1
+                    }
+                    else if(custoanteriorSab==4){
+                        custoTotal-=-3
+                    }
+                    else if(custoanteriorSab==7){
+                        custoTotal-=-6
+                    }
+                    custoanteriorSab=1;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorSab=n1;
                     break;
                 case 'val_car':
+                    if(custoanteriorCar==-1){
+                        custoTotal-=2;
+                    }
+                    else if(custoanteriorCar==0){
+                        custoTotal-=1
+                    }
+                    else if(custoanteriorCar==2){
+                        custoTotal-=-1
+                    }
+                    else if(custoanteriorCar==4){
+                        custoTotal-=-3
+                    }
+                    else if(custoanteriorCar==7){
+                        custoTotal-=-6
+                    }
+                    custoanteriorCar=1;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorCar=n1;
                     break; 
             }
             break;
         case 2:
             window.document.getElementById(custo).innerHTML=2;
-            custoanterior=-1;
             SomarTotal(valor);
-            custoTotal-=2;
-            custoanterior=2;
-            window.document.getElementById("custo").innerHTML=custoTotal
             switch(valor){
                 case 'val_for':
+                    if(custoanteriorFor==-1){
+                        custoTotal-=3;
+                    }
+                    else if(custoanteriorFor==0){
+                        custoTotal-=2
+                    }
+                    else if(custoanteriorFor==1){
+                        custoTotal-=1
+                    }
+                    else if(custoanteriorFor==4){
+                        custoTotal-=-2
+                    }
+                    else if(custoanteriorFor==7){
+                        custoTotal-=-5
+                    }
+                    custoanteriorFor=2;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorFor=n1;
                     break;
                 case 'val_des':
+                    if(custoanteriorDes==-1){
+                        custoTotal-=3;
+                    }
+                    else if(custoanteriorDes==0){
+                        custoTotal-=2
+                    }
+                    else if(custoanteriorDes==1){
+                        custoTotal-=1
+                    }
+                    else if(custoanteriorDes==4){
+                        custoTotal-=-2
+                    }
+                    else if(custoanteriorDes==7){
+                        custoTotal-=-5
+                    }
+                    custoanteriorDes=2;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorDes=n1;
                     break; 
                 case 'val_con':
+                    if(custoanteriorCon==-1){
+                        custoTotal-=3;
+                    }
+                    else if(custoanteriorCon==0){
+                        custoTotal-=2
+                    }
+                    else if(custoanteriorCon==1){
+                        custoTotal-=1
+                    }
+                    else if(custoanteriorCon==4){
+                        custoTotal-=-2
+                    }
+                    else if(custoanteriorCon==7){
+                        custoTotal-=-5
+                    }
+                    custoanteriorCon=2;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorCon=n1;
                     break;
                 case 'val_int':
+                    if(custoanteriorInt==-1){
+                        custoTotal-=3;
+                    }
+                    else if(custoanteriorInt==0){
+                        custoTotal-=2
+                    }
+                    else if(custoanteriorInt==1){
+                        custoTotal-=1
+                    }
+                    else if(custoanteriorInt==4){
+                        custoTotal-=-2
+                    }
+                    else if(custoanteriorInt==7){
+                        custoTotal-=-5
+                    }
+                    custoanteriorInt=2;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorInt=n1;
                     break;
                 case 'val_sab':
+                    if(custoanteriorSab==-1){
+                        custoTotal-=3;
+                    }
+                    else if(custoanteriorSab==0){
+                        custoTotal-=2
+                    }
+                    else if(custoanteriorSab==1){
+                        custoTotal-=1
+                    }
+                    else if(custoanteriorSab==4){
+                        custoTotal-=-2
+                    }
+                    else if(custoanteriorSab==7){
+                        custoTotal-=-5
+                    }
+                    custoanteriorSab=2;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorSab=n1;
                     break;
                 case 'val_car':
+                    if(custoanteriorCar==-1){
+                        custoTotal-=3;
+                    }
+                    else if(custoanteriorCar==0){
+                        custoTotal-=2
+                    }
+                    else if(custoanteriorCar==1){
+                        custoTotal-=1
+                    }
+                    else if(custoanteriorCar==4){
+                        custoTotal-=-2
+                    }
+                    else if(custoanteriorCar==7){
+                        custoTotal-=-5
+                    }
+                    custoanteriorCar=2;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorCar=n1;
                     break; 
             }
@@ -153,26 +471,125 @@ function CalculaCusto(valor,custo){
         case 3:
             window.document.getElementById(custo).innerHTML=4;
             SomarTotal(valor);
-            custoTotal-=4;
-            custoanterior=4;
-            window.document.getElementById("custo").innerHTML=custoTotal
             switch(valor){
                 case 'val_for':
+                    if(custoanteriorFor==-1){
+                        custoTotal-=5;
+                    }
+                    else if(custoanteriorFor==0){
+                        custoTotal-=4
+                    }
+                    else if(custoanteriorFor==1){
+                        custoTotal-=3
+                    }
+                    else if(custoanteriorFor==2){
+                        custoTotal-=2
+                    }
+                    else if(custoanteriorFor==7){
+                        custoTotal-=-3
+                    }
+                    custoanteriorFor=4;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorFor=n1;
                     break;
                 case 'val_des':
+                    if(custoanteriorDes==-1){
+                        custoTotal-=5;
+                    }
+                    else if(custoanteriorDes==0){
+                        custoTotal-=4
+                    }
+                    else if(custoanteriorDes==1){
+                        custoTotal-=3
+                    }
+                    else if(custoanteriorDes==2){
+                        custoTotal-=2
+                    }
+                    else if(custoanteriorDes==7){
+                        custoTotal-=-3
+                    }
+                    custoanteriorDes=4;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorDes=n1;
                     break; 
                 case 'val_con':
+                    if(custoanteriorCon==-1){
+                        custoTotal-=5;
+                    }
+                    else if(custoanteriorCon==0){
+                        custoTotal-=4;
+                    }
+                    else if(custoanteriorCon==1){
+                        custoTotal-=3;
+                    }
+                    else if(custoanteriorCon==2){
+                        custoTotal-=2;
+                    }
+                    else if(custoanteriorCon==7){
+                        custoTotal-=-3;
+                    }
+                    custoanteriorCon=4;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorCon=n1;
                     break;
                 case 'val_int':
+                    if(custoanteriorInt==-1){
+                        custoTotal-=5;
+                    }
+                    else if(custoanteriorInt==0){
+                        custoTotal-=4;
+                    }
+                    else if(custoanteriorInt==1){
+                        custoTotal-=3;
+                    }
+                    else if(custoanteriorInt==2){
+                        custoTotal-=2;
+                    }
+                    else if(custoanteriorInt==7){
+                        custoTotal-=-3;
+                    }
+                    custoanteriorInt=4;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorInt=n1;
                     break;
                 case 'val_sab':
+                    if(custoanteriorSab==-1){
+                        custoTotal-=5;
+                    }
+                    else if(custoanteriorSab==0){
+                        custoTotal-=4;
+                    }
+                    else if(custoanteriorSab==1){
+                        custoTotal-=3;
+                    }
+                    else if(custoanteriorSab==2){
+                        custoTotal-=2;
+                    }
+                    else if(custoanteriorSab==7){
+                        custoTotal-=-3;
+                    }
+                    custoanteriorSab=4;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorSab=n1;
                     break;
                 case 'val_car':
+                    if(custoanteriorCar==-1){
+                        custoTotal-=5;
+                    }
+                    else if(custoanteriorCar==0){
+                        custoTotal-=4;
+                    }
+                    else if(custoanteriorCar==1){
+                        custoTotal-=3;
+                    }
+                    else if(custoanteriorCar==2){
+                        custoTotal-=2;
+                    }
+                    else if(custoanteriorCar==7){
+                        custoTotal-=-3
+                    }
+                    custoanteriorCar=4;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorCar=n1;
                     break; 
             }
@@ -180,26 +597,125 @@ function CalculaCusto(valor,custo){
         case 4:
             window.document.getElementById(custo).innerHTML=7;
             SomarTotal(valor);
-            custoTotal-=7;
-            custoanterior=7;
-            window.document.getElementById("custo").innerHTML=custoTotal
             switch(valor){
                 case 'val_for':
+                    if(custoanteriorFor==-1){
+                        custoTotal-=8;
+                    }
+                    else if(custoanteriorFor==0){
+                        custoTotal-=7;
+                    }
+                    else if(custoanteriorFor==1){
+                        custoTotal-=6;
+                    }
+                    else if(custoanteriorFor==2){
+                        custoTotal-=5;
+                    }
+                    else if(custoanteriorFor==4){
+                        custoTotal-=3;
+                    }
+                    custoanteriorFor=7;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorFor=n1;
                     break;
                 case 'val_des':
+                    if(custoanteriorDes==-1){
+                        custoTotal-=8;
+                    }
+                    else if(custoanteriorDes==0){
+                        custoTotal-=7;
+                    }
+                    else if(custoanteriorDes==1){
+                        custoTotal-=6;
+                    }
+                    else if(custoanteriorDes==2){
+                        custoTotal-=5;
+                    }
+                    else if(custoanteriorDes==4){
+                        custoTotal-=3;
+                    }
+                    custoanteriorDes=7;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorDes=n1;
                     break; 
                 case 'val_con':
+                    if(custoanteriorCon==-1){
+                        custoTotal-=8;
+                    }
+                    else if(custoanteriorCon==0){
+                        custoTotal-=7;
+                    }
+                    else if(custoanteriorCon==1){
+                        custoTotal-=6;
+                    }
+                    else if(custoanteriorCon==2){
+                        custoTotal-=5;
+                    }
+                    else if(custoanteriorCon==4){
+                        custoTotal-=3;
+                    }
+                    custoanteriorCon=7;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorCon=n1;
                     break;
                 case 'val_int':
+                    if(custoanteriorInt==-1){
+                        custoTotal-=8;
+                    }
+                    else if(custoanteriorInt==0){
+                        custoTotal-=7;
+                    }
+                    else if(custoanteriorInt==1){
+                        custoTotal-=6;
+                    }
+                    else if(custoanteriorInt==2){
+                        custoTotal-=5;
+                    }
+                    else if(custoanteriorInt==4){
+                        custoTotal-=3;
+                    }
+                    custoanteriorInt=7;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorInt=n1;
                     break;
                 case 'val_sab':
+                    if(custoanteriorSab==-1){
+                        custoTotal-=8;
+                    }
+                    else if(custoanteriorSab==0){
+                        custoTotal-=7;
+                    }
+                    else if(custoanteriorSab==1){
+                        custoTotal-=6;
+                    }
+                    else if(custoanteriorSab==2){
+                        custoTotal-=5;
+                    }
+                    else if(custoanteriorSab==4){
+                        custoTotal-=3;
+                    }
+                    custoanteriorSab=7;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorSab=n1;
                     break;
                 case 'val_car':
+                    if(custoanteriorCar==-1){
+                        custoTotal-=8;
+                    }
+                    else if(custoanteriorCar==0){
+                        custoTotal-=7;
+                    }
+                    else if(custoanteriorCar==1){
+                        custoTotal-=6;
+                    }
+                    else if(custoanteriorCar==2){
+                        custoTotal-=5;
+                    }
+                    else if(custoanteriorCar==4){
+                        custoTotal-=3;
+                    }
+                    custoanteriorCar=7;
+                    window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorCar=n1;
                     break; 
             }
