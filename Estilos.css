@@ -1,6 +1,7 @@
 th, td{
     border: 1px solid black;
     margin: 0 auto;
+    text-align: center;
 }
 table{
     margin: 0 auto;
@@ -23,6 +24,7 @@ input[type=number]{
     background-color: #d4bd95;
     border: none;
     margin: 0 auto;
+    text-align: center;
 }
 
 .Celula_header{

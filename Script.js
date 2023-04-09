@@ -179,37 +179,37 @@ function CalculaCusto(valor,custo){
             SomarTotal(valor);
             switch(valor){
                 case 'val_for':
-                    custoTotal-=custoanteriorFor;
+                    custoTotal+=custoanteriorFor;
                     custoanteriorFor=0;
                     window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorFor=n1;
                     break;
                 case 'val_des':
-                    custoTotal-=custoanteriorDes;
+                    custoTotal+=custoanteriorDes;
                     custoanteriorDes=0;
                     window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorDes=n1;
                     break; 
                 case 'val_con':
-                    custoTotal-=custoanteriorCon;
+                    custoTotal+=custoanteriorCon;
                     custoanteriorCon=0;
                     window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorCon=n1;
                     break;
                 case 'val_int':
-                    custoTotal-=custoanteriorInt;
+                    custoTotal+=custoanteriorInt;
                     custoanteriorInt=0;
                     window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorInt=n1;
                     break;
                 case 'val_sab':
-                    custoTotal-=custoanteriorSab;
+                    custoTotal+=custoanteriorSab;
                     custoanteriorSab=0;
                     window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorSab=n1;
                     break;
                 case 'val_car':
-                    custoTotal-=custoanteriorCar;
+                    custoTotal+=custoanteriorCar;
                     custoanteriorCar=0;
                     window.document.getElementById("custo").innerHTML=custoTotal;
                     ultimovalorCar=n1;
