@@ -1,0 +1,36 @@
+th, td{
+    border: 1px solid black;
+    margin: 0 auto;
+}
+table{
+    margin: 0 auto;
+}
+
+body{
+    background-image: url("./bg.jpg");
+}
+
+footer{
+    background-color: black;
+    color: white;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 20%;
+}
+
+input[type=number]{
+    background-color: #d4bd95;
+    border: none;
+    margin: 0 auto;
+}
+
+.Celula_header{
+    background-color: black;
+    color: #d4bd95;
+}
+
+#pontuacao{
+    border: 1px solid red;
+    margin-left: 1250px;
+}

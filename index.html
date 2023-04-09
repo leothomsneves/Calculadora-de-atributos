@@ -5,15 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="Script.js"></script>
-    <style>
-        th, td{
-            border: 1px solid black;
-            margin: auto;
-        }
-        table{
-            width: 80%;
-        }
-    </style>
+    <link rel="stylesheet" href="Estilos.css">
     <title>Calculadora de atributos</title>
 </head>
 <body>
@@ -42,7 +34,7 @@
             </select>
         </div>
         <div id="checkracas"></div>
-        <div style="padding-left: 1450px;">
+        <div id="pontuacao">
             <span>Pontos</span><br>
             <span id="custo">10</span>
         </div>
@@ -50,14 +42,14 @@
     <table>
     <tr>
         <th style="border: 0px;"></th>
-        <th>Valor</th>
-        <th>Raça</th>
-        <th>Bonus</th>
-        <th>Total</th>
-        <th>Custo</th>
+        <th class="Celula_header">Valor</th>
+        <th class="Celula_header">Raça</th>
+        <th class="Celula_header">Bonus</th>
+        <th class="Celula_header">Total</th>
+        <th class="Celula_header">Custo</th>
     </tr>
     <tr>
-        <th>FOR <br> Força</th>
+        <th class="Celula_header">FOR <br> Força</th>
         <td><input type="number" id="val_for" inputmode="numeric"></td>
         <td><input type="number" id="raca_for" inputmode="numeric" disabled></td>
         <td><input type="number" id="bon_for" inputmode="numeric"></td>
@@ -65,7 +57,7 @@
         <td><p id="cus_for">0</p></td>
     </tr>
     <tr>
-        <th>DES <br> Destreza</th>
+        <th class="Celula_header">DES <br> Destreza</th>
         <td><input type="number" id="val_des" inputmode="numeric"></td>
         <td><input type="number" id="raca_des" inputmode="numeric" disabled></td>
         <td><input type="number" id="bon_des" inputmode="numeric"></td>
@@ -73,7 +65,7 @@
         <td><p id="cus_des">0</p></td>
     </tr>
     <tr>
-        <th>CON <br> Constituição</th>
+        <th class="Celula_header">CON <br> Constituição</th>
         <td><input type="number" id="val_con" inputmode="numeric"></td>
         <td><input type="number" id="raca_con" inputmode="numeric" disabled></td>
         <td><input type="number" id="bon_con" inputmode="numeric"></td>
@@ -81,7 +73,7 @@
         <td><p id="cus_con">0</p></td>
     </tr>
     <tr>
-        <th>INT <br> Inteligência</th>
+        <th class="Celula_header">INT <br> Inteligência</th>
         <td><input type="number" id="val_int" inputmode="numeric"></td>
         <td><input type="number" id="raca_int" inputmode="numeric" disabled></td>
         <td><input type="number" id="bon_int" inputmode="numeric"></td>
@@ -89,7 +81,7 @@
         <td><p id="cus_int">0</p></td>
     </tr>
     <tr>
-        <th>SAB <br> Sabedoria</th>
+        <th class="Celula_header">SAB <br> Sabedoria</th>
         <td><input type="number" id="val_sab" inputmode="numeric"></td>
         <td><input type="number" id="raca_sab" inputmode="numeric" disabled></td>
         <td><input type="number" id="bon_sab" inputmode="numeric"></td>
@@ -97,7 +89,7 @@
         <td><p id="cus_sab">0</p></td>
     </tr>
     <tr>
-        <th>CAR <br> Carisma</th>
+        <th class="Celula_header">CAR <br> Carisma</th>
         <td><input type="number" id="val_car" inputmode="numeric"></td>
         <td><input type="number" id="raca_car" inputmode="numeric" disabled></td>
         <td><input type="number" id="bon_car"  inputmode="numeric"></td>
@@ -107,7 +99,9 @@
 
 </table>
 
-
+<footer>
+    <p>teste</p>
+</footer>
 <script>
     var inputfor=document.getElementById("val_for");
     var inputdes=document.getElementById("val_des");
