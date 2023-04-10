@@ -33,6 +33,11 @@ input[type=number]{
 }
 
 #pontuacao{
-    border: 1px solid red;
+    border: 3px solid red;
     margin-left: 1250px;
+    width: fit-content;
+}
+
+footer{
+    text-align: center;
 }
