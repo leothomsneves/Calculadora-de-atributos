@@ -25,6 +25,7 @@ input[type=number]{
     border: none;
     margin: 0 auto;
     text-align: center;
+    width: 100px;
 }
 
 .Celula_header{
