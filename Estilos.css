@@ -28,15 +28,28 @@ input[type=number]{
     width: 100px;
 }
 
+#controle{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
 .Celula_header{
     background-color: black;
     color: #d4bd95;
 }
 
+#pontos{
+    background-color: rgb(172, 27, 27);
+    color: #d4bd95;
+}
+
 #pontuacao{
-    border: 3px solid red;
-    margin-left: 1250px;
+    border: 3px solid rgb(172, 27, 27);
+    position: relative;
+    left: 1020px;
     width: fit-content;
+    text-align: center;
 }
 
 footer{
