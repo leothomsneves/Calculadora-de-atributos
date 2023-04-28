@@ -732,18 +732,15 @@ function Bonusderaca(){
     switch(valor){
         case "humano":
             atualizarBonusdeRaca(valor);
-            if(!document.getElementById("label_for")){
-                CriarCheckbox(valor);
-            }
+            CriarCheckbox(valor);
         break;
 
         case "anao":
-            console.log(ultimaRaca);
             atualizarBonusdeRaca(valor);
         break;
 
         case "dahllan":
-            console.log(ultimaRaca);
+
             atualizarBonusdeRaca(valor);
         break;
 
@@ -757,9 +754,7 @@ function Bonusderaca(){
 
          case "lefou":
             atualizarBonusdeRaca(valor);
-            if(!document.getElementById("label_for")){
-                CriarCheckbox(valor);
-            }
+            CriarCheckbox(valor);
             Penalidade("raca_car");
             ultimoBonusRaca[car]=-1;
          break;
@@ -790,18 +785,15 @@ function Bonusderaca(){
 
          case "osteon":
             atualizarBonusdeRaca(valor);
-            if(!document.getElementById("label_for")){
-                CriarCheckbox(valor);
-            }
+            CriarCheckbox(valor);
             Penalidade("raca_con");
             ultimoBonusRaca[con]=-1;
          break;
 
          case "sereia":
             atualizarBonusdeRaca(valor);
-            if(!document.getElementById("label_for")){
-                CriarCheckbox(valor);
-            }
+            CriarCheckbox(valor);
+
          break;
 
          case "silfide":
@@ -922,12 +914,6 @@ function BonusRacaCheckbox(checkbox){
     }
 }
 
-function ValorMaior(valor){
-    var b1 =document.getElementById(valor);
-    b1.value=parseInt(2);
-    SomarTotal(valor);
-}
-
 function ValorMenor(valor){
     var b1 =document.getElementById(valor);
     b1.value=parseInt(1);
@@ -940,12 +926,6 @@ function Penalidade(valor){
     SomarTotal(valor);
 }
 
-function PenalidadeMaior(valor){
-    var b1 =document.getElementById(valor);
-    b1.value=parseInt(-2);
-    SomarTotal(valor);
-}
-
 function ResetarValor(valor){
     var b1 =document.getElementById(valor);
     b1.value=0;
@@ -954,154 +934,110 @@ function ResetarValor(valor){
 
 function CriarCheckbox(raca){
     if(raca=="humano"||raca=="sereia"){
-        var labelFor=document.createElement("label");
-        labelFor.setAttribute("id","label_for");
-        labelFor.innerText="Força";
-        var seletFor=document.createElement("input");
-        seletFor.setAttribute("type","checkbox");
-        seletFor.setAttribute("id","selet_for");
-        seletFor.setAttribute("onclick","BonusRacaCheckbox('selet_for')")
-        document.getElementById("checkracas").appendChild(labelFor);
-        document.getElementById("checkracas").appendChild(seletFor);
-        var labelDes=document.createElement("label");
-        labelDes.setAttribute("id","label_des");
-        labelDes.innerText="Destreza";
-        var seletDes=document.createElement("input");
-        seletDes.setAttribute("type","checkbox");
-        seletDes.setAttribute("id","selet_des");
-        seletDes.setAttribute("onclick","BonusRacaCheckbox('selet_des')")
-        document.getElementById("checkracas").appendChild(labelDes);
-        document.getElementById("checkracas").appendChild(seletDes);
-        var labelCon=document.createElement("label");
-        labelCon.setAttribute("id","label_con");
-        labelCon.innerText="Constituição";
-        var seletCon=document.createElement("input");
-        seletCon.setAttribute("type","checkbox");
-        seletCon.setAttribute("id","selet_con");
-        seletCon.setAttribute("onclick","BonusRacaCheckbox('selet_con')")
-        document.getElementById("checkracas").appendChild(labelCon);
-        document.getElementById("checkracas").appendChild(seletCon);
-        var labelInt=document.createElement("label");
-        labelInt.setAttribute("id","label_int");
-        labelInt.innerText="Inteligência";
-        var seletInt=document.createElement("input");
-        seletInt.setAttribute("type","checkbox");
-        seletInt.setAttribute("id","selet_int");
-        seletInt.setAttribute("onclick","BonusRacaCheckbox('selet_int')")
-        document.getElementById("checkracas").appendChild(labelInt);
-        document.getElementById("checkracas").appendChild(seletInt);
-        var labelSab=document.createElement("label");
-        labelSab.setAttribute("id","label_sab");
-        labelSab.innerText="Sabedoria";
-        var seletSab=document.createElement("input");
-        seletSab.setAttribute("type","checkbox");
-        seletSab.setAttribute("id","selet_sab");
-        seletSab.setAttribute("onclick","BonusRacaCheckbox('selet_sab')")
-        document.getElementById("checkracas").appendChild(labelSab);
-        document.getElementById("checkracas").appendChild(seletSab);
-        var labelCar=document.createElement("label");
-        labelCar.setAttribute("id","label_car");
-        labelCar.innerText="Carisma";
-        var seletCar=document.createElement("input");
-        seletCar.setAttribute("type","checkbox");
-        seletCar.setAttribute("id","selet_car");
-        seletCar.setAttribute("onclick","BonusRacaCheckbox('selet_car')")
-        document.getElementById("checkracas").appendChild(labelCar);
-        document.getElementById("checkracas").appendChild(seletCar);
+        var labels=new Array(6);
+        var box=new Array(6);
+        for (var i = 0; i < 6; i++) {
+            labels[i]=document.createElement("label");
+            box[i]=document.createElement("input");
+            box[i].setAttribute("type","checkbox");
+            
+        }   
+        labels[forca].setAttribute("id","label_for");
+        labels[forca].innerText="Força";
+        labels[des].setAttribute("id","label_des");
+        labels[des].innerText="Destreza";
+        labels[con].setAttribute("id","label_con");
+        labels[con].innerText="Constituição";
+        labels[int].setAttribute("id","label_int");
+        labels[int].innerText="Inteligência";
+        labels[sab].setAttribute("id","label_sab");
+        labels[sab].innerText="Sabedoria";
+        labels[car].setAttribute("id","label_car");
+        labels[car].innerText="Carisma";
+        box[forca].setAttribute("id","selet_for");
+        box[forca].setAttribute("onclick","BonusRacaCheckbox('selet_for')")
+        box[des].setAttribute("id","selet_des");
+        box[des].setAttribute("onclick","BonusRacaCheckbox('selet_des')")
+        box[con].setAttribute("id","selet_con");
+        box[con].setAttribute("onclick","BonusRacaCheckbox('selet_con')")
+        box[int].setAttribute("id","selet_int");
+        box[int].setAttribute("onclick","BonusRacaCheckbox('selet_int')")
+        box[sab].setAttribute("id","selet_sab");
+        box[sab].setAttribute("onclick","BonusRacaCheckbox('selet_sab')")
+        box[car].setAttribute("id","selet_car");
+        box[car].setAttribute("onclick","BonusRacaCheckbox('selet_car')")
+        for(var i=0;i<6;i++){
+            document.getElementById("checkracas").appendChild(labels[i]);
+            document.getElementById("checkracas").appendChild(box[i]);
+        }
     }
     else if(raca=="lefou"){
-        var labelFor=document.createElement("label");
-        labelFor.setAttribute("id","label_for");
-        labelFor.innerText="Força";
-        var seletFor=document.createElement("input");
-        seletFor.setAttribute("type","checkbox");
-        seletFor.setAttribute("id","selet_for");
-        seletFor.setAttribute("onclick","BonusRacaCheckbox('selet_for')")
-        document.getElementById("checkracas").appendChild(labelFor);
-        document.getElementById("checkracas").appendChild(seletFor);
-        var labelDes=document.createElement("label");
-        labelDes.setAttribute("id","label_des");
-        labelDes.innerText="Destreza";
-        var seletDes=document.createElement("input");
-        seletDes.setAttribute("type","checkbox");
-        seletDes.setAttribute("id","selet_des");
-        seletDes.setAttribute("onclick","BonusRacaCheckbox('selet_des')")
-        document.getElementById("checkracas").appendChild(labelDes);
-        document.getElementById("checkracas").appendChild(seletDes);
-        var labelCon=document.createElement("label");
-        labelCon.setAttribute("id","label_con");
-        labelCon.innerText="Constituição";
-        var seletCon=document.createElement("input");
-        seletCon.setAttribute("type","checkbox");
-        seletCon.setAttribute("id","selet_con");
-        seletCon.setAttribute("onclick","BonusRacaCheckbox('selet_con')")
-        document.getElementById("checkracas").appendChild(labelCon);
-        document.getElementById("checkracas").appendChild(seletCon);
-        var labelInt=document.createElement("label");
-        labelInt.setAttribute("id","label_int");
-        labelInt.innerText="Inteligência";
-        var seletInt=document.createElement("input");
-        seletInt.setAttribute("type","checkbox");
-        seletInt.setAttribute("id","selet_int");
-        seletInt.setAttribute("onclick","BonusRacaCheckbox('selet_int')")
-        document.getElementById("checkracas").appendChild(labelInt);
-        document.getElementById("checkracas").appendChild(seletInt);
-        var labelSab=document.createElement("label");
-        labelSab.setAttribute("id","label_sab");
-        labelSab.innerText="Sabedoria";
-        var seletSab=document.createElement("input");
-        seletSab.setAttribute("type","checkbox");
-        seletSab.setAttribute("id","selet_sab");
-        seletSab.setAttribute("onclick","BonusRacaCheckbox('selet_sab')")
-        document.getElementById("checkracas").appendChild(labelSab);
-        document.getElementById("checkracas").appendChild(seletSab);
+        var labels=new Array(5);
+        var box=new Array(5);
+        for (var i = 0; i < 5; i++) {
+            labels[i]=document.createElement("label");
+            box[i]=document.createElement("input");
+            box[i].setAttribute("type","checkbox");
+            
+        }   
+        labels[0].setAttribute("id","label_for");
+        labels[0].innerText="Força";
+        labels[1].setAttribute("id","label_des");
+        labels[1].innerText="Destreza";
+        labels[2].setAttribute("id","label_con");
+        labels[2].innerText="Constituição";
+        labels[3].setAttribute("id","label_int");
+        labels[3].innerText="Inteligência";
+        labels[4].setAttribute("id","label_sab");
+        labels[4].innerText="Sabedoria";
+        box[0].setAttribute("id","selet_for");
+        box[0].setAttribute("onclick","BonusRacaCheckbox('selet_for')")
+        box[1].setAttribute("id","selet_des");
+        box[1].setAttribute("onclick","BonusRacaCheckbox('selet_des')")
+        box[2].setAttribute("id","selet_con");
+        box[2].setAttribute("onclick","BonusRacaCheckbox('selet_con')")
+        box[3].setAttribute("id","selet_int");
+        box[3].setAttribute("onclick","BonusRacaCheckbox('selet_int')")
+        box[4].setAttribute("id","selet_sab");
+        box[4].setAttribute("onclick","BonusRacaCheckbox('selet_sab')")
+        for(var i=0;i<5;i++){
+            document.getElementById("checkracas").appendChild(labels[i]);
+            document.getElementById("checkracas").appendChild(box[i]);
+        }
     }
     else if(raca=="osteon"){
-        var labelFor=document.createElement("label");
-        labelFor.setAttribute("id","label_for");
-        labelFor.innerText="Força";
-        var seletFor=document.createElement("input");
-        seletFor.setAttribute("type","checkbox");
-        seletFor.setAttribute("id","selet_for");
-        seletFor.setAttribute("onclick","BonusRacaCheckbox('selet_for')")
-        document.getElementById("checkracas").appendChild(labelFor);
-        document.getElementById("checkracas").appendChild(seletFor);
-        var labelDes=document.createElement("label");
-        labelDes.setAttribute("id","label_des");
-        labelDes.innerText="Destreza";
-        var seletDes=document.createElement("input");
-        seletDes.setAttribute("type","checkbox");
-        seletDes.setAttribute("id","selet_des");
-        seletDes.setAttribute("onclick","BonusRacaCheckbox('selet_des')")
-        document.getElementById("checkracas").appendChild(labelDes);
-        document.getElementById("checkracas").appendChild(seletDes);
-        var labelInt=document.createElement("label");
-        labelInt.setAttribute("id","label_int");
-        labelInt.innerText="Inteligência";
-        var seletInt=document.createElement("input");
-        seletInt.setAttribute("type","checkbox");
-        seletInt.setAttribute("id","selet_int");
-        seletInt.setAttribute("onclick","BonusRacaCheckbox('selet_int')")
-        document.getElementById("checkracas").appendChild(labelInt);
-        document.getElementById("checkracas").appendChild(seletInt);
-        var labelSab=document.createElement("label");
-        labelSab.setAttribute("id","label_sab");
-        labelSab.innerText="Sabedoria";
-        var seletSab=document.createElement("input");
-        seletSab.setAttribute("type","checkbox");
-        seletSab.setAttribute("id","selet_sab");
-        seletSab.setAttribute("onclick","BonusRacaCheckbox('selet_sab')")
-        document.getElementById("checkracas").appendChild(labelSab);
-        document.getElementById("checkracas").appendChild(seletSab);
-        var labelCar=document.createElement("label");
-        labelCar.setAttribute("id","label_car");
-        labelCar.innerText="Carisma";
-        var seletCar=document.createElement("input");
-        seletCar.setAttribute("type","checkbox");
-        seletCar.setAttribute("id","selet_car");
-        seletCar.setAttribute("onclick","BonusRacaCheckbox('selet_car')")
-        document.getElementById("checkracas").appendChild(labelCar);
-        document.getElementById("checkracas").appendChild(seletCar);
+        var labels=new Array(5);
+        var box=new Array(5);
+        for (var i = 0; i < 5; i++) {
+            labels[i]=document.createElement("label");
+            box[i]=document.createElement("input");
+            box[i].setAttribute("type","checkbox");
+            
+        }   
+        labels[0].setAttribute("id","label_for");
+        labels[0].innerText="Força";
+        labels[1].setAttribute("id","label_des");
+        labels[1].innerText="Destreza";
+        labels[2].setAttribute("id","label_int");
+        labels[2].innerText="Inteligência";
+        labels[3].setAttribute("id","label_sab");
+        labels[3].innerText="Sabedoria";
+        labels[4].setAttribute("id","label_car");
+        labels[4].innerText="Carisma";
+        box[0].setAttribute("id","selet_for");
+        box[0].setAttribute("onclick","BonusRacaCheckbox('selet_for')")
+        box[1].setAttribute("id","selet_des");
+        box[1].setAttribute("onclick","BonusRacaCheckbox('selet_des')")
+        box[2].setAttribute("id","selet_int");
+        box[2].setAttribute("onclick","BonusRacaCheckbox('selet_int')")
+        box[3].setAttribute("id","selet_sab");
+        box[3].setAttribute("onclick","BonusRacaCheckbox('selet_sab')")
+        box[4].setAttribute("id","selet_car");
+        box[4].setAttribute("onclick","BonusRacaCheckbox('selet_car')")
+        for(var i=0;i<5;i++){
+            document.getElementById("checkracas").appendChild(labels[i]);
+            document.getElementById("checkracas").appendChild(box[i]);
+        }
     }
 }
 
@@ -1182,405 +1118,281 @@ function ApagarCheckbox(ultimaRaca){
 function SomarTotal(valor){
     var diferenca=0;
     var atributo;
-    console.log(valor);
     atributo=document.getElementById(valor);
-    console.log(atributo);
     var valorasomar=Number(atributo.value);
-    console.log("BATATA")
-    console.log(valorasomar);
     if(valor=="val_for"){
         if(valorasomar==0){
-            console.log("é zero");
-            console.log(ultimovalor[forca]);
             totalAtributo[forca]=totalAtributo[forca]-ultimovalor[forca];
         }
         else{
             diferenca=ultimovalor[forca]-valorasomar;
-            console.log(ultimovalor[forca]);
             if(diferenca<0){
                 totalAtributo[forca]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[forca]-=diferenca;
             }
         }
-
-        console.log("vai somar")
         window.document.getElementById("tot_for").innerHTML=totalAtributo[forca];
-        console.log(totalAtributo[forca]);
-
     } 
+
     else if(valor=="raca_for"){
         if(valorasomar==0){
-            console.log("é zero");
-            console.log(ultimoBonusRaca[forca]);
             totalAtributo[forca]=totalAtributo[forca]-ultimoBonusRaca[forca];
         }
         else{
             diferenca=ultimoBonusRaca[forca]-valorasomar;
-            console.log(ultimoBonusRaca[forca]);
             if(diferenca<0){
                 totalAtributo[forca]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[forca]-=diferenca;
             }
         }
-
-        console.log("vai somar")
         window.document.getElementById("tot_for").innerHTML=totalAtributo[forca];
-        console.log(totalAtributo[forca]);
-
     }
+
     else if(valor=="bon_for"){
-        console.log("SORVETE");
         if(valorasomar==0){
-            console.log("AAAAAAAAAAAAAAAAAAAAAAA");
-            console.log(ultimoBonus[forca]);
             totalAtributo[forca]=totalAtributo[forca]-ultimoBonus[forca];
         }
         else{
             diferenca=ultimoBonus[forca]-valorasomar;
-            console.log(ultimoBonus[forca]);
             if(diferenca<0){
                 totalAtributo[forca]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[forca]-=diferenca;
             }
         }
-
         ultimoBonus[forca]=valorasomar;
-        console.log("vai somar")
         window.document.getElementById("tot_for").innerHTML=totalAtributo[forca];
-        console.log(totalAtributo[forca]);
-
     }
+
     else if(valor=="val_des"){
         if(valorasomar==0){
-            console.log("é zero");
-            console.log(ultimovalor[des]);
             totalAtributo[des]=totalAtributo[des]-ultimovalor[des];
         }
         else{
             diferenca=ultimovalor[des]-valorasomar;
-            console.log(ultimovalor[des]);
             if(diferenca<0){
                 totalAtributo[des]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[des]-=diferenca;
             }
         }
-
-        console.log("vai somar")
         window.document.getElementById("tot_des").innerHTML=totalAtributo[des];
-        console.log(totalAtributo[des]);
-
     }
+
     else if(valor=="raca_des"){
         if(valorasomar==0){
-            console.log("é zero");
-            console.log(ultimoBonusRaca[des]);
             totalAtributo[des]=totalAtributo[des]-ultimoBonusRaca[des];
         }
         else{
             diferenca=ultimoBonusRaca[des]-valorasomar;
-            console.log(ultimoBonusRaca[des]);
             if(diferenca<0){
                 totalAtributo[des]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[des]-=diferenca;
             }
         }
-
-        console.log("vai somar")
         window.document.getElementById("tot_des").innerHTML=totalAtributo[des];
-        console.log(totalAtributo[des]);
-
     }
+
     else if(valor=="bon_des"){
-        console.log("SORVETE");
         if(valorasomar==0){
-            console.log("AAAAAAAAAAAAAAAAAAAAAAA");
-            console.log(ultimoBonus[des]);
             totalAtributo[des]=totalAtributo[des]-ultimoBonus[des];
         }
         else{
             diferenca=ultimoBonus[des]-valorasomar;
-            console.log(ultimoBonus[des]);
             if(diferenca<0){
                 totalAtributo[des]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[des]-=diferenca;
             }
         }
-
         ultimoBonus[des]=valorasomar;
-        console.log("vai somar")
         window.document.getElementById("tot_des").innerHTML=totalAtributo[des];
-        console.log(totalAtributo[des]);
-
     }
+
     else if(valor=="val_con"){
         if(valorasomar==0){
-            console.log("é zero");
-            console.log(ultimovalor[con]);
             totalAtributo[con]=totalAtributo[con]-ultimovalor[con];
         }
         else{
             diferenca=ultimovalor[con]-valorasomar;
-            console.log(ultimovalor[con]);
             if(diferenca<0){
                 totalAtributo[con]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[con]-=diferenca;
             }
         }
-
-        console.log("vai somar")
         window.document.getElementById("tot_con").innerHTML=totalAtributo[con];
-        console.log(totalAtributo[con]);
-
     }
+
     else if(valor=="raca_con"){
         if(valorasomar==0){
-            console.log("AQUI LEONARDO");
-            console.log(ultimoBonusRaca[con]);
-            console.log(totalAtributo[con]);
             totalAtributo[con]-=ultimoBonusRaca[con];
-            console.log(totalAtributo[con]);
         }
         else{
             diferenca=ultimoBonusRaca[con]-valorasomar;
-            console.log(ultimoBonusRaca[con]);
             if(diferenca<0){
                 totalAtributo[con]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[con]-=diferenca;
             }
         }
-
-        console.log("vai somar")
         window.document.getElementById("tot_con").innerHTML=totalAtributo[con];
-        console.log(totalAtributo[con]);
-
     }
+
     else if(valor=="bon_con"){
-        console.log("SORVETE");
         if(valorasomar==0){
-            console.log("AAAAAAAAAAAAAAAAAAAAAAA");
-            console.log(ultimoBonus[con]);
             totalAtributo[con]=totalAtributo[con]-ultimoBonus[con];
         }
         else{
             diferenca=ultimoBonus[con]-valorasomar;
-            console.log(ultimoBonus[con]);
             if(diferenca<0){
                 totalAtributo[con]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[con]-=diferenca;
             }
         }
-
         ultimoBonus[con]=valorasomar;
-        console.log("vai somar")
         window.document.getElementById("tot_con").innerHTML=totalAtributo[con];
-        console.log(totalAtributo[con]);
-
     }
+
     else if(valor=="val_int"){
         if(valorasomar==0){
-            console.log("é zero");
-            console.log(ultimovalor[int]);
             totalAtributo[int]=totalAtributo[int]-ultimovalor[int];
         }
         else{
             diferenca=ultimovalor[int]-valorasomar;
-            console.log(ultimovalor[int]);
             if(diferenca<0){
                 totalAtributo[int]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[int]-=diferenca;
             }
         }
-
-        console.log("vai somar")
         window.document.getElementById("tot_int").innerHTML=totalAtributo[int];
-        console.log(totalAtributo[int]);
-
     }
+
     else if(valor=="raca_int"){
         if(valorasomar==0){
-            console.log("é zero");
-            console.log(ultimoBonusRaca[int]);
             totalAtributo[int]=totalAtributo[int]-ultimoBonusRaca[int];
         }
         else{
             diferenca=ultimoBonusRaca[int]-valorasomar;
-            console.log(ultimoBonusRaca[int]);
             if(diferenca<0){
                 totalAtributo[int]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[int]-=diferenca;
             }
         }
-
-        console.log("vai somar")
         window.document.getElementById("tot_int").innerHTML=totalAtributo[int];
-        console.log(totalAtributo[int]);
-
     }
+
     else if(valor=="bon_int"){
-        console.log("SORVETE");
         if(valorasomar==0){
-            console.log("AAAAAAAAAAAAAAAAAAAAAAA");
-            console.log(ultimoBonus[int]);
             totalAtributo[int]=totalAtributo[int]-ultimoBonus[int];
         }
         else{
             diferenca=ultimoBonus[int]-valorasomar;
-            console.log(ultimoBonus[int]);
             if(diferenca<0){
                 totalAtributo[int]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[int]-=diferenca;
             }
         }
-
         ultimoBonus[int]=valorasomar;
-        console.log("vai somar")
         window.document.getElementById("tot_int").innerHTML=totalAtributo[int];
-        console.log(totalAtributo[int]);
-
     }
+
     else if(valor=="val_sab"){
         if(valorasomar==0){
-            console.log("é zero");
-            console.log(ultimovalor[sab]);
             totalAtributo[sab]=totalAtributo[sab]-ultimovalor[sab];
         }
         else{
             diferenca=ultimovalor[sab]-valorasomar;
-            console.log(ultimovalor[sab]);
             if(diferenca<0){
                 totalAtributo[sab]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[sab]-=diferenca;
             }
         }
-
-        console.log("vai somar")
         window.document.getElementById("tot_sab").innerHTML=totalAtributo[sab];
-        console.log(totalAtributo[sab]);
     }
+
     else if(valor=="raca_sab"){
         if(valorasomar==0){
-            console.log("é zero");
-            console.log(ultimoBonusRaca[sab]);
             totalAtributo[sab]=totalAtributo[sab]-ultimoBonusRaca[sab];
         }
         else{
             diferenca=ultimoBonusRaca[sab]-valorasomar;
-            console.log(ultimoBonusRaca[sab]);
             if(diferenca<0){
                 totalAtributo[sab]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[sab]-=diferenca;
             }
         }
-
-        console.log("vai somar")
         window.document.getElementById("tot_sab").innerHTML=totalAtributo[sab];
-        console.log(totalAtributo[sab]);
-
     }
+
     else if(valor=="bon_sab"){
-        console.log("SORVETE");
         if(valorasomar==0){
-            console.log("AAAAAAAAAAAAAAAAAAAAAAA");
-            console.log(ultimoBonus[sab]);
             totalAtributo[sab]=totalAtributo[sab]-ultimoBonus[sab];
         }
         else{
             diferenca=ultimoBonus[sab]-valorasomar;
-            console.log(ultimoBonus[sab]);
             if(diferenca<0){
                 totalAtributo[sab]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[sab]-=diferenca;
             }
         }
-
         ultimoBonus[sab]=valorasomar;
-        console.log("vai somar")
         window.document.getElementById("tot_sab").innerHTML=totalAtributo[sab];
-        console.log(totalAtributo[sab]);
-
     }
 
     else if(valor=="val_car"){
         if(valorasomar==0){
-            console.log("é zero");
-            console.log(ultimovalor[car]);
             totalAtributo[car]=totalAtributo[car]-ultimovalor[car];
         }
         else{
             diferenca=ultimovalor[car]-valorasomar;
-            console.log(ultimovalor[car]);
             if(diferenca<0){
                 totalAtributo[car]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[car]-=diferenca;
             }
         }
-
-        console.log("vai somar")
         window.document.getElementById("tot_car").innerHTML=totalAtributo[car];
-        console.log(totalAtributo[car]);
-
     }
     else if(valor=="raca_car"){
         if(valorasomar==0){
-            console.log("é zero");
-            console.log(ultimoBonusRaca[car]);
             totalAtributo[car]=totalAtributo[car]-ultimoBonusRaca[car];
         }
         else{
             diferenca=ultimoBonusRaca[car]-valorasomar;
-            console.log(ultimoBonusRaca[car]);
             if(diferenca<0){
                 totalAtributo[car]+=-diferenca;
             }else if(diferenca>0){
                 totalAtributo[car]-=diferenca;
             }
         }
-
-        console.log("vai somar")
         window.document.getElementById("tot_car").innerHTML=totalAtributo[car];
-        console.log(totalAtributo[car]);
-
     }
 
     else if(valor=="bon_car"){
-        console.log("HAMBURGUER");
+        
         if(valorasomar==0){
-            console.log("AAAAAAAAAAAAAAAAAAAAAAA");
-            console.log(ultimoBonus[car]);
             totalAtributo[car]=totalAtributo[car]-ultimoBonus[car];
         }
         else{
-            console.log("BACONNNNN")
             diferenca=ultimoBonus[car]-valorasomar;
-            console.log(ultimoBonus[car]);
             if(diferenca<0){
-                console.log("MOSTARDAAAAAA")
                 totalAtributo[car]+=-diferenca;
             }else if(diferenca>0){
-                console.log("MAIONESEEEE")
                 totalAtributo[car]-=diferenca;
             }
         }
-
         ultimoBonus[car]=valorasomar;
-        console.log("vai somar")
         window.document.getElementById("tot_car").innerHTML=totalAtributo[car];
-        console.log(totalAtributo[car]);
     }
 }
