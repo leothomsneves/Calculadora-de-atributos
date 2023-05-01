@@ -943,17 +943,17 @@ function CriarCheckbox(raca){
             
         }   
         labels[forca].setAttribute("id","label_for");
-        labels[forca].innerText="Força";
+        labels[forca].innerText="For";
         labels[des].setAttribute("id","label_des");
-        labels[des].innerText="Destreza";
+        labels[des].innerText="Des";
         labels[con].setAttribute("id","label_con");
-        labels[con].innerText="Constituição";
+        labels[con].innerText="Con";
         labels[int].setAttribute("id","label_int");
-        labels[int].innerText="Inteligência";
+        labels[int].innerText="Int";
         labels[sab].setAttribute("id","label_sab");
-        labels[sab].innerText="Sabedoria";
+        labels[sab].innerText="Sab";
         labels[car].setAttribute("id","label_car");
-        labels[car].innerText="Carisma";
+        labels[car].innerText="Car";
         box[forca].setAttribute("id","selet_for");
         box[forca].setAttribute("onclick","BonusRacaCheckbox('selet_for')")
         box[des].setAttribute("id","selet_des");
@@ -981,15 +981,15 @@ function CriarCheckbox(raca){
             
         }   
         labels[0].setAttribute("id","label_for");
-        labels[0].innerText="Força";
+        labels[0].innerText="For";
         labels[1].setAttribute("id","label_des");
-        labels[1].innerText="Destreza";
+        labels[1].innerText="Des";
         labels[2].setAttribute("id","label_con");
-        labels[2].innerText="Constituição";
+        labels[2].innerText="Con";
         labels[3].setAttribute("id","label_int");
-        labels[3].innerText="Inteligência";
+        labels[3].innerText="Int";
         labels[4].setAttribute("id","label_sab");
-        labels[4].innerText="Sabedoria";
+        labels[4].innerText="Sab";
         box[0].setAttribute("id","selet_for");
         box[0].setAttribute("onclick","BonusRacaCheckbox('selet_for')")
         box[1].setAttribute("id","selet_des");
@@ -1015,15 +1015,15 @@ function CriarCheckbox(raca){
             
         }   
         labels[0].setAttribute("id","label_for");
-        labels[0].innerText="Força";
+        labels[0].innerText="For";
         labels[1].setAttribute("id","label_des");
-        labels[1].innerText="Destreza";
+        labels[1].innerText="Des";
         labels[2].setAttribute("id","label_int");
-        labels[2].innerText="Inteligência";
+        labels[2].innerText="Int";
         labels[3].setAttribute("id","label_sab");
-        labels[3].innerText="Sabedoria";
+        labels[3].innerText="Sab";
         labels[4].setAttribute("id","label_car");
-        labels[4].innerText="Carisma";
+        labels[4].innerText="Car";
         box[0].setAttribute("id","selet_for");
         box[0].setAttribute("onclick","BonusRacaCheckbox('selet_for')")
         box[1].setAttribute("id","selet_des");

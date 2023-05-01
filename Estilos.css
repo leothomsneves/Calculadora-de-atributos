@@ -25,13 +25,21 @@ input[type=number]{
     border: none;
     margin: 0 auto;
     text-align: center;
-    width: 100px;
+    size: 100px;
 }
 
 #controle{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 22% 7.5% 39.3% 31.2%;
     margin-bottom: 5px;
+}
+
+#seletor{
+    grid-column: 1/2;
+}
+
+#checkracas{
+    grid-column: 2/3;
 }
 
 .Celula_header{
@@ -46,10 +54,10 @@ input[type=number]{
 
 #pontuacao{
     border: 3px solid rgb(172, 27, 27);
-    position: relative;
-    left: 1020px;
+    grid-column: 3/4;
     width: fit-content;
     text-align: center;
+    justify-self: end;
 }
 
 footer{
