@@ -728,6 +728,7 @@ function CalculaCusto(valor, custo) {
             break;
     }
 }
+
 function Bonusderaca() {
     let raca = document.getElementById("racas");
     let valor = raca.options[raca.selectedIndex].value;
@@ -740,14 +741,10 @@ function Bonusderaca() {
         case "lefou":
             atualizarBonusdeRaca(valor);
             CriarCheckbox(valor);
-            Penalidade("raca_car");
-            ultimoBonusRaca[car] = -1;
             break;
         case "osteon":
             atualizarBonusdeRaca(valor);
             CriarCheckbox(valor);
-            Penalidade("raca_con");
-            ultimoBonusRaca[con] = -1;
             break;
         case "sereia":
             atualizarBonusdeRaca(valor);
@@ -928,12 +925,6 @@ function BonusRacaCheckbox(checkbox) {
 function ValorMenor(valor) {
     let b1 = document.getElementById(valor);
     b1.value = parseInt(1);
-    SomarTotal(valor);
-}
-
-function Penalidade(valor) {
-    let b1 = document.getElementById(valor);
-    b1.value = parseInt(-1);
     SomarTotal(valor);
 }
 
@@ -1175,282 +1166,107 @@ function ApagarCheckbox(ultimaRaca) {
 
 function SomarTotal(valor) {
     let diferenca = 0;
-    let atributo;
-    atributo = document.getElementById(valor);
-    let valorasomar = Number(atributo.value);
-    if (valor == "val_for") {
+    let campo = GetCampo(valor);
+    let atributo = GetAtributo(valor);
+    let valorasomar = Number(document.getElementById(valor).value);
+
+    if (campo == 1) {
         if (valorasomar == 0) {
-            totalAtributo[forca] = totalAtributo[forca] - ultimovalor[forca];
+            totalAtributo[atributo] = totalAtributo[atributo] - ultimovalor[atributo];
         }
         else {
-            diferenca = ultimovalor[forca] - valorasomar;
+            diferenca = ultimovalor[atributo] - valorasomar;
             if (diferenca < 0) {
-                totalAtributo[forca] += -diferenca;
+                totalAtributo[atributo] += -diferenca;
             } else if (diferenca > 0) {
-                totalAtributo[forca] -= diferenca;
+                totalAtributo[atributo] -= diferenca;
             }
         }
-        window.document.getElementById("tot_for").innerHTML = totalAtributo[forca];
+        window.document.getElementById(GetTotal(valor)).innerHTML = totalAtributo[atributo];
     }
 
-    else if (valor == "raca_for") {
+    else if (campo == 2) {
         if (valorasomar == 0) {
-            totalAtributo[forca] = totalAtributo[forca] - ultimoBonusRaca[forca];
+            totalAtributo[atributo] = totalAtributo[atributo] - ultimoBonusRaca[atributo];
         }
         else {
-            diferenca = ultimoBonusRaca[forca] - valorasomar;
+            diferenca = ultimoBonusRaca[atributo] - valorasomar;
             if (diferenca < 0) {
-                totalAtributo[forca] += -diferenca;
+                totalAtributo[atributo] += -diferenca;
             } else if (diferenca > 0) {
-                totalAtributo[forca] -= diferenca;
+                totalAtributo[atributo] -= diferenca;
             }
         }
-        window.document.getElementById("tot_for").innerHTML = totalAtributo[forca];
+        window.document.getElementById(GetTotal(valor)).innerHTML = totalAtributo[atributo];
     }
 
-    else if (valor == "bon_for") {
+    else if (campo == 3) {
         if (valorasomar == 0) {
-            totalAtributo[forca] = totalAtributo[forca] - ultimoBonus[forca];
+            totalAtributo[atributo] = totalAtributo[atributo] - ultimoBonus[atributo];
         }
         else {
-            diferenca = ultimoBonus[forca] - valorasomar;
+            diferenca = ultimoBonus[atributo] - valorasomar;
             if (diferenca < 0) {
-                totalAtributo[forca] += -diferenca;
+                totalAtributo[atributo] += -diferenca;
             } else if (diferenca > 0) {
-                totalAtributo[forca] -= diferenca;
+                totalAtributo[atributo] -= diferenca;
             }
         }
-        ultimoBonus[forca] = valorasomar;
-        window.document.getElementById("tot_for").innerHTML = totalAtributo[forca];
+        ultimoBonus[atributo] = valorasomar;
+        window.document.getElementById(GetTotal(valor)).innerHTML = totalAtributo[atributo];
     }
+}
 
-    else if (valor == "val_des") {
-        if (valorasomar == 0) {
-            totalAtributo[des] = totalAtributo[des] - ultimovalor[des];
-        }
-        else {
-            diferenca = ultimovalor[des] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[des] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[des] -= diferenca;
-            }
-        }
-        window.document.getElementById("tot_des").innerHTML = totalAtributo[des];
+function GetCampo(campo) {
+    if (campo == "val_for" || campo == "val_des" || campo == "val_con" || campo == "val_int" || campo == "val_sab" || campo == "val_car") {
+        return 1;
     }
-
-    else if (valor == "raca_des") {
-        if (valorasomar == 0) {
-            totalAtributo[des] = totalAtributo[des] - ultimoBonusRaca[des];
-        }
-        else {
-            diferenca = ultimoBonusRaca[des] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[des] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[des] -= diferenca;
-            }
-        }
-        window.document.getElementById("tot_des").innerHTML = totalAtributo[des];
+    else if (campo == "raca_for" || campo == "raca_des" || campo == "raca_con" || campo == "raca_int" || campo == "raca_sab" || campo == "raca_car") {
+        return 2;
     }
-
-    else if (valor == "bon_des") {
-        if (valorasomar == 0) {
-            totalAtributo[des] = totalAtributo[des] - ultimoBonus[des];
-        }
-        else {
-            diferenca = ultimoBonus[des] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[des] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[des] -= diferenca;
-            }
-        }
-        ultimoBonus[des] = valorasomar;
-        window.document.getElementById("tot_des").innerHTML = totalAtributo[des];
+    else if (campo == "bon_for" || campo == "bon_des" || campo == "bon_con" || campo == "bon_int" || campo == "bon_sab" || campo == "bon_car") {
+        return 3;
     }
+}
 
-    else if (valor == "val_con") {
-        if (valorasomar == 0) {
-            totalAtributo[con] = totalAtributo[con] - ultimovalor[con];
-        }
-        else {
-            diferenca = ultimovalor[con] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[con] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[con] -= diferenca;
-            }
-        }
-        window.document.getElementById("tot_con").innerHTML = totalAtributo[con];
+function GetAtributo(campo) {
+    if (campo == "val_for" || campo == "raca_for" || campo == "bon_for") {
+        return forca;
     }
-
-    else if (valor == "raca_con") {
-        if (valorasomar == 0) {
-            totalAtributo[con] -= ultimoBonusRaca[con];
-        }
-        else {
-            diferenca = ultimoBonusRaca[con] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[con] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[con] -= diferenca;
-            }
-        }
-        window.document.getElementById("tot_con").innerHTML = totalAtributo[con];
+    else if (campo == "val_des" || campo == "raca_des" || campo == "bon_des") {
+        return des;
     }
-
-    else if (valor == "bon_con") {
-        if (valorasomar == 0) {
-            totalAtributo[con] = totalAtributo[con] - ultimoBonus[con];
-        }
-        else {
-            diferenca = ultimoBonus[con] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[con] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[con] -= diferenca;
-            }
-        }
-        ultimoBonus[con] = valorasomar;
-        window.document.getElementById("tot_con").innerHTML = totalAtributo[con];
+    else if (campo == "val_con" || campo == "raca_con" || campo == "bon_con") {
+        return con;
     }
-
-    else if (valor == "val_int") {
-        if (valorasomar == 0) {
-            totalAtributo[int] = totalAtributo[int] - ultimovalor[int];
-        }
-        else {
-            diferenca = ultimovalor[int] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[int] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[int] -= diferenca;
-            }
-        }
-        window.document.getElementById("tot_int").innerHTML = totalAtributo[int];
+    else if (campo == "val_int" || campo == "raca_int" || campo == "bon_int") {
+        return int;
     }
-
-    else if (valor == "raca_int") {
-        if (valorasomar == 0) {
-            totalAtributo[int] = totalAtributo[int] - ultimoBonusRaca[int];
-        }
-        else {
-            diferenca = ultimoBonusRaca[int] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[int] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[int] -= diferenca;
-            }
-        }
-        window.document.getElementById("tot_int").innerHTML = totalAtributo[int];
+    else if (campo == "val_sab" || campo == "raca_sab" || campo == "bon_sab") {
+        return sab;
     }
-
-    else if (valor == "bon_int") {
-        if (valorasomar == 0) {
-            totalAtributo[int] = totalAtributo[int] - ultimoBonus[int];
-        }
-        else {
-            diferenca = ultimoBonus[int] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[int] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[int] -= diferenca;
-            }
-        }
-        ultimoBonus[int] = valorasomar;
-        window.document.getElementById("tot_int").innerHTML = totalAtributo[int];
+    else if (campo == "val_car" || campo == "raca_car" || campo == "bon_car") {
+        return car;
     }
+}
 
-    else if (valor == "val_sab") {
-        if (valorasomar == 0) {
-            totalAtributo[sab] = totalAtributo[sab] - ultimovalor[sab];
-        }
-        else {
-            diferenca = ultimovalor[sab] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[sab] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[sab] -= diferenca;
-            }
-        }
-        window.document.getElementById("tot_sab").innerHTML = totalAtributo[sab];
+function GetTotal(campo) {
+    if (campo == "val_for" || campo == "raca_for" || campo == "bon_for") {
+        return "tot_for";
     }
-
-    else if (valor == "raca_sab") {
-        if (valorasomar == 0) {
-            totalAtributo[sab] = totalAtributo[sab] - ultimoBonusRaca[sab];
-        }
-        else {
-            diferenca = ultimoBonusRaca[sab] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[sab] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[sab] -= diferenca;
-            }
-        }
-        window.document.getElementById("tot_sab").innerHTML = totalAtributo[sab];
+    else if (campo == "val_des" || campo == "raca_des" || campo == "bon_des") {
+        return "tot_des";
     }
-
-    else if (valor == "bon_sab") {
-        if (valorasomar == 0) {
-            totalAtributo[sab] = totalAtributo[sab] - ultimoBonus[sab];
-        }
-        else {
-            diferenca = ultimoBonus[sab] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[sab] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[sab] -= diferenca;
-            }
-        }
-        ultimoBonus[sab] = valorasomar;
-        window.document.getElementById("tot_sab").innerHTML = totalAtributo[sab];
+    else if (campo == "val_con" || campo == "raca_con" || campo == "bon_con") {
+        return "tot_con";
     }
-
-    else if (valor == "val_car") {
-        if (valorasomar == 0) {
-            totalAtributo[car] = totalAtributo[car] - ultimovalor[car];
-        }
-        else {
-            diferenca = ultimovalor[car] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[car] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[car] -= diferenca;
-            }
-        }
-        window.document.getElementById("tot_car").innerHTML = totalAtributo[car];
+    else if (campo == "val_int" || campo == "raca_int" || campo == "bon_int") {
+        return "tot_int";
     }
-    else if (valor == "raca_car") {
-        if (valorasomar == 0) {
-            totalAtributo[car] = totalAtributo[car] - ultimoBonusRaca[car];
-        }
-        else {
-            diferenca = ultimoBonusRaca[car] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[car] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[car] -= diferenca;
-            }
-        }
-        window.document.getElementById("tot_car").innerHTML = totalAtributo[car];
+    else if (campo == "val_sab" || campo == "raca_sab" || campo == "bon_sab") {
+        return "tot_sab";
     }
-
-    else if (valor == "bon_car") {
-
-        if (valorasomar == 0) {
-            totalAtributo[car] = totalAtributo[car] - ultimoBonus[car];
-        }
-        else {
-            diferenca = ultimoBonus[car] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[car] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[car] -= diferenca;
-            }
-        }
-        ultimoBonus[car] = valorasomar;
-        window.document.getElementById("tot_car").innerHTML = totalAtributo[car];
+    else if (campo == "val_car" || campo == "raca_car" || campo == "bon_car") {
+        return "tot_car";
     }
 }
