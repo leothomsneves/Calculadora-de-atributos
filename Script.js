@@ -40,7 +40,7 @@ mapRaca.set('ogro', [2, 0, 1, -1, 0, -1])
 
 
 function CalculaCusto(valor, custo) {
-    let diferencaCusto = 0;
+    let atributo = GetAtributo(valor);
     let v1 = window.document.getElementById(valor);
     let n1 = Number(v1.value);
     if (n1 < -1) {
@@ -54,677 +54,122 @@ function CalculaCusto(valor, custo) {
     }
     switch (n1) {
         case -1:
-            console.log(n1);
             window.document.getElementById(custo).innerHTML = -1;
             SomarTotal(valor);
-            switch (valor) {
-                case 'val_for':
-                    if (custoanterior[forca] == 0) {
-                        custoTotal -= -1;
-                    }
-                    else if (custoanterior[forca] == 1) {
-                        custoTotal -= -2
-                    }
-                    else if (custoanterior[forca] == 2) {
-                        custoTotal -= -3
-                    }
-                    else if (custoanterior[forca] == 4) {
-                        custoTotal -= -5
-                    }
-                    else if (custoanterior[forca] == 7) {
-                        custoTotal -= -8
-                    }
-                    custoanterior[forca] = -1;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[forca] = n1;
-                    break;
-                case 'val_des':
-                    if (custoanterior[des] == 0) {
-                        custoTotal -= -1;
-                    }
-                    else if (custoanterior[des] == 1) {
-                        custoTotal -= -2
-                    }
-                    else if (custoanterior[des] == 2) {
-                        custoTotal -= -3
-                    }
-                    else if (custoanterior[des] == 4) {
-                        custoTotal -= -5
-                    }
-                    else if (custoanterior[des] == 7) {
-                        custoTotal -= -8
-                    }
-                    custoanterior[des] = -1;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[des] = n1;
-                    break;
-                case 'val_con':
-                    if (custoanterior[con] == 0) {
-                        custoTotal -= -1;
-                    }
-                    else if (custoanterior[con] == 1) {
-                        custoTotal -= -2
-                    }
-                    else if (custoanterior[con] == 2) {
-                        custoTotal -= -3
-                    }
-                    else if (custoanterior[con] == 4) {
-                        custoTotal -= -5
-                    }
-                    else if (custoanterior[con] == 7) {
-                        custoTotal -= -8
-                    }
-                    custoanterior[con] = -1;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[con] = n1;
-                    break;
-                case 'val_int':
-                    if (custoanterior[int] == 0) {
-                        custoTotal -= -1;
-                    }
-                    else if (custoanterior[int] == 1) {
-                        custoTotal -= -2
-                    }
-                    else if (custoanterior[int] == 2) {
-                        custoTotal -= -3
-                    }
-                    else if (custoanterior[int] == 4) {
-                        custoTotal -= -5
-                    }
-                    else if (custoanterior[int] == 7) {
-                        custoTotal -= -8
-                    }
-                    custoanterior[int] = -1;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[int] = n1;
-                    break;
-                case 'val_sab':
-                    if (custoanterior[sab] == 0) {
-                        custoTotal -= -1;
-                    }
-                    else if (custoanterior[sab] == 1) {
-                        custoTotal -= -2
-                    }
-                    else if (custoanterior[sab] == 2) {
-                        custoTotal -= -3
-                    }
-                    else if (custoanterior[sab] == 4) {
-                        custoTotal -= -5
-                    }
-                    else if (custoanterior[sab] == 7) {
-                        custoTotal -= -8
-                    }
-                    custoanterior[sab] = -1;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[sab] = n1;
-                    break;
-                case 'val_car':
-                    if (custoanterior[car] == 0) {
-                        custoTotal -= -1;
-                    }
-                    else if (custoanterior[car] == 1) {
-                        custoTotal -= -2
-                    }
-                    else if (custoanterior[car] == 2) {
-                        custoTotal -= -3
-                    }
-                    else if (custoanterior[car] == 4) {
-                        custoTotal -= -5
-                    }
-                    else if (custoanterior[car] == 7) {
-                        custoTotal -= -8
-                    }
-                    custoanterior[car] = -1;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[car] = n1;
-                    break;
+            if (custoanterior[atributo] == 0) {
+                custoTotal -= -1;
             }
+            else if (custoanterior[atributo] == 1) {
+                custoTotal -= -2
+            }
+            else if (custoanterior[atributo] == 2) {
+                custoTotal -= -3
+            }
+            else if (custoanterior[atributo] == 4) {
+                custoTotal -= -5
+            }
+            else if (custoanterior[atributo] == 7) {
+                custoTotal -= -8
+            }
+            custoanterior[atributo] = -1;
+            window.document.getElementById("custo").innerHTML = custoTotal;
+            ultimovalor[atributo] = n1;
             break;
         case 0:
             window.document.getElementById(custo).innerHTML = 0;
             SomarTotal(valor);
-            switch (valor) {
-                case 'val_for':
-                    custoTotal += custoanterior[forca];
-                    custoanterior[forca] = 0;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[forca] = n1;
-                    break;
-                case 'val_des':
-                    custoTotal += custoanterior[des];
-                    custoanterior[des] = 0;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[des] = n1;
-                    break;
-                case 'val_con':
-                    custoTotal += custoanterior[con];
-                    custoanterior[con] = 0;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[con] = n1;
-                    break;
-                case 'val_int':
-                    custoTotal += custoanterior[int];
-                    custoanterior[int] = 0;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[int] = n1;
-                    break;
-                case 'val_sab':
-                    custoTotal += custoanterior[sab];
-                    custoanterior[sab] = 0;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[sab] = n1;
-                    break;
-                case 'val_car':
-                    custoTotal += custoanterior[car];
-                    custoanterior[car] = 0;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[car] = n1;
-                    break;
-            }
+            custoTotal += custoanterior[atributo];
+            custoanterior[atributo] = 0;
+            window.document.getElementById("custo").innerHTML = custoTotal;
+            ultimovalor[atributo] = n1;
             break;
         case 1:
             window.document.getElementById(custo).innerHTML = 1;
             SomarTotal(valor);
-            switch (valor) {
-                case 'val_for':
-                    if (custoanterior[forca] == -1) {
-                        custoTotal -= 2;
-                    }
-                    else if (custoanterior[forca] == 0) {
-                        custoTotal -= 1
-                    }
-                    else if (custoanterior[forca] == 2) {
-                        custoTotal -= -1
-                    }
-                    else if (custoanterior[forca] == 4) {
-                        custoTotal -= -3
-                    }
-                    else if (custoanterior[forca] == 7) {
-                        custoTotal -= -6
-                    }
-                    custoanterior[forca] = 1;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[forca] = n1;
-                    break;
-                case 'val_des':
-                    if (custoanterior[des] == -1) {
-                        custoTotal -= 2;
-                    }
-                    else if (custoanterior[des] == 0) {
-                        custoTotal -= 1
-                    }
-                    else if (custoanterior[des] == 2) {
-                        custoTotal -= -1
-                    }
-                    else if (custoanterior[des] == 4) {
-                        custoTotal -= -3
-                    }
-                    else if (custoanterior[des] == 7) {
-                        custoTotal -= -6
-                    }
-                    custoanterior[des] = 1;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[des] = n1;
-                    break;
-                case 'val_con':
-                    if (custoanterior[con] == -1) {
-                        custoTotal -= 2;
-                    }
-                    else if (custoanterior[con] == 0) {
-                        custoTotal -= 1
-                    }
-                    else if (custoanterior[con] == 2) {
-                        custoTotal -= -1
-                    }
-                    else if (custoanterior[con] == 4) {
-                        custoTotal -= -3
-                    }
-                    else if (custoanterior[con] == 7) {
-                        custoTotal -= -6
-                    }
-                    custoanterior[con] = 1;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[con] = n1;
-                    break;
-                case 'val_int':
-                    if (custoanterior[int] == -1) {
-                        custoTotal -= 2;
-                    }
-                    else if (custoanterior[int] == 0) {
-                        custoTotal -= 1
-                    }
-                    else if (custoanterior[int] == 2) {
-                        custoTotal -= -1
-                    }
-                    else if (custoanterior[int] == 4) {
-                        custoTotal -= -3
-                    }
-                    else if (custoanterior[int] == 7) {
-                        custoTotal -= -6
-                    }
-                    custoanterior[int] = 1;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[int] = n1;
-                    break;
-                case 'val_sab':
-                    if (custoanterior[sab] == -1) {
-                        custoTotal -= 2;
-                    }
-                    else if (custoanterior[sab] == 0) {
-                        custoTotal -= 1
-                    }
-                    else if (custoanterior[sab] == 2) {
-                        custoTotal -= -1
-                    }
-                    else if (custoanterior[sab] == 4) {
-                        custoTotal -= -3
-                    }
-                    else if (custoanterior[sab] == 7) {
-                        custoTotal -= -6
-                    }
-                    custoanterior[sab] = 1;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[sab] = n1;
-                    break;
-                case 'val_car':
-                    if (custoanterior[car] == -1) {
-                        custoTotal -= 2;
-                    }
-                    else if (custoanterior[car] == 0) {
-                        custoTotal -= 1
-                    }
-                    else if (custoanterior[car] == 2) {
-                        custoTotal -= -1
-                    }
-                    else if (custoanterior[car] == 4) {
-                        custoTotal -= -3
-                    }
-                    else if (custoanterior[car] == 7) {
-                        custoTotal -= -6
-                    }
-                    custoanterior[car] = 1;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[car] = n1;
-                    break;
+            if (custoanterior[atributo] == -1) {
+                custoTotal -= 2;
             }
+            else if (custoanterior[atributo] == 0) {
+                custoTotal -= 1
+            }
+            else if (custoanterior[atributo] == 2) {
+                custoTotal -= -1
+            }
+            else if (custoanterior[atributo] == 4) {
+                custoTotal -= -3
+            }
+            else if (custoanterior[atributo] == 7) {
+                custoTotal -= -6
+            }
+            custoanterior[atributo] = 1;
+            window.document.getElementById("custo").innerHTML = custoTotal;
+            ultimovalor[atributo] = n1;
             break;
         case 2:
             window.document.getElementById(custo).innerHTML = 2;
             SomarTotal(valor);
-            switch (valor) {
-                case 'val_for':
-                    if (custoanterior[forca] == -1) {
-                        custoTotal -= 3;
-                    }
-                    else if (custoanterior[forca] == 0) {
-                        custoTotal -= 2
-                    }
-                    else if (custoanterior[forca] == 1) {
-                        custoTotal -= 1
-                    }
-                    else if (custoanterior[forca] == 4) {
-                        custoTotal -= -2
-                    }
-                    else if (custoanterior[forca] == 7) {
-                        custoTotal -= -5
-                    }
-                    custoanterior[forca] = 2;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[forca] = n1;
-                    break;
-                case 'val_des':
-                    if (custoanterior[des] == -1) {
-                        custoTotal -= 3;
-                    }
-                    else if (custoanterior[des] == 0) {
-                        custoTotal -= 2
-                    }
-                    else if (custoanterior[des] == 1) {
-                        custoTotal -= 1
-                    }
-                    else if (custoanterior[des] == 4) {
-                        custoTotal -= -2
-                    }
-                    else if (custoanterior[des] == 7) {
-                        custoTotal -= -5
-                    }
-                    custoanterior[des] = 2;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[des] = n1;
-                    break;
-                case 'val_con':
-                    if (custoanterior[con] == -1) {
-                        custoTotal -= 3;
-                    }
-                    else if (custoanterior[con] == 0) {
-                        custoTotal -= 2
-                    }
-                    else if (custoanterior[con] == 1) {
-                        custoTotal -= 1
-                    }
-                    else if (custoanterior[con] == 4) {
-                        custoTotal -= -2
-                    }
-                    else if (custoanterior[con] == 7) {
-                        custoTotal -= -5
-                    }
-                    custoanterior[con] = 2;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[con] = n1;
-                    break;
-                case 'val_int':
-                    if (custoanterior[int] == -1) {
-                        custoTotal -= 3;
-                    }
-                    else if (custoanterior[int] == 0) {
-                        custoTotal -= 2
-                    }
-                    else if (custoanterior[int] == 1) {
-                        custoTotal -= 1
-                    }
-                    else if (custoanterior[int] == 4) {
-                        custoTotal -= -2
-                    }
-                    else if (custoanterior[int] == 7) {
-                        custoTotal -= -5
-                    }
-                    custoanterior[int] = 2;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[int] = n1;
-                    break;
-                case 'val_sab':
-                    if (custoanterior[sab] == -1) {
-                        custoTotal -= 3;
-                    }
-                    else if (custoanterior[sab] == 0) {
-                        custoTotal -= 2
-                    }
-                    else if (custoanterior[sab] == 1) {
-                        custoTotal -= 1
-                    }
-                    else if (custoanterior[sab] == 4) {
-                        custoTotal -= -2
-                    }
-                    else if (custoanterior[sab] == 7) {
-                        custoTotal -= -5
-                    }
-                    custoanterior[sab] = 2;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[sab] = n1;
-                    break;
-                case 'val_car':
-                    if (custoanterior[car] == -1) {
-                        custoTotal -= 3;
-                    }
-                    else if (custoanterior[car] == 0) {
-                        custoTotal -= 2
-                    }
-                    else if (custoanterior[car] == 1) {
-                        custoTotal -= 1
-                    }
-                    else if (custoanterior[car] == 4) {
-                        custoTotal -= -2
-                    }
-                    else if (custoanterior[car] == 7) {
-                        custoTotal -= -5
-                    }
-                    custoanterior[car] = 2;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[car] = n1;
-                    break;
+            if (custoanterior[atributo] == -1) {
+                custoTotal -= 3;
             }
+            else if (custoanterior[atributo] == 0) {
+                custoTotal -= 2
+            }
+            else if (custoanterior[atributo] == 1) {
+                custoTotal -= 1
+            }
+            else if (custoanterior[atributo] == 4) {
+                custoTotal -= -2
+            }
+            else if (custoanterior[atributo] == 7) {
+                custoTotal -= -5
+            }
+            custoanterior[atributo] = 2;
+            window.document.getElementById("custo").innerHTML = custoTotal;
+            ultimovalor[atributo] = n1;
             break;
         case 3:
             window.document.getElementById(custo).innerHTML = 4;
             SomarTotal(valor);
-            switch (valor) {
-                case 'val_for':
-                    if (custoanterior[forca] == -1) {
-                        custoTotal -= 5;
-                    }
-                    else if (custoanterior[forca] == 0) {
-                        custoTotal -= 4
-                    }
-                    else if (custoanterior[forca] == 1) {
-                        custoTotal -= 3
-                    }
-                    else if (custoanterior[forca] == 2) {
-                        custoTotal -= 2
-                    }
-                    else if (custoanterior[forca] == 7) {
-                        custoTotal -= -3
-                    }
-                    custoanterior[forca] = 4;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[forca] = n1;
-                    break;
-                case 'val_des':
-                    if (custoanterior[des] == -1) {
-                        custoTotal -= 5;
-                    }
-                    else if (custoanterior[des] == 0) {
-                        custoTotal -= 4
-                    }
-                    else if (custoanterior[des] == 1) {
-                        custoTotal -= 3
-                    }
-                    else if (custoanterior[des] == 2) {
-                        custoTotal -= 2
-                    }
-                    else if (custoanterior[des] == 7) {
-                        custoTotal -= -3
-                    }
-                    custoanterior[des] = 4;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[des] = n1;
-                    break;
-                case 'val_con':
-                    if (custoanterior[con] == -1) {
-                        custoTotal -= 5;
-                    }
-                    else if (custoanterior[con] == 0) {
-                        custoTotal -= 4;
-                    }
-                    else if (custoanterior[con] == 1) {
-                        custoTotal -= 3;
-                    }
-                    else if (custoanterior[con] == 2) {
-                        custoTotal -= 2;
-                    }
-                    else if (custoanterior[con] == 7) {
-                        custoTotal -= -3;
-                    }
-                    custoanterior[con] = 4;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[con] = n1;
-                    break;
-                case 'val_int':
-                    if (custoanterior[int] == -1) {
-                        custoTotal -= 5;
-                    }
-                    else if (custoanterior[int] == 0) {
-                        custoTotal -= 4;
-                    }
-                    else if (custoanterior[int] == 1) {
-                        custoTotal -= 3;
-                    }
-                    else if (custoanterior[int] == 2) {
-                        custoTotal -= 2;
-                    }
-                    else if (custoanterior[int] == 7) {
-                        custoTotal -= -3;
-                    }
-                    custoanterior[int] = 4;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[int] = n1;
-                    break;
-                case 'val_sab':
-                    if (custoanterior[sab] == -1) {
-                        custoTotal -= 5;
-                    }
-                    else if (custoanterior[sab] == 0) {
-                        custoTotal -= 4;
-                    }
-                    else if (custoanterior[sab] == 1) {
-                        custoTotal -= 3;
-                    }
-                    else if (custoanterior[sab] == 2) {
-                        custoTotal -= 2;
-                    }
-                    else if (custoanterior[sab] == 7) {
-                        custoTotal -= -3;
-                    }
-                    custoanterior[sab] = 4;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[sab] = n1;
-                    break;
-                case 'val_car':
-                    if (custoanterior[car] == -1) {
-                        custoTotal -= 5;
-                    }
-                    else if (custoanterior[car] == 0) {
-                        custoTotal -= 4;
-                    }
-                    else if (custoanterior[car] == 1) {
-                        custoTotal -= 3;
-                    }
-                    else if (custoanterior[car] == 2) {
-                        custoTotal -= 2;
-                    }
-                    else if (custoanterior[car] == 7) {
-                        custoTotal -= -3
-                    }
-                    custoanterior[car] = 4;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[car] = n1;
-                    break;
+            if (custoanterior[atributo] == -1) {
+                custoTotal -= 5;
             }
+            else if (custoanterior[atributo] == 0) {
+                custoTotal -= 4
+            }
+            else if (custoanterior[atributo] == 1) {
+                custoTotal -= 3
+            }
+            else if (custoanterior[atributo] == 2) {
+                custoTotal -= 2
+            }
+            else if (custoanterior[atributo] == 7) {
+                custoTotal -= -3
+            }
+            custoanterior[atributo] = 4;
+            window.document.getElementById("custo").innerHTML = custoTotal;
+            ultimovalor[atributo] = n1;
             break;
         case 4:
             window.document.getElementById(custo).innerHTML = 7;
             SomarTotal(valor);
-            switch (valor) {
-                case 'val_for':
-                    if (custoanterior[forca] == -1) {
-                        custoTotal -= 8;
-                    }
-                    else if (custoanterior[forca] == 0) {
-                        custoTotal -= 7;
-                    }
-                    else if (custoanterior[forca] == 1) {
-                        custoTotal -= 6;
-                    }
-                    else if (custoanterior[forca] == 2) {
-                        custoTotal -= 5;
-                    }
-                    else if (custoanterior[forca] == 4) {
-                        custoTotal -= 3;
-                    }
-                    custoanterior[forca] = 7;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[forca] = n1;
-                    break;
-                case 'val_des':
-                    if (custoanterior[des] == -1) {
-                        custoTotal -= 8;
-                    }
-                    else if (custoanterior[des] == 0) {
-                        custoTotal -= 7;
-                    }
-                    else if (custoanterior[des] == 1) {
-                        custoTotal -= 6;
-                    }
-                    else if (custoanterior[des] == 2) {
-                        custoTotal -= 5;
-                    }
-                    else if (custoanterior[des] == 4) {
-                        custoTotal -= 3;
-                    }
-                    custoanterior[des] = 7;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[des] = n1;
-                    break;
-                case 'val_con':
-                    if (custoanterior[con] == -1) {
-                        custoTotal -= 8;
-                    }
-                    else if (custoanterior[con] == 0) {
-                        custoTotal -= 7;
-                    }
-                    else if (custoanterior[con] == 1) {
-                        custoTotal -= 6;
-                    }
-                    else if (custoanterior[con] == 2) {
-                        custoTotal -= 5;
-                    }
-                    else if (custoanterior[con] == 4) {
-                        custoTotal -= 3;
-                    }
-                    custoanterior[con] = 7;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[con] = n1;
-                    break;
-                case 'val_int':
-                    if (custoanterior[int] == -1) {
-                        custoTotal -= 8;
-                    }
-                    else if (custoanterior[int] == 0) {
-                        custoTotal -= 7;
-                    }
-                    else if (custoanterior[int] == 1) {
-                        custoTotal -= 6;
-                    }
-                    else if (custoanterior[int] == 2) {
-                        custoTotal -= 5;
-                    }
-                    else if (custoanterior[int] == 4) {
-                        custoTotal -= 3;
-                    }
-                    custoanterior[int] = 7;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[int] = n1;
-                    break;
-                case 'val_sab':
-                    if (custoanterior[sab] == -1) {
-                        custoTotal -= 8;
-                    }
-                    else if (custoanterior[sab] == 0) {
-                        custoTotal -= 7;
-                    }
-                    else if (custoanterior[sab] == 1) {
-                        custoTotal -= 6;
-                    }
-                    else if (custoanterior[sab] == 2) {
-                        custoTotal -= 5;
-                    }
-                    else if (custoanterior[sab] == 4) {
-                        custoTotal -= 3;
-                    }
-                    custoanterior[sab] = 7;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[sab] = n1;
-                    break;
-                case 'val_car':
-                    if (custoanterior[car] == -1) {
-                        custoTotal -= 8;
-                    }
-                    else if (custoanterior[car] == 0) {
-                        custoTotal -= 7;
-                    }
-                    else if (custoanterior[car] == 1) {
-                        custoTotal -= 6;
-                    }
-                    else if (custoanterior[car] == 2) {
-                        custoTotal -= 5;
-                    }
-                    else if (custoanterior[car] == 4) {
-                        custoTotal -= 3;
-                    }
-                    custoanterior[car] = 7;
-                    window.document.getElementById("custo").innerHTML = custoTotal;
-                    ultimovalor[car] = n1;
-                    break;
+            if (custoanterior[atributo] == -1) {
+                custoTotal -= 8;
             }
+            else if (custoanterior[atributo] == 0) {
+                custoTotal -= 7;
+            }
+            else if (custoanterior[atributo] == 1) {
+                custoTotal -= 6;
+            }
+            else if (custoanterior[forcatributoa] == 2) {
+                custoTotal -= 5;
+            }
+            else if (custoanterior[atributo] == 4) {
+                custoTotal -= 3;
+            }
+            custoanterior[atributo] = 7;
+            window.document.getElementById("custo").innerHTML = custoTotal;
+            ultimovalor[atributo] = n1;
             break;
     }
 }
@@ -782,43 +227,15 @@ function atualizarBonusdeRaca(racaSelecionada) {
 function BonusRacaCheckbox(checkbox) {
     let raca = document.getElementById("racas");
     let valor = raca.options[raca.selectedIndex].value;
+    let atributo = GetAtributo(checkbox);
+    let campo = getCampoRaca(checkbox);
     let c = document.getElementById(checkbox)
     if (valor != "meio-orc") {
         if (c.checked) {
             if (checkBoxSelecionadas <= 2) {
-                switch (checkbox) {
-                    case "selet_for":
-                        ValorMenor("raca_for");
-                        ultimoBonusRaca[forca] = 1;
-                        checkBoxSelecionadas++;
-                        break;
-                    case "selet_des":
-                        ValorMenor("raca_des");
-                        ultimoBonusRaca[des] = 1;
-                        checkBoxSelecionadas++;
-                        break;
-                    case "selet_con":
-                        ValorMenor("raca_con");
-                        ultimoBonusRaca[con] = 1;
-                        checkBoxSelecionadas++;
-                        break;
-                    case "selet_int":
-                        ValorMenor("raca_int");
-                        ultimoBonusRaca[int] = 1;
-                        checkBoxSelecionadas++;
-                        break;
-                    case "selet_sab":
-                        ValorMenor("raca_sab");
-                        ultimoBonusRaca[sab] = 1;
-                        checkBoxSelecionadas++;
-                        break;
-                    case "selet_car":
-                        ValorMenor("raca_car");
-                        ultimoBonusRaca[car] = 1;
-                        checkBoxSelecionadas++;
-                        break;
-
-                }
+                ValorMenor(campo);
+                ultimoBonusRaca[atributo] = 1;
+                checkBoxSelecionadas++;
             }
             else {
                 c.checked = false;
@@ -826,67 +243,18 @@ function BonusRacaCheckbox(checkbox) {
         }
         else {
             if (checkBoxSelecionadas >= 0) {
-                switch (checkbox) {
-                    case "selet_for":
-                        ResetarValor("raca_for");
-                        ultimoBonusRaca[forca] = 0;
-                        checkBoxSelecionadas--;
-                        break;
-                    case "selet_des":
-                        ResetarValor("raca_des");
-                        ultimoBonusRaca[des] = 0;
-                        checkBoxSelecionadas--;
-                        break;
-                    case "selet_con":
-                        ResetarValor("raca_con");
-                        ultimoBonusRaca[con] = 0;
-                        checkBoxSelecionadas--;
-                        break;
-                    case "selet_int":
-                        ResetarValor("raca_int");
-                        ultimoBonusRaca[int] = 0;
-                        checkBoxSelecionadas--;
-                        break;
-                    case "selet_sab":
-                        ResetarValor("raca_sab");
-                        ultimoBonusRaca[sab] = 0;
-                        checkBoxSelecionadas--;
-                        break;
-                    case "selet_car":
-                        ResetarValor("raca_car");
-                        ultimoBonusRaca[car] = 0;
-                        checkBoxSelecionadas--;
-                        break;
-
-                }
+                ResetarValor(campo);
+                ultimoBonusRaca[atributo] = 0;
+                checkBoxSelecionadas--;
             }
         }
     }
     else {
         if (c.checked) {
             if (checkBoxSelecionadas < 1) {
-                switch (checkbox) {
-                    case "selet_des":
-                        ValorMenor("raca_des");
-                        ultimoBonusRaca[des] = 1;
-                        checkBoxSelecionadas++;
-                        break;
-                    case "selet_con":
-                        ValorMenor("raca_con");
-                        ultimoBonusRaca[con] = 1;
-                        checkBoxSelecionadas++;
-                        break;
-                    case "selet_int":
-                        ValorMenor("raca_int");
-                        ultimoBonusRaca[int] = 1;
-                        checkBoxSelecionadas++;
-                        break;
-                    case "selet_sab":
-                        ValorMenor("raca_sab");
-                        ultimoBonusRaca[sab] = 1;
-                        checkBoxSelecionadas++;
-                        break;
-                }
+                ValorMenor(campo);
+                ultimoBonusRaca[atributo] = 1;
+                checkBoxSelecionadas++;
             }
             else {
                 c.checked = false;
@@ -894,28 +262,9 @@ function BonusRacaCheckbox(checkbox) {
         }
         else {
             if (checkBoxSelecionadas >= 0) {
-                switch (checkbox) {
-                    case "selet_des":
-                        ResetarValor("raca_des");
-                        ultimoBonusRaca[des] = 0;
-                        checkBoxSelecionadas--;
-                        break;
-                    case "selet_con":
-                        ResetarValor("raca_con");
-                        ultimoBonusRaca[con] = 0;
-                        checkBoxSelecionadas--;
-                        break;
-                    case "selet_int":
-                        ResetarValor("raca_int");
-                        ultimoBonusRaca[int] = 0;
-                        checkBoxSelecionadas--;
-                        break;
-                    case "selet_sab":
-                        ResetarValor("raca_sab");
-                        ultimoBonusRaca[sab] = 0;
-                        checkBoxSelecionadas--;
-                        break;
-                }
+                ResetarValor(campo);
+                ultimoBonusRaca[atributo] = 0;
+                checkBoxSelecionadas--;
             }
         }
     }
@@ -1230,23 +579,44 @@ function GetCampo(campo) {
 }
 
 function GetAtributo(campo) {
-    if (campo == "val_for" || campo == "raca_for" || campo == "bon_for") {
+    if (campo == "val_for" || campo == "raca_for" || campo == "bon_for" || campo == "selet_for") {
         return forca;
     }
-    else if (campo == "val_des" || campo == "raca_des" || campo == "bon_des") {
+    else if (campo == "val_des" || campo == "raca_des" || campo == "bon_des" || campo == "selet_des") {
         return des;
     }
-    else if (campo == "val_con" || campo == "raca_con" || campo == "bon_con") {
+    else if (campo == "val_con" || campo == "raca_con" || campo == "bon_con" || campo == "selet_con") {
         return con;
     }
-    else if (campo == "val_int" || campo == "raca_int" || campo == "bon_int") {
+    else if (campo == "val_int" || campo == "raca_int" || campo == "bon_int" || campo == "selet_int") {
         return int;
     }
-    else if (campo == "val_sab" || campo == "raca_sab" || campo == "bon_sab") {
+    else if (campo == "val_sab" || campo == "raca_sab" || campo == "bon_sab" || campo == "selet_sab") {
         return sab;
     }
-    else if (campo == "val_car" || campo == "raca_car" || campo == "bon_car") {
+    else if (campo == "val_car" || campo == "raca_car" || campo == "bon_car" || campo == "selet_car") {
         return car;
+    }
+}
+
+function getCampoRaca(campo) {
+    if (campo == "selet_for") {
+        return "raca_for"
+    }
+    else if (campo == "selet_des") {
+        return "raca_des"
+    }
+    else if (campo == "selet_con") {
+        return "raca_con"
+    }
+    else if (campo == "selet_int") {
+        return "raca_int"
+    }
+    else if (campo == "selet_sab") {
+        return "raca_sab"
+    }
+    else if (campo == "selet_car") {
+        return "raca_car"
     }
 }
 
