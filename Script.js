@@ -40,13 +40,13 @@ mapRaca.set('ogro', [2, 0, 1, -1, 0, -1])
 
 
 function CalculaCusto(valor, custo) {
+    console.log(valor)
     let atributo = GetAtributo(valor);
     let v1 = window.document.getElementById(valor);
     let n1 = Number(v1.value);
     if (n1 < -1) {
         v1.value = -1;
         n1 = Number(v1.value);
-        console.log(n1);
     }
     else if (n1 > 4) {
         v1.value = 4;
@@ -161,7 +161,7 @@ function CalculaCusto(valor, custo) {
             else if (custoanterior[atributo] == 1) {
                 custoTotal -= 6;
             }
-            else if (custoanterior[forcatributoa] == 2) {
+            else if (custoanterior[atributo] == 2) {
                 custoTotal -= 5;
             }
             else if (custoanterior[atributo] == 4) {
