@@ -37,6 +37,8 @@ mapRaca.set('meio-orc', [2, 0, 0, 0, 0, 0]);
 mapRaca.set('orc', [2, 0, 1, -1, 0, 0]);
 mapRaca.set('tabrachi', [1, 0, 2, 0, 0, -1])
 mapRaca.set('ogro', [2, 0, 1, -1, 0, -1])
+mapRaca.set('bugbear', [2, 1, 0, 0, 0, -1])
+mapRaca.set('hobgoblin', [0, 1, 2, 0, 0, -1])
 
 
 function CalculaCusto(valor, custo) {
