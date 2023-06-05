@@ -2,6 +2,8 @@ th, td{
     border: 1px solid black;
     margin: 0 auto;
     text-align: center;
+    height: 50px;
+    width: 60px;
 }
 table{
     margin: 0 auto;
@@ -35,7 +37,12 @@ input[type=number]{
     border: none;
     margin: 0 auto;
     text-align: center;
-    size: 100px;
+    width: 60px;
+    height: 50px;
+}
+
+input:focus{
+    outline: none;
 }
 
 #controle{
@@ -55,6 +62,19 @@ input[type=number]{
 .Celula_header{
     background-color: black;
     color: #d4bd95;
+}
+
+#header_custo{
+    background-color: rgb(172, 27, 27);
+    color: #d4bd95;
+    border-style: none;
+}
+
+.Celula_custo{
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom: 1px solid rgb(172, 27, 27) ;
 }
 
 #pontos{
