@@ -1,5 +1,6 @@
 let ultimaRaca = "";
 let checkBoxSelecionadas = 0;
+let checkBoxTamanhoSelecionadas = 0;
 let totalAtributo = [0, 0, 0, 0, 0, 0];
 let custoTotal = 10;
 let ultimovalor = [0, 0, 0, 0, 0, 0];
@@ -23,7 +24,14 @@ mapRaca.set('goblin', [0, 2, 0, 1, 0, -1]);
 mapRaca.set('lefou', [0, 0, 0, 0, 0, 0 - 1]);
 mapRaca.set('minotauro', [2, 0, 1, 0, -1, 0]);
 mapRaca.set('qareen', [0, 0, 0, 1, -1, 2]);
-mapRaca.set('golem', [2, 0, 1, 0, 0, -1]);
+mapRaca.set('golemF', [2, 0, 1, 0, 0, -1]);
+mapRaca.set('golemBa', [1, 0, 2, 0, 0, -1]);
+mapRaca.set('golemB', [1, 0, 0, 0, 0, -1]);
+mapRaca.set('golemC', [2, 0, 2, 0, 0, -2]);
+mapRaca.set('golemE', [1, 0, -1, 0, 1, 1]);
+mapRaca.set('golemG', [1, 0, 2, 0, 0, -1]);
+mapRaca.set('golemP', [1, 0, 2, 0, 0, -1]);
+mapRaca.set('golemS', [2, 0, 1, 0, 0, -1]);
 mapRaca.set('hynne', [-1, 2, 0, 0, 0, 1]);
 mapRaca.set('kliren', [-1, 0, 0, 2, 0, 1]);
 mapRaca.set('medusa', [0, 2, 0, 0, 0, 1]);
@@ -39,6 +47,7 @@ mapRaca.set('tabrachi', [1, 0, 2, 0, 0, -1])
 mapRaca.set('ogro', [2, 0, 1, -1, 0, -1])
 mapRaca.set('bugbear', [2, 1, 0, 0, 0, -1])
 mapRaca.set('hobgoblin', [0, 1, 2, 0, 0, -1])
+mapRaca.set('gnoll', [0, 0, 2, -1, 1, 0]);
 
 
 function CalculaCusto(valor, custo) {
@@ -201,6 +210,38 @@ function Bonusderaca() {
             atualizarBonusdeRaca(valor);
             CriarCheckbox(valor);
             break;
+        case "golemF":
+            atualizarBonusdeRaca(valor);
+            CriarCheckbox(valor);
+            break;
+        case "golemBa":
+            atualizarBonusdeRaca(valor);
+            CriarCheckbox(valor);
+            break;
+        case "golemB":
+            atualizarBonusdeRaca(valor);
+            CriarCheckbox(valor);
+            break;
+        case "golemC":
+            atualizarBonusdeRaca(valor);
+            CriarCheckbox(valor);
+            break;
+        case "golemE":
+            atualizarBonusdeRaca(valor);
+            CriarCheckbox(valor);
+            break;
+        case "golemG":
+            atualizarBonusdeRaca(valor);
+            CriarCheckbox(valor);
+            break;
+        case "golemP":
+            atualizarBonusdeRaca(valor);
+            CriarCheckbox(valor);
+            break;
+        case "golemS":
+            atualizarBonusdeRaca(valor);
+            CriarCheckbox(valor);
+            break;
         default:
             atualizarBonusdeRaca(valor);
             break;
@@ -215,7 +256,8 @@ function atualizarBonusdeRaca(racaSelecionada) {
     camposRacas[sab] = document.getElementById("raca_sab");
     camposRacas[car] = document.getElementById("raca_car");
     checkBoxSelecionadas = 0;
-    if (document.getElementById("label_for") || document.getElementById("label_des")) {
+    checkBoxTamanhoSelecionadas = 0;
+    if (document.getElementById("label_for") || document.getElementById("label_des") || document.getElementById("label_gra")) {
         ApagarCheckbox(ultimaRaca);
     }
     ultimaRaca = racaSelecionada;
@@ -232,11 +274,11 @@ function BonusRacaCheckbox(checkbox) {
     let atributo = GetAtributo(checkbox);
     let campo = getCampoRaca(checkbox);
     let c = document.getElementById(checkbox)
-    if (valor != "meio-orc") {
+    if (valor == "golemB") {
         if (c.checked) {
-            if (checkBoxSelecionadas <= 2) {
+            if (checkBoxSelecionadas < 2) {
                 ValorMenor(campo);
-                ultimoBonusRaca[atributo] = 1;
+                ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) + 1;
                 checkBoxSelecionadas++;
             }
             else {
@@ -245,17 +287,36 @@ function BonusRacaCheckbox(checkbox) {
         }
         else {
             if (checkBoxSelecionadas >= 0) {
-                ResetarValor(campo);
-                ultimoBonusRaca[atributo] = 0;
+                Penalidade(campo);
+                ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) - 1;
+                checkBoxSelecionadas--;
+            }
+        }
+    }
+    else if (valor == "meio-orc") {
+        if (c.checked) {
+            if (checkBoxSelecionadas < 1) {
+                ValorMenor(campo);
+                ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) + 1;
+                checkBoxSelecionadas++;
+            }
+            else {
+                c.checked = false;
+            }
+        }
+        else {
+            if (checkBoxSelecionadas >= 0) {
+                Penalidade(campo);
+                ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) - 1;
                 checkBoxSelecionadas--;
             }
         }
     }
     else {
         if (c.checked) {
-            if (checkBoxSelecionadas < 1) {
+            if (checkBoxSelecionadas < 3) {
                 ValorMenor(campo);
-                ultimoBonusRaca[atributo] = 1;
+                ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) + 1;
                 checkBoxSelecionadas++;
             }
             else {
@@ -264,8 +325,8 @@ function BonusRacaCheckbox(checkbox) {
         }
         else {
             if (checkBoxSelecionadas >= 0) {
-                ResetarValor(campo);
-                ultimoBonusRaca[atributo] = 0;
+                Penalidade(campo);
+                ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) - 1;
                 checkBoxSelecionadas--;
             }
         }
@@ -273,56 +334,27 @@ function BonusRacaCheckbox(checkbox) {
 
 }
 
-function ValorMenor(valor) {
-    let b1 = document.getElementById(valor);
-    b1.value = parseInt(1);
-    SomarTotal(valor);
+function ValorMenor(campo) {
+    let b1 = document.getElementById(campo);
+    b1.value = Number(b1.value) + 1;
+    SomarTotal(campo);
 }
 
-function ResetarValor(valor) {
-    let b1 = document.getElementById(valor);
+function Penalidade(campo) {
+    let b1 = document.getElementById(campo);
+    b1.value = Number(b1.value) - 1;
+    SomarTotal(campo);
+}
+
+function ResetarValor(campo) {
+    let b1 = document.getElementById(campo);
     b1.value = 0;
-    SomarTotal(valor);
+    SomarTotal(campo);
 }
 
 function CriarCheckbox(raca) {
     if (raca == "humano" || raca == "sereia") {
-        let labels = new Array(6);
-        let box = new Array(6);
-        for (let i = 0; i < 6; i++) {
-            labels[i] = document.createElement("label");
-            box[i] = document.createElement("input");
-            box[i].setAttribute("type", "checkbox");
-
-        }
-        labels[forca].setAttribute("id", "label_for");
-        labels[forca].innerText = "For";
-        labels[des].setAttribute("id", "label_des");
-        labels[des].innerText = "Des";
-        labels[con].setAttribute("id", "label_con");
-        labels[con].innerText = "Con";
-        labels[int].setAttribute("id", "label_int");
-        labels[int].innerText = "Int";
-        labels[sab].setAttribute("id", "label_sab");
-        labels[sab].innerText = "Sab";
-        labels[car].setAttribute("id", "label_car");
-        labels[car].innerText = "Car";
-        box[forca].setAttribute("id", "selet_for");
-        box[forca].setAttribute("onclick", "BonusRacaCheckbox('selet_for')")
-        box[des].setAttribute("id", "selet_des");
-        box[des].setAttribute("onclick", "BonusRacaCheckbox('selet_des')")
-        box[con].setAttribute("id", "selet_con");
-        box[con].setAttribute("onclick", "BonusRacaCheckbox('selet_con')")
-        box[int].setAttribute("id", "selet_int");
-        box[int].setAttribute("onclick", "BonusRacaCheckbox('selet_int')")
-        box[sab].setAttribute("id", "selet_sab");
-        box[sab].setAttribute("onclick", "BonusRacaCheckbox('selet_sab')")
-        box[car].setAttribute("id", "selet_car");
-        box[car].setAttribute("onclick", "BonusRacaCheckbox('selet_car')")
-        for (let i = 0; i < 6; i++) {
-            document.getElementById("checkracas").appendChild(labels[i]);
-            document.getElementById("checkracas").appendChild(box[i]);
-        }
+        CriarTodasCheckbox();
     }
     else if (raca == "lefou") {
         let labels = new Array(5);
@@ -410,46 +442,126 @@ function CriarCheckbox(raca) {
         labels[3].setAttribute("id", "label_sab");
         labels[3].innerText = "Sab";
         box[0].setAttribute("id", "selet_des");
-        box[0].setAttribute("onclick", "BonusRacaCheckbox('selet_des')")
+        box[0].setAttribute("onclick", "BonusRacaCheckbox('selet_des')");
         box[1].setAttribute("id", "selet_con");
-        box[1].setAttribute("onclick", "BonusRacaCheckbox('selet_con')")
+        box[1].setAttribute("onclick", "BonusRacaCheckbox('selet_con')");
         box[2].setAttribute("id", "selet_int");
-        box[2].setAttribute("onclick", "BonusRacaCheckbox('selet_int')")
+        box[2].setAttribute("onclick", "BonusRacaCheckbox('selet_int')");
         box[3].setAttribute("id", "selet_sab");
-        box[3].setAttribute("onclick", "BonusRacaCheckbox('selet_sab')")
+        box[3].setAttribute("onclick", "BonusRacaCheckbox('selet_sab')");
         for (let i = 0; i < 4; i++) {
             document.getElementById("checkracas").appendChild(labels[i]);
             document.getElementById("checkracas").appendChild(box[i]);
+        }
+    }
+    else if (raca == "golemB") {
+        CriarTodasCheckbox();
+        CriarTamanhos()
+    }
+    else {
+        CriarTamanhos()
+    }
+}
+
+function CriarTamanhos() {
+    let labels = new Array(2);
+    let box = new Array(2);
+    for (let i = 0; i < 2; i++) {
+        labels[i] = document.createElement("label");
+        box[i] = document.createElement("input");
+        box[i].setAttribute("type", "checkbox");
+    }
+    labels[0].setAttribute("id", "label_peq");
+    labels[0].innerText = "Pequeno";
+    labels[1].setAttribute("id", "label_gra");
+    labels[1].innerText = "Grande";
+    box[0].setAttribute("id", "selet_peq");
+    box[0].setAttribute("onclick", "BonusTamanho('selet_peq')");
+    box[1].setAttribute("id", "selet_gra");
+    box[1].setAttribute("onclick", "BonusTamanho('selet_gra')");
+    for (let i = 0; i < 2; i++) {
+        document.getElementById("checktamanhos").appendChild(labels[i]);
+        document.getElementById("checktamanhos").appendChild(box[i]);
+    }
+}
+
+function CriarTodasCheckbox() {
+    let labels = new Array(6);
+    let box = new Array(6);
+    for (let i = 0; i < 6; i++) {
+        labels[i] = document.createElement("label");
+        box[i] = document.createElement("input");
+        box[i].setAttribute("type", "checkbox");
+
+    }
+    labels[forca].setAttribute("id", "label_for");
+    labels[forca].innerText = "For";
+    labels[des].setAttribute("id", "label_des");
+    labels[des].innerText = "Des";
+    labels[con].setAttribute("id", "label_con");
+    labels[con].innerText = "Con";
+    labels[int].setAttribute("id", "label_int");
+    labels[int].innerText = "Int";
+    labels[sab].setAttribute("id", "label_sab");
+    labels[sab].innerText = "Sab";
+    labels[car].setAttribute("id", "label_car");
+    labels[car].innerText = "Car";
+    box[forca].setAttribute("id", "selet_for");
+    box[forca].setAttribute("onclick", "BonusRacaCheckbox('selet_for')")
+    box[des].setAttribute("id", "selet_des");
+    box[des].setAttribute("onclick", "BonusRacaCheckbox('selet_des')")
+    box[con].setAttribute("id", "selet_con");
+    box[con].setAttribute("onclick", "BonusRacaCheckbox('selet_con')")
+    box[int].setAttribute("id", "selet_int");
+    box[int].setAttribute("onclick", "BonusRacaCheckbox('selet_int')")
+    box[sab].setAttribute("id", "selet_sab");
+    box[sab].setAttribute("onclick", "BonusRacaCheckbox('selet_sab')")
+    box[car].setAttribute("id", "selet_car");
+    box[car].setAttribute("onclick", "BonusRacaCheckbox('selet_car')")
+    for (let i = 0; i < 6; i++) {
+        document.getElementById("checkracas").appendChild(labels[i]);
+        document.getElementById("checkracas").appendChild(box[i]);
+    }
+}
+
+function BonusTamanho(checkbox) {
+    let c = document.getElementById(checkbox)
+    if (c.checked) {
+        if (checkBoxTamanhoSelecionadas < 1) {
+            if (checkbox == "selet_peq") {
+                ValorMenor("raca_des", "golemB");
+                ultimoBonusRaca[des] = Number(ultimoBonusRaca[des]) + 1;
+                checkBoxTamanhoSelecionadas++;
+            }
+            else {
+                Penalidade("raca_des");
+                ultimoBonusRaca[des] = Number(ultimoBonusRaca[des]) - 1;
+                checkBoxTamanhoSelecionadas++;
+            }
+        }
+        else {
+            c.checked = false;
+        }
+    }
+    else {
+        if (checkBoxTamanhoSelecionadas >= 0) {
+            if (checkbox == "selet_peq") {
+                Penalidade("raca_des", "golemB");
+                ultimoBonusRaca[des] = Number(ultimoBonusRaca[des]) - 1;
+                checkBoxTamanhoSelecionadas--;
+            }
+            else {
+                ValorMenor("raca_des", "golemB");
+                ultimoBonusRaca[des] = Number(ultimoBonusRaca[des]) + 1;
+                checkBoxTamanhoSelecionadas--;
+            }
         }
     }
 }
 
 function ApagarCheckbox(ultimaRaca) {
     if (ultimaRaca == "humano" || ultimaRaca == "sereia") {
-        let l1 = document.getElementById("label_for");
-        let c1 = document.getElementById("selet_for");
-        l1.remove();
-        c1.remove();
-        let l2 = document.getElementById("label_des");
-        let c2 = document.getElementById("selet_des");
-        l2.remove();
-        c2.remove();
-        let l3 = document.getElementById("label_con");
-        let c3 = document.getElementById("selet_con");
-        l3.remove();
-        c3.remove();
-        let l4 = document.getElementById("label_int");
-        let c4 = document.getElementById("selet_int");
-        l4.remove();
-        c4.remove();
-        let l5 = document.getElementById("label_sab");
-        let c5 = document.getElementById("selet_sab");
-        l5.remove();
-        c5.remove();
-        let l6 = document.getElementById("label_car");
-        let c6 = document.getElementById("selet_car");
-        l6.remove();
-        c6.remove();
+        ApagarTodasCheckbox();
     }
     else if (ultimaRaca == "lefou") {
         let l1 = document.getElementById("label_for");
@@ -513,6 +625,54 @@ function ApagarCheckbox(ultimaRaca) {
         l4.remove();
         c4.remove();
     }
+    else if (ultimaRaca == "golemB") {
+        ApagarTodasCheckbox();
+        let l7 = document.getElementById("label_peq");
+        let c7 = document.getElementById("selet_peq");
+        l7.remove();
+        c7.remove();
+        let l8 = document.getElementById("label_gra");
+        let c8 = document.getElementById("selet_gra");
+        l8.remove();
+        c8.remove();
+    }
+    else if (ultimaRaca == "golemF" || ultimaRaca == "golemBa" || ultimaRaca == "golemC" || ultimaRaca == "golemE" || ultimaRaca == "golemG" || ultimaRaca == "golemP" || ultimaRaca == "golemS") {
+        let l1 = document.getElementById("label_peq");
+        let c1 = document.getElementById("selet_peq");
+        l1.remove();
+        c1.remove();
+        let l2 = document.getElementById("label_gra");
+        let c2 = document.getElementById("selet_gra");
+        l2.remove();
+        c2.remove();
+    }
+}
+
+function ApagarTodasCheckbox() {
+    let l1 = document.getElementById("label_for");
+    let c1 = document.getElementById("selet_for");
+    l1.remove();
+    c1.remove();
+    let l2 = document.getElementById("label_des");
+    let c2 = document.getElementById("selet_des");
+    l2.remove();
+    c2.remove();
+    let l3 = document.getElementById("label_con");
+    let c3 = document.getElementById("selet_con");
+    l3.remove();
+    c3.remove();
+    let l4 = document.getElementById("label_int");
+    let c4 = document.getElementById("selet_int");
+    l4.remove();
+    c4.remove();
+    let l5 = document.getElementById("label_sab");
+    let c5 = document.getElementById("selet_sab");
+    l5.remove();
+    c5.remove();
+    let l6 = document.getElementById("label_car");
+    let c6 = document.getElementById("selet_car");
+    l6.remove();
+    c6.remove();
 }
 
 function SomarTotal(valor) {
@@ -520,48 +680,37 @@ function SomarTotal(valor) {
     let campo = GetCampo(valor);
     let atributo = GetAtributo(valor);
     let valorasomar = Number(document.getElementById(valor).value);
+    console.log(totalAtributo[atributo])
 
     if (campo == 1) {
         if (valorasomar == 0) {
-            totalAtributo[atributo] = totalAtributo[atributo] - ultimovalor[atributo];
+            totalAtributo[atributo] = Number(totalAtributo[atributo]) - Number(ultimovalor[atributo]);
         }
         else {
             diferenca = ultimovalor[atributo] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[atributo] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[atributo] -= diferenca;
-            }
+            totalAtributo[atributo] = Number(totalAtributo[atributo]) - diferenca;
         }
         window.document.getElementById(GetTotal(valor)).innerHTML = totalAtributo[atributo];
     }
 
     else if (campo == 2) {
         if (valorasomar == 0) {
-            totalAtributo[atributo] = totalAtributo[atributo] - ultimoBonusRaca[atributo];
+            totalAtributo[atributo] = Number(totalAtributo[atributo]) - Number(ultimoBonusRaca[atributo]);
         }
         else {
             diferenca = ultimoBonusRaca[atributo] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[atributo] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[atributo] -= diferenca;
-            }
+            totalAtributo[atributo] = Number(totalAtributo[atributo]) - diferenca;
         }
         window.document.getElementById(GetTotal(valor)).innerHTML = totalAtributo[atributo];
     }
 
     else if (campo == 3) {
         if (valorasomar == 0) {
-            totalAtributo[atributo] = totalAtributo[atributo] - ultimoBonus[atributo];
+            totalAtributo[atributo] = Number(totalAtributo[atributo]) - Number(ultimoBonus[atributo]);
         }
         else {
             diferenca = ultimoBonus[atributo] - valorasomar;
-            if (diferenca < 0) {
-                totalAtributo[atributo] += -diferenca;
-            } else if (diferenca > 0) {
-                totalAtributo[atributo] -= diferenca;
-            }
+            totalAtributo[atributo] = Number(totalAtributo[atributo]) - diferenca;
         }
         ultimoBonus[atributo] = valorasomar;
         window.document.getElementById(GetTotal(valor)).innerHTML = totalAtributo[atributo];

@@ -47,16 +47,20 @@ input:focus{
 
 #controle{
     display: grid;
-    grid-template-columns: 22% 7.5% 39.3% 31.2%;
+    grid-template-areas: "seletor checkracas checktamanhos pontuacao";
     margin-bottom: 5px;
 }
 
 #seletor{
-    grid-column: 1/2;
+    grid-area: seletor;
 }
 
 #checkracas{
-    grid-column: 2/3;
+    grid-area: checkracas;
+}
+
+#checktamanhos{
+    grid-area: checktamanhos;
 }
 
 .Celula_header{
@@ -87,5 +91,5 @@ input:focus{
     grid-column: 3/4;
     width: fit-content;
     text-align: center;
-    justify-self: end;
+    grid-area: pontuacao;
 }
