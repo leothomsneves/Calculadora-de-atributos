@@ -48,6 +48,14 @@ mapRaca.set('ogro', [2, 0, 1, -1, 0, -1])
 mapRaca.set('bugbear', [2, 1, 0, 0, 0, -1])
 mapRaca.set('hobgoblin', [0, 1, 2, 0, 0, -1])
 mapRaca.set('gnoll', [0, 0, 2, -1, 1, 0]);
+mapRaca.set('kaijin', [2, 0, 1, 0, 0, -2]);
+mapRaca.set('kappa', [0, 2, 1, 0, 0, -1]);
+mapRaca.set('nezumi', [0, 1, 2, -1, 0, 0]);
+mapRaca.set('tengu', [0, 2, 0, 1, 0, 0]);
+mapRaca.set('kallyanach', [0, 0, 0, 0, 0, 0]);
+mapRaca.set('minauro', [1, 0, 0, 0, 0, 0]);
+mapRaca.set('harpia', [0, 2, 0, -1, 0, 1])
+
 
 
 function CalculaCusto(valor, custo) {
@@ -189,62 +197,10 @@ function Bonusderaca() {
     let raca = document.getElementById("racas");
     let valor = raca.options[raca.selectedIndex].value;
 
-    switch (valor) {
-        case "humano":
-            atualizarBonusdeRaca(valor);
-            CriarCheckbox(valor);
-            break;
-        case "lefou":
-            atualizarBonusdeRaca(valor);
-            CriarCheckbox(valor);
-            break;
-        case "osteon":
-            atualizarBonusdeRaca(valor);
-            CriarCheckbox(valor);
-            break;
-        case "sereia":
-            atualizarBonusdeRaca(valor);
-            CriarCheckbox(valor);
-            break;
-        case "meio-orc":
-            atualizarBonusdeRaca(valor);
-            CriarCheckbox(valor);
-            break;
-        case "golemF":
-            atualizarBonusdeRaca(valor);
-            CriarCheckbox(valor);
-            break;
-        case "golemBa":
-            atualizarBonusdeRaca(valor);
-            CriarCheckbox(valor);
-            break;
-        case "golemB":
-            atualizarBonusdeRaca(valor);
-            CriarCheckbox(valor);
-            break;
-        case "golemC":
-            atualizarBonusdeRaca(valor);
-            CriarCheckbox(valor);
-            break;
-        case "golemE":
-            atualizarBonusdeRaca(valor);
-            CriarCheckbox(valor);
-            break;
-        case "golemG":
-            atualizarBonusdeRaca(valor);
-            CriarCheckbox(valor);
-            break;
-        case "golemP":
-            atualizarBonusdeRaca(valor);
-            CriarCheckbox(valor);
-            break;
-        case "golemS":
-            atualizarBonusdeRaca(valor);
-            CriarCheckbox(valor);
-            break;
-        default:
-            atualizarBonusdeRaca(valor);
-            break;
+    atualizarBonusdeRaca(valor);
+    if (valor == "humano" || valor == "lefou" || valor == "osteon" || valor == "sereia" || valor == "meio-orc" || valor == "golemF" || valor == "golemBa" || valor == "golemB" ||
+        valor == "golemC" || valor == "golemE" || valor == "golemG" || valor == "golemP" || valor == "golemS" || valor == "minauro" || valor == "kallyanach") {
+        CriarCheckbox(valor);
     }
 }
 
@@ -274,7 +230,7 @@ function BonusRacaCheckbox(checkbox) {
     let atributo = GetAtributo(checkbox);
     let campo = getCampoRaca(checkbox);
     let c = document.getElementById(checkbox)
-    if (valor == "golemB") {
+    if (valor == "golemB" || valor == "minauro") {
         if (c.checked) {
             if (checkBoxSelecionadas < 2) {
                 ValorMenor(campo);
@@ -312,6 +268,54 @@ function BonusRacaCheckbox(checkbox) {
             }
         }
     }
+    else if (valor == "kallyanach") {
+        let atrMaisDois = document.getElementById("selet_atr1");
+        let atrMaisUm = document.getElementById("selet_atr2");
+        if (atrMaisDois.checked) {
+            console.log("foi no +2")
+            if (c.checked) {
+                if (checkBoxSelecionadas < 1) {
+                    ValorMaior(campo);
+                    ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) + 2;
+                    checkBoxSelecionadas++;
+                }
+                else {
+                    c.checked = false;
+                }
+            }
+            else {
+                if (checkBoxSelecionadas >= 0) {
+                    PenalidadeMaior(campo);
+                    ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) - 2;
+                    checkBoxSelecionadas--;
+                }
+            }
+        }
+        else if (atrMaisUm.checked) {
+            console.log("foi no +1")
+            if (c.checked) {
+                if (checkBoxSelecionadas < 2) {
+                    ValorMenor(campo);
+                    ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) + 1;
+                    checkBoxSelecionadas++;
+                }
+                else {
+                    c.checked = false;
+                }
+            }
+            else {
+                if (checkBoxSelecionadas >= 0) {
+                    Penalidade(campo);
+                    ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) - 1;
+                    checkBoxSelecionadas--;
+                }
+            }
+        }
+        else {
+            console.log("não selecionou")
+            c.checked = false;
+        }
+    }
     else {
         if (c.checked) {
             if (checkBoxSelecionadas < 3) {
@@ -334,6 +338,12 @@ function BonusRacaCheckbox(checkbox) {
 
 }
 
+function ValorMaior(campo) {
+    let b1 = document.getElementById(campo);
+    b1.value = Number(b1.value) + 2;
+    SomarTotal(campo);
+}
+
 function ValorMenor(campo) {
     let b1 = document.getElementById(campo);
     b1.value = Number(b1.value) + 1;
@@ -346,6 +356,12 @@ function Penalidade(campo) {
     SomarTotal(campo);
 }
 
+function PenalidadeMaior(campo) {
+    let b1 = document.getElementById(campo);
+    b1.value = Number(b1.value) - 2;
+    SomarTotal(campo);
+}
+
 function ResetarValor(campo) {
     let b1 = document.getElementById(campo);
     b1.value = 0;
@@ -353,7 +369,7 @@ function ResetarValor(campo) {
 }
 
 function CriarCheckbox(raca) {
-    if (raca == "humano" || raca == "sereia") {
+    if (raca == "humano" || raca == "sereia" || raca == "minauro") {
         CriarTodasCheckbox();
     }
     else if (raca == "lefou") {
@@ -458,6 +474,10 @@ function CriarCheckbox(raca) {
         CriarTodasCheckbox();
         CriarTamanhos()
     }
+    else if (raca == "kallyanach") {
+        CriarTodasCheckbox();
+        CriarAtrKally();
+    }
     else {
         CriarTamanhos()
     }
@@ -479,6 +499,28 @@ function CriarTamanhos() {
     box[0].setAttribute("onclick", "BonusTamanho('selet_peq')");
     box[1].setAttribute("id", "selet_gra");
     box[1].setAttribute("onclick", "BonusTamanho('selet_gra')");
+    for (let i = 0; i < 2; i++) {
+        document.getElementById("checktamanhos").appendChild(labels[i]);
+        document.getElementById("checktamanhos").appendChild(box[i]);
+    }
+}
+
+function CriarAtrKally() {
+    let labels = new Array(2);
+    let box = new Array(2);
+    for (let i = 0; i < 2; i++) {
+        labels[i] = document.createElement("label");
+        box[i] = document.createElement("input");
+        box[i].setAttribute("type", "checkbox");
+    }
+    labels[0].setAttribute("id", "label_atr1");
+    labels[0].innerText = "+2 em 1 atributo";
+    labels[1].setAttribute("id", "label_atr2");
+    labels[1].innerText = "+1 em 2 atributos";
+    box[0].setAttribute("id", "selet_atr1");
+    box[0].setAttribute("onclick", "BonusKallyanach('selet_atr1')");
+    box[1].setAttribute("id", "selet_atr2");
+    box[1].setAttribute("onclick", "BonusKallyanach('selet_atr2')");
     for (let i = 0; i < 2; i++) {
         document.getElementById("checktamanhos").appendChild(labels[i]);
         document.getElementById("checktamanhos").appendChild(box[i]);
@@ -559,8 +601,37 @@ function BonusTamanho(checkbox) {
     }
 }
 
+function BonusKallyanach(checkbox) {
+    let c = document.getElementById(checkbox)
+    if (c.checked) {
+        if (checkBoxTamanhoSelecionadas < 1) {
+            checkBoxTamanhoSelecionadas++;
+        }
+        else {
+            c.checked = false;
+        }
+    }
+    else {
+        if (checkBoxTamanhoSelecionadas >= 0) {
+            checkBoxTamanhoSelecionadas--;
+            checkBoxSelecionadas = 0;
+            document.getElementById("selet_for").checked = false;
+            document.getElementById("selet_des").checked = false;
+            document.getElementById("selet_con").checked = false;
+            document.getElementById("selet_int").checked = false;
+            document.getElementById("selet_sab").checked = false;
+            document.getElementById("selet_car").checked = false;
+            for (let i = 0; i < 6; i++) {
+                camposRacas[i].value = 0;
+                SomarTotal(camposRacas[i].id);
+                ultimoBonusRaca[i] = camposRacas[i].value;
+            }
+        }
+    }
+}
+
 function ApagarCheckbox(ultimaRaca) {
-    if (ultimaRaca == "humano" || ultimaRaca == "sereia") {
+    if (ultimaRaca == "humano" || ultimaRaca == "sereia" || ultimaRaca == "minauro") {
         ApagarTodasCheckbox();
     }
     else if (ultimaRaca == "lefou") {
@@ -643,6 +714,17 @@ function ApagarCheckbox(ultimaRaca) {
         c1.remove();
         let l2 = document.getElementById("label_gra");
         let c2 = document.getElementById("selet_gra");
+        l2.remove();
+        c2.remove();
+    }
+    else if (ultimaRaca == "kallyanach") {
+        ApagarTodasCheckbox();
+        let l1 = document.getElementById("label_atr1");
+        let c1 = document.getElementById("selet_atr1");
+        l1.remove();
+        c1.remove();
+        let l2 = document.getElementById("label_atr2");
+        let c2 = document.getElementById("selet_atr2");
         l2.remove();
         c2.remove();
     }
