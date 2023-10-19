@@ -714,7 +714,7 @@ function ApagarCheckbox(ultimaRaca) {
         Apagar("label_sab", "selet_sab");
         Apagar("label_car", "selet_car");
     }
-    else if (ultimaRaca == "lefou") {
+    else if (ultimaRaca == "lefou" || ultimaRaca == "yidishan") {
         Apagar("label_for", "selet_for");
         Apagar("label_des", "selet_des");
         Apagar("label_con", "selet_con");
