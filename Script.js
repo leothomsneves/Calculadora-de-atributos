@@ -78,6 +78,7 @@ mapRaca.set('elfoM', [0, 2, 1, -1, 0, 0]);
 mapRaca.set('nagahM', [1, 1, 1, 0, 0, 0]);
 mapRaca.set('nagahF', [0, 0, 0, 1, 1, 1]);
 mapRaca.set('finntroll', [-1, 0, 1, 2, 0, 0]);
+mapRaca.set('personalizado', [0, 0, 0, 0, 0, 0]);
 
 
 
@@ -219,8 +220,55 @@ function CalculaCusto(valor, custo) {
 function Bonusderaca() {
     let raca = document.getElementById("racas");
     let valor = raca.options[raca.selectedIndex].value;
+    camposRacas[forca] = document.getElementById("raca_for");
+    camposRacas[des] = document.getElementById("raca_des");
+    camposRacas[con] = document.getElementById("raca_con");
+    camposRacas[int] = document.getElementById("raca_int");
+    camposRacas[sab] = document.getElementById("raca_sab");
+    camposRacas[car] = document.getElementById("raca_car");
 
     atualizarBonusdeRaca(valor);
+    if (valor == "personalizado") {
+        for (let i = 0; i < camposRacas.length; i++) {
+            camposRacas[i].disabled = false;
+        }
+        camposRacas[0].addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                SomarTotal("raca_for");
+            }
+        });
+        camposRacas[1].addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                SomarTotal("raca_des");
+            }
+        });
+        camposRacas[2].addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                SomarTotal("raca_con");
+            }
+        });
+        camposRacas[3].addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                SomarTotal("raca_int");
+            }
+        });
+        camposRacas[4].addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                SomarTotal("raca_sab");
+            }
+        });
+        camposRacas[5].addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                SomarTotal("raca_car");
+            }
+        });
+        camposRacas[0].setAttribute("onblur", "SomarTotal('raca_for')");
+        camposRacas[1].setAttribute("onblur", "SomarTotal('raca_des')");
+        camposRacas[2].setAttribute("onblur", "SomarTotal('raca_con')");
+        camposRacas[3].setAttribute("onblur", "SomarTotal('raca_int')");
+        camposRacas[4].setAttribute("onblur", "SomarTotal('raca_sab')");
+        camposRacas[5].setAttribute("onblur", "SomarTotal('raca_car')");
+    }
     if (valor == "humano" || valor == "lefou" || valor == "osteon" || valor == "sereia" || valor == "meio-orc" || valor == "golemF" || valor == "golemBa" || valor == "golemB" ||
         valor == "golemC" || valor == "golemE" || valor == "golemG" || valor == "golemP" || valor == "golemS" || valor == "minauro" || valor == "kallyanach" || valor == "yidishan" ||
         valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" || valor == "moreauCR" || valor == "moreauG" ||
@@ -230,14 +278,15 @@ function Bonusderaca() {
 }
 
 function atualizarBonusdeRaca(racaSelecionada) {
-    camposRacas[forca] = document.getElementById("raca_for");
-    camposRacas[des] = document.getElementById("raca_des");
-    camposRacas[con] = document.getElementById("raca_con");
-    camposRacas[int] = document.getElementById("raca_int");
-    camposRacas[sab] = document.getElementById("raca_sab");
-    camposRacas[car] = document.getElementById("raca_car");
     checkBoxSelecionadas = 0;
     checkBoxBonusSelecionadas = 0;
+    for (let i = 0; i < 6; i++) {
+        if (ultimaRaca == "personalizado") {
+            camposRacas[i].disabled = true;
+            camposRacas[i].removeAttribute("onblur");
+            camposRacas[i].removeAttribute("onkeydown");
+        }
+    }
     if (document.getElementById("label_for") || document.getElementById("label_des") || document.getElementById("label_gra")) {
         ApagarCheckbox(ultimaRaca);
     }
@@ -655,9 +704,9 @@ function BonusKallyanach(checkbox) {
 }
 
 function ApagarCheckbox(ultimaRaca) {
-    if (ultimaRaca == "humano" || ultimaRaca == "sereia" || ultimaRaca == "minauro" || ultimaRaca == "moreauC" || ultimaRaca == "moreauH" || ultimaRaca == "moreauR" || 
-    ultimaRaca == "moreauS" || ultimaRaca == "moreauB" || ultimaRaca == "moreauCO" || ultimaRaca == "moreauCR" || ultimaRaca == "moreauG" || ultimaRaca == "moreauL" || 
-    ultimaRaca == "moreauLO" || ultimaRaca == "moreauM" || ultimaRaca == "moreauU") {
+    if (ultimaRaca == "humano" || ultimaRaca == "sereia" || ultimaRaca == "minauro" || ultimaRaca == "moreauC" || ultimaRaca == "moreauH" || ultimaRaca == "moreauR" ||
+        ultimaRaca == "moreauS" || ultimaRaca == "moreauB" || ultimaRaca == "moreauCO" || ultimaRaca == "moreauCR" || ultimaRaca == "moreauG" || ultimaRaca == "moreauL" ||
+        ultimaRaca == "moreauLO" || ultimaRaca == "moreauM" || ultimaRaca == "moreauU") {
         Apagar("label_for", "selet_for");
         Apagar("label_des", "selet_des");
         Apagar("label_con", "selet_con");
@@ -695,8 +744,8 @@ function ApagarCheckbox(ultimaRaca) {
         Apagar("label_peq", "selet_peq");
         Apagar("label_gra", "selet_gra");
     }
-    else if (ultimaRaca == "golemF" || ultimaRaca == "golemBa" || ultimaRaca == "golemC" || ultimaRaca == "golemE" || ultimaRaca == "golemG" || ultimaRaca == "golemP" || 
-    ultimaRaca == "golemS") {
+    else if (ultimaRaca == "golemF" || ultimaRaca == "golemBa" || ultimaRaca == "golemC" || ultimaRaca == "golemE" || ultimaRaca == "golemG" || ultimaRaca == "golemP" ||
+        ultimaRaca == "golemS") {
         Apagar("label_peq", "selet_peq");
         Apagar("label_gra", "selet_gra");
     }
@@ -720,11 +769,12 @@ function Apagar(label, check) {
 }
 
 function SomarTotal(valor) {
+    let racas = document.getElementById("racas");
+    let raca = racas.options[racas.selectedIndex].value;
     let diferenca = 0;
     let campo = GetCampo(valor);
     let atributo = GetAtributo(valor);
     let valorasomar = Number(document.getElementById(valor).value);
-    console.log(totalAtributo[atributo])
 
     if (campo == 1) {
         if (valorasomar == 0) {
@@ -744,6 +794,9 @@ function SomarTotal(valor) {
         else {
             diferenca = ultimoBonusRaca[atributo] - valorasomar;
             totalAtributo[atributo] = Number(totalAtributo[atributo]) - diferenca;
+        }
+        if(raca=="personalizado"){
+            ultimoBonusRaca[atributo]=valorasomar;
         }
         window.document.getElementById(GetTotal(valor)).innerHTML = totalAtributo[atributo];
     }

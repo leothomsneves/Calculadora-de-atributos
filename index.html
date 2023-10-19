@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="Estilos.css">
     <title>Calculadora de atributos</title>
 </head>
+
 <body>
     <div id="controle">
         <div id="seletor">
@@ -75,6 +77,7 @@
                 <option value="nagahM">Nagah Macho</option>
                 <option value="nagahF">Nagah Fêmea</option>
                 <option value="finntroll">Fintroll</option>
+                <option value="personalizado">Personalizado</option>
             </select>
         </div>
         <div id="checkracas"></div>
@@ -85,144 +88,170 @@
         </div>
     </div>
     <table>
-    <tr>
-        <th style="border: 0px;"></th>
-        <th class="Celula_header">Valor</th>
-        <th class="Celula_header">Raça</th>
-        <th class="Celula_header">Bonus</th>
-        <th class="Celula_header">Total</th>
-        <th class="Celula_header" id="header_custo">Custo</th>
-    </tr>
-    <tr>
-        <th class="Celula_header">FOR <br> Força</th>
-        <td><input type="number" id="val_for" inputmode="numeric" onblur="CalculaCusto(this.id,'cus_for')"></td>
-        <td><input type="number" id="raca_for" inputmode="numeric" disabled></td>
-        <td><input type="number" id="bon_for" inputmode="numeric" onblur="SomarTotal('bon_for')"></td>
-        <td><p id="tot_for">0</p></td>
-        <td class="Celula_custo"><p id="cus_for">0</p></td>
-    </tr>
-    <tr>
-        <th class="Celula_header">DES <br> Destreza</th>
-        <td><input type="number" id="val_des" inputmode="numeric" onblur="CalculaCusto(this.id,'cus_des')"></td>
-        <td><input type="number" id="raca_des" inputmode="numeric" disabled></td>
-        <td><input type="number" id="bon_des" inputmode="numeric" onblur="SomarTotal('bon_des')"></td>
-        <td><p id="tot_des">0</p></td>
-        <td class="Celula_custo"><p id="cus_des">0</p></td>
-    </tr>
-    <tr>
-        <th class="Celula_header">CON <br> Constituição</th>
-        <td><input type="number" id="val_con" inputmode="numeric" onblur="CalculaCusto(this.id,'cus_con')"></td>
-        <td><input type="number" id="raca_con" inputmode="numeric" disabled></td>
-        <td><input type="number" id="bon_con" inputmode="numeric" onblur="SomarTotal('bon_con')"></td>
-        <td><p id="tot_con">0</p></td>
-        <td class="Celula_custo"><p id="cus_con">0</p></td>
-    </tr>
-    <tr>
-        <th class="Celula_header">INT <br> Inteligência</th>
-        <td><input type="number" id="val_int" inputmode="numeric" onblur="CalculaCusto(this.id,'cus_int')"></td>
-        <td><input type="number" id="raca_int" inputmode="numeric" disabled></td>
-        <td><input type="number" id="bon_int" inputmode="numeric" onblur="SomarTotal('bon_int')"></td>
-        <td><p id="tot_int">0</p></td>
-        <td class="Celula_custo"><p id="cus_int">0</p></td>
-    </tr>
-    <tr>
-        <th class="Celula_header">SAB <br> Sabedoria</th>
-        <td><input type="number" id="val_sab" inputmode="numeric" onblur="CalculaCusto(this.id,'cus_sab')"></td>
-        <td><input type="number" id="raca_sab" inputmode="numeric" disabled></td>
-        <td><input type="number" id="bon_sab" inputmode="numeric" onblur="SomarTotal('bon_sab')"></td>
-        <td><p id="tot_sab">0</p></td>
-        <td class="Celula_custo"><p id="cus_sab">0</p></td>
-    </tr>
-    <tr>
-        <th class="Celula_header">CAR <br> Carisma</th>
-        <td><input type="number" id="val_car" inputmode="numeric" onblur="CalculaCusto(this.id,'cus_car')"></td>
-        <td><input type="number" id="raca_car" inputmode="numeric" disabled></td>
-        <td><input type="number" id="bon_car"  inputmode="numeric" onblur="SomarTotal('bon_car')"></td>
-        <td><p id="tot_car">0</p></td>
-        <td class="Celula_custo"><p id="cus_car">0</p></td>
-    </tr>
+        <tr>
+            <th style="border: 0px;"></th>
+            <th class="Celula_header">Valor</th>
+            <th class="Celula_header">Raça</th>
+            <th class="Celula_header">Bonus</th>
+            <th class="Celula_header">Total</th>
+            <th class="Celula_header" id="header_custo">Custo</th>
+        </tr>
+        <tr>
+            <th class="Celula_header">FOR <br> Força</th>
+            <td><input type="number" id="val_for" inputmode="numeric" onblur="CalculaCusto(this.id,'cus_for')"></td>
+            <td><input type="number" id="raca_for" inputmode="numeric" disabled></td>
+            <td><input type="number" id="bon_for" inputmode="numeric" onblur="SomarTotal('bon_for')"></td>
+            <td>
+                <p id="tot_for">0</p>
+            </td>
+            <td class="Celula_custo">
+                <p id="cus_for">0</p>
+            </td>
+        </tr>
+        <tr>
+            <th class="Celula_header">DES <br> Destreza</th>
+            <td><input type="number" id="val_des" inputmode="numeric" onblur="CalculaCusto(this.id,'cus_des')"></td>
+            <td><input type="number" id="raca_des" inputmode="numeric" disabled></td>
+            <td><input type="number" id="bon_des" inputmode="numeric" onblur="SomarTotal('bon_des')"></td>
+            <td>
+                <p id="tot_des">0</p>
+            </td>
+            <td class="Celula_custo">
+                <p id="cus_des">0</p>
+            </td>
+        </tr>
+        <tr>
+            <th class="Celula_header">CON <br> Constituição</th>
+            <td><input type="number" id="val_con" inputmode="numeric" onblur="CalculaCusto(this.id,'cus_con')"></td>
+            <td><input type="number" id="raca_con" inputmode="numeric" disabled></td>
+            <td><input type="number" id="bon_con" inputmode="numeric" onblur="SomarTotal('bon_con')"></td>
+            <td>
+                <p id="tot_con">0</p>
+            </td>
+            <td class="Celula_custo">
+                <p id="cus_con">0</p>
+            </td>
+        </tr>
+        <tr>
+            <th class="Celula_header">INT <br> Inteligência</th>
+            <td><input type="number" id="val_int" inputmode="numeric" onblur="CalculaCusto(this.id,'cus_int')"></td>
+            <td><input type="number" id="raca_int" inputmode="numeric" disabled></td>
+            <td><input type="number" id="bon_int" inputmode="numeric" onblur="SomarTotal('bon_int')"></td>
+            <td>
+                <p id="tot_int">0</p>
+            </td>
+            <td class="Celula_custo">
+                <p id="cus_int">0</p>
+            </td>
+        </tr>
+        <tr>
+            <th class="Celula_header">SAB <br> Sabedoria</th>
+            <td><input type="number" id="val_sab" inputmode="numeric" onblur="CalculaCusto(this.id,'cus_sab')"></td>
+            <td><input type="number" id="raca_sab" inputmode="numeric" disabled></td>
+            <td><input type="number" id="bon_sab" inputmode="numeric" onblur="SomarTotal('bon_sab')"></td>
+            <td>
+                <p id="tot_sab">0</p>
+            </td>
+            <td class="Celula_custo">
+                <p id="cus_sab">0</p>
+            </td>
+        </tr>
+        <tr>
+            <th class="Celula_header">CAR <br> Carisma</th>
+            <td><input type="number" id="val_car" inputmode="numeric" onblur="CalculaCusto(this.id,'cus_car')"></td>
+            <td><input type="number" id="raca_car" inputmode="numeric" disabled></td>
+            <td><input type="number" id="bon_car" inputmode="numeric" onblur="SomarTotal('bon_car')"></td>
+            <td>
+                <p id="tot_car">0</p>
+            </td>
+            <td class="Celula_custo">
+                <p id="cus_car">0</p>
+            </td>
+        </tr>
 
-</table>
+    </table>
 
-<footer>
-    <p>Calculadora de atributos desenvolvida por Leonardo Thoms Neves.</p>
-    <p>Tormenta20 é propriedade da <a href="https://jamboeditora.com.br"> Jambo Editora</a>.</p>
-    <p>Adaptado da <a href="https://trpg.orcnroll.com/habilidadeporpontos/">Compra de Habilidades por Pontos (TRPG)</a>, desenvolvido por Lucas Barreto.</p>
-</footer>
-<script>
-    var inputfor=document.getElementById("val_for");
-    var inputdes=document.getElementById("val_des");
-    var inputcon=document.getElementById("val_con");
-    var inputint=document.getElementById("val_int");
-    var inputsab=document.getElementById("val_sab");
-    var inputcar=document.getElementById("val_car");
-    var inputBonusfor=document.getElementById("bon_for");
-    var inputBonusdes=document.getElementById("bon_des");
-    var inputBonuscon=document.getElementById("bon_con");
-    var inputBonusint=document.getElementById("bon_int");
-    var inputBonussab=document.getElementById("bon_sab");
-    var inputBonuscar=document.getElementById("bon_car");
+    <footer>
+        <p>Calculadora de atributos desenvolvida por Leonardo Thoms Neves.</p>
+        <p>Tormenta20 é propriedade da <a href="https://jamboeditora.com.br"> Jambo Editora</a>.</p>
+        <p>Adaptado da <a href="https://trpg.orcnroll.com/habilidadeporpontos/">Compra de Habilidades por Pontos
+                (TRPG)</a>, desenvolvido por Lucas Barreto.</p>
+    </footer>
+    <script>
+        var inputfor = document.getElementById("val_for");
+        var inputdes = document.getElementById("val_des");
+        var inputcon = document.getElementById("val_con");
+        var inputint = document.getElementById("val_int");
+        var inputsab = document.getElementById("val_sab");
+        var inputcar = document.getElementById("val_car");
+        var inputBonusfor = document.getElementById("bon_for");
+        var inputBonusdes = document.getElementById("bon_des");
+        var inputBonuscon = document.getElementById("bon_con");
+        var inputBonusint = document.getElementById("bon_int");
+        var inputBonussab = document.getElementById("bon_sab");
+        var inputBonuscar = document.getElementById("bon_car");
 
-    inputfor.addEventListener("keydown",function(event){
-        if(event.keyCode==13){
-            CalculaCusto("val_for","cus_for");
-        }
-    });
-    inputdes.addEventListener("keydown",function(event){
-        if(event.keyCode==13){
-            CalculaCusto("val_des","cus_des");
-        }
-    });
-    inputcon.addEventListener("keydown",function(event){
-        if(event.keyCode==13){
-            CalculaCusto("val_con","cus_con");
-        }
-    });
-    inputint.addEventListener("keydown",function(event){
-        if(event.keyCode==13){
-            CalculaCusto("val_int","cus_int");
-        }
-    });
-    inputsab.addEventListener("keydown",function(event){
-        if(event.keyCode==13){
-            CalculaCusto("val_sab","cus_sab");
-        }
-    });
-    inputcar.addEventListener("keydown",function(event){
-        if(event.keyCode==13){
-            CalculaCusto("val_car","cus_car");
-        }
-    });
-    inputBonusfor.addEventListener("keydown",function(event){
-        if(event.keyCode==13){
-            SomarTotal("bon_for");
-        }
-    });
-    inputBonusdes.addEventListener("keydown",function(event){
-        if(event.keyCode==13){
-            SomarTotal("bon_des");
-        }
-    });
-    inputBonuscon.addEventListener("keydown",function(event){
-        if(event.keyCode==13){
-            SomarTotal("bon_con");
-        }
-    });
-    inputBonusint.addEventListener("keydown",function(event){
-        if(event.keyCode==13){
-            SomarTotal("bon_int");
-        }
-    });
-    inputBonussab.addEventListener("keydown",function(event){
-        if(event.keyCode==13){
-            SomarTotal("bon_sab");
-        }
-    });
-    inputBonuscar.addEventListener("keydown",function(event){
-        if(event.keyCode==13){
-            SomarTotal("bon_car");
-        }
-    });
-</script>
+        inputfor.addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                CalculaCusto("val_for", "cus_for");
+            }
+        });
+        inputdes.addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                CalculaCusto("val_des", "cus_des");
+            }
+        });
+        inputcon.addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                CalculaCusto("val_con", "cus_con");
+            }
+        });
+        inputint.addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                CalculaCusto("val_int", "cus_int");
+            }
+        });
+        inputsab.addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                CalculaCusto("val_sab", "cus_sab");
+            }
+        });
+        inputcar.addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                CalculaCusto("val_car", "cus_car");
+            }
+        });
+        inputBonusfor.addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                SomarTotal("bon_for");
+            }
+        });
+        inputBonusdes.addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                SomarTotal("bon_des");
+            }
+        });
+        inputBonuscon.addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                SomarTotal("bon_con");
+            }
+        });
+        inputBonusint.addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                SomarTotal("bon_int");
+            }
+        });
+        inputBonussab.addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                SomarTotal("bon_sab");
+            }
+        });
+        inputBonuscar.addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                SomarTotal("bon_car");
+            }
+        });
+    </script>
 </body>
+
 </html>
