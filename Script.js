@@ -44,16 +44,18 @@ mapRaca.set('trog', [1, 0, 2, -1, 0, 0]);
 mapRaca.set('meio-orc', [2, 0, 0, 0, 0, 0]);
 mapRaca.set('orc', [2, 0, 1, -1, 0, 0]);
 mapRaca.set('tabrachi', [1, 0, 2, 0, 0, -1]);
-mapRaca.set('ogro', [2, 0, 1, -1, 0, -1]);
+mapRaca.set('trogA', [1, -1, 2, -1, 0, 0]);
+mapRaca.set('ogro', [3, 0, 2, -1, 0, -1]);
 mapRaca.set('bugbear', [2, 1, 0, 0, 0, -1]);
 mapRaca.set('hobgoblin', [0, 1, 2, 0, 0, -1]);
 mapRaca.set('centauro', [1, 0, 0, -1, 2, 0])
 mapRaca.set('gnoll', [0, 0, 2, -1, 1, 0]);
+mapRaca.set('kallyanach', [0, 0, 0, 0, 0, 0]);
 mapRaca.set('kaijin', [2, 0, 1, 0, 0, -2]);
 mapRaca.set('kappa', [0, 2, 1, 0, 0, -1]);
+mapRaca.set('mashin',[1, 0, 0, 0, 0, -1]);
 mapRaca.set('nezumi', [0, 1, 2, -1, 0, 0]);
 mapRaca.set('tengu', [0, 2, 0, 1, 0, 0]);
-mapRaca.set('kallyanach', [0, 0, 0, 0, 0, 0]);
 mapRaca.set('minauro', [1, 0, 0, 0, 0, 0]);
 mapRaca.set('kobolds', [-1, 2, 0, 0, 0, 0])
 mapRaca.set('harpia', [0, 2, 0, -1, 0, 1]);
@@ -270,9 +272,9 @@ function Bonusderaca() {
         camposRacas[5].setAttribute("onblur", "SomarTotal('raca_car')");
     }
     if (valor == "humano" || valor == "lefou" || valor == "osteon" || valor == "sereia" || valor == "meio-orc" || valor == "golemF" || valor == "golemBa" || valor == "golemB" ||
-        valor == "golemC" || valor == "golemE" || valor == "golemG" || valor == "golemP" || valor == "golemS" || valor == "minauro" || valor == "kallyanach" || valor == "yidishan" ||
-        valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" || valor == "moreauCR" || valor == "moreauG" ||
-        valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU") {
+        valor == "golemC" || valor == "golemE" || valor == "golemG" || valor == "golemP" || valor == "golemS" || valor == "minauro" || valor == "kallyanach" || valor == "mashin" || 
+        valor == "yidishan" || valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" || valor == "moreauCR" 
+        || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU") {
         CriarCheckbox(valor);
     }
 }
@@ -330,8 +332,8 @@ function ResetarValor(campo) {
 }
 
 function CriarCheckbox(raca) {
-    if (raca == "humano" || raca == "sereia" || raca == "minauro" || raca == "moreauC" || raca == "moreauH" || raca == "moreauR" || raca == "moreauS" || raca == "moreauB" ||
-        raca == "moreauCO" || raca == "moreauCR" || raca == "moreauG" || raca == "moreauL" || raca == "moreauLO" || raca == "moreauM" || raca == "moreauU") {
+    if (raca == "humano" || raca == "sereia" || raca == "minauro" || raca=="mashin" || raca == "moreauC" || raca == "moreauH" || raca == "moreauR" || raca == "moreauS" || 
+    raca == "moreauB" || raca == "moreauCO" || raca == "moreauCR" || raca == "moreauG" || raca == "moreauL" || raca == "moreauLO" || raca == "moreauM" || raca == "moreauU") {
         CriarTodasCheckbox();
     }
     else if (raca == "lefou" || raca == "yidishan") {
@@ -534,7 +536,7 @@ function BonusRacaCheckbox(checkbox) {
     let atributo = GetAtributo(checkbox);
     let campo = getCampoRaca(checkbox);
     let c = document.getElementById(checkbox)
-    if (valor == "golemB" || valor == "minauro" || valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" ||
+    if (valor == "golemB" || valor=="mashin" || valor == "minauro" || valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" ||
         valor == "moreauCR" || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU") {
         if (c.checked) {
             if (checkBoxSelecionadas < 2) {
@@ -795,8 +797,8 @@ function SomarTotal(valor) {
             diferenca = ultimoBonusRaca[atributo] - valorasomar;
             totalAtributo[atributo] = Number(totalAtributo[atributo]) - diferenca;
         }
-        if(raca=="personalizado"){
-            ultimoBonusRaca[atributo]=valorasomar;
+        if (raca == "personalizado") {
+            ultimoBonusRaca[atributo] = valorasomar;
         }
         window.document.getElementById(GetTotal(valor)).innerHTML = totalAtributo[atributo];
     }
