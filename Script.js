@@ -53,7 +53,7 @@ mapRaca.set('gnoll', [0, 0, 2, -1, 1, 0]);
 mapRaca.set('kallyanach', [0, 0, 0, 0, 0, 0]);
 mapRaca.set('kaijin', [2, 0, 1, 0, 0, -2]);
 mapRaca.set('kappa', [0, 2, 1, 0, 0, -1]);
-mapRaca.set('mashin',[1, 0, 0, 0, 0, -1]);
+mapRaca.set('mashin', [1, 0, 0, 0, 0, -1]);
 mapRaca.set('nezumi', [0, 1, 2, -1, 0, 0]);
 mapRaca.set('tengu', [0, 2, 0, 1, 0, 0]);
 mapRaca.set('minauro', [1, 0, 0, 0, 0, 0]);
@@ -80,6 +80,10 @@ mapRaca.set('elfoM', [0, 2, 1, -1, 0, 0]);
 mapRaca.set('nagahM', [1, 1, 1, 0, 0, 0]);
 mapRaca.set('nagahF', [0, 0, 0, 1, 1, 1]);
 mapRaca.set('finntroll', [-1, 0, 1, 2, 0, 0]);
+mapRaca.set('eiradaan', [-1, 0, 0, 0, 2, 1]);
+mapRaca.set('meio-elfo', [0, 0, 0, 0, 0, 0])
+mapRaca.set('meio-gigante', [1, 0, 1, 0, 0, -1])
+mapRaca.set('satiro', [0, 1, 0, 0, -1, 2])
 mapRaca.set('personalizado', [0, 0, 0, 0, 0, 0]);
 
 
@@ -272,9 +276,9 @@ function Bonusderaca() {
         camposRacas[5].setAttribute("onblur", "SomarTotal('raca_car')");
     }
     if (valor == "humano" || valor == "lefou" || valor == "osteon" || valor == "sereia" || valor == "meio-orc" || valor == "golemF" || valor == "golemBa" || valor == "golemB" ||
-        valor == "golemC" || valor == "golemE" || valor == "golemG" || valor == "golemP" || valor == "golemS" || valor == "minauro" || valor == "kallyanach" || valor == "mashin" || 
-        valor == "yidishan" || valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" || valor == "moreauCR" 
-        || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU") {
+        valor == "golemC" || valor == "golemE" || valor == "golemG" || valor == "golemP" || valor == "golemS" || valor == "minauro" || valor == "kallyanach" || valor == "mashin" ||
+        valor == "yidishan" || valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" || valor == "moreauCR"
+        || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU" || valor == "meio-elfo" || valor == "meio-gigante") {
         CriarCheckbox(valor);
     }
 }
@@ -332,8 +336,9 @@ function ResetarValor(campo) {
 }
 
 function CriarCheckbox(raca) {
-    if (raca == "humano" || raca == "sereia" || raca == "minauro" || raca=="mashin" || raca == "moreauC" || raca == "moreauH" || raca == "moreauR" || raca == "moreauS" || 
-    raca == "moreauB" || raca == "moreauCO" || raca == "moreauCR" || raca == "moreauG" || raca == "moreauL" || raca == "moreauLO" || raca == "moreauM" || raca == "moreauU") {
+    if (raca == "humano" || raca == "sereia" || raca == "minauro" || raca == "mashin" || raca == "moreauC" || raca == "moreauH" || raca == "moreauR" || raca == "moreauS" ||
+        raca == "moreauB" || raca == "moreauCO" || raca == "moreauCR" || raca == "moreauG" || raca == "moreauL" || raca == "moreauLO" || raca == "moreauM" || raca == "moreauU"
+        || raca == "meio-gigante") {
         CriarTodasCheckbox();
     }
     else if (raca == "lefou" || raca == "yidishan") {
@@ -370,7 +375,7 @@ function CriarCheckbox(raca) {
             document.getElementById("checkracas").appendChild(box[i]);
         }
     }
-    else if (raca == "osteon") {
+    else if (raca == "osteon" || raca == "meio-elfo") {
         let labels = new Array(5);
         let box = new Array(5);
         for (let i = 0; i < 5; i++) {
@@ -536,7 +541,7 @@ function BonusRacaCheckbox(checkbox) {
     let atributo = GetAtributo(checkbox);
     let campo = getCampoRaca(checkbox);
     let c = document.getElementById(checkbox)
-    if (valor == "golemB" || valor=="mashin" || valor == "minauro" || valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" ||
+    if (valor == "golemB" || valor == "mashin" || valor == "minauro" || valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" ||
         valor == "moreauCR" || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU") {
         if (c.checked) {
             if (checkBoxSelecionadas < 2) {
@@ -556,7 +561,7 @@ function BonusRacaCheckbox(checkbox) {
             }
         }
     }
-    else if (valor == "meio-orc") {
+    else if (valor == "meio-orc" || valor == "meio-gigante") {
         if (c.checked) {
             if (checkBoxSelecionadas < 1) {
                 ValorMenor(campo);
@@ -708,7 +713,7 @@ function BonusKallyanach(checkbox) {
 function ApagarCheckbox(ultimaRaca) {
     if (ultimaRaca == "humano" || ultimaRaca == "sereia" || ultimaRaca == "minauro" || ultimaRaca == "moreauC" || ultimaRaca == "moreauH" || ultimaRaca == "moreauR" ||
         ultimaRaca == "moreauS" || ultimaRaca == "moreauB" || ultimaRaca == "moreauCO" || ultimaRaca == "moreauCR" || ultimaRaca == "moreauG" || ultimaRaca == "moreauL" ||
-        ultimaRaca == "moreauLO" || ultimaRaca == "moreauM" || ultimaRaca == "moreauU") {
+        ultimaRaca == "moreauLO" || ultimaRaca == "moreauM" || ultimaRaca == "moreauU" || ultimaRaca == "meio-gigante") {
         Apagar("label_for", "selet_for");
         Apagar("label_des", "selet_des");
         Apagar("label_con", "selet_con");
@@ -723,7 +728,7 @@ function ApagarCheckbox(ultimaRaca) {
         Apagar("label_int", "selet_int");
         Apagar("label_sab", "selet_sab");
     }
-    else if (ultimaRaca == "osteon") {
+    else if (ultimaRaca == "osteon" || ultimaRaca == "meio-elfo") {
         Apagar("label_for", "selet_for");
         Apagar("label_des", "selet_des");
         Apagar("label_int", "selet_int");
