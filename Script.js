@@ -81,9 +81,10 @@ mapRaca.set('nagahM', [1, 1, 1, 0, 0, 0]);
 mapRaca.set('nagahF', [0, 0, 0, 1, 1, 1]);
 mapRaca.set('finntroll', [-1, 0, 1, 2, 0, 0]);
 mapRaca.set('eiradaan', [-1, 0, 0, 0, 2, 1]);
-mapRaca.set('meio-elfo', [0, 0, 0, 0, 0, 0])
-mapRaca.set('meio-gigante', [1, 0, 1, 0, 0, -1])
-mapRaca.set('satiro', [0, 1, 0, 0, -1, 2])
+mapRaca.set('meio-elfo', [0, 0, 0, 1, 0, 0]);
+mapRaca.set('meio-gigante', [1, 0, 1, 0, 0, -1]);
+mapRaca.set('satiro', [0, 1, 0, 0, -1, 2]);
+mapRaca.set('inevitavel', [2, 0, 0, 0, 0, 1]);
 mapRaca.set('personalizado', [0, 0, 0, 0, 0, 0]);
 
 
@@ -278,7 +279,8 @@ function Bonusderaca() {
     if (valor == "humano" || valor == "lefou" || valor == "osteon" || valor == "sereia" || valor == "meio-orc" || valor == "golemF" || valor == "golemBa" || valor == "golemB" ||
         valor == "golemC" || valor == "golemE" || valor == "golemG" || valor == "golemP" || valor == "golemS" || valor == "minauro" || valor == "kallyanach" || valor == "mashin" ||
         valor == "yidishan" || valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" || valor == "moreauCR"
-        || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU" || valor == "meio-elfo" || valor == "meio-gigante") {
+        || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU" || valor == "meio-elfo" || valor == "meio-gigante"
+        || valor == "inevitavel") {
         CriarCheckbox(valor);
     }
 }
@@ -542,7 +544,7 @@ function BonusRacaCheckbox(checkbox) {
     let campo = getCampoRaca(checkbox);
     let c = document.getElementById(checkbox)
     if (valor == "golemB" || valor == "mashin" || valor == "minauro" || valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" ||
-        valor == "moreauCR" || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU") {
+        valor == "moreauCR" || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU" || valor == "meio-elfo") {
         if (c.checked) {
             if (checkBoxSelecionadas < 2) {
                 ValorMenor(campo);
