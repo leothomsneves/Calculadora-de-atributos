@@ -85,6 +85,7 @@ mapRaca.set('meio-elfo', [0, 0, 0, 1, 0, 0]);
 mapRaca.set('meio-gigante', [1, 0, 1, 0, 0, -1]);
 mapRaca.set('satiro', [0, 1, 0, 0, -1, 2]);
 mapRaca.set('inevitavel', [2, 0, 0, 0, 0, 1]);
+mapRaca.set('naidora', [0, 2, -1, 0, 0, 1])
 mapRaca.set('personalizado', [0, 0, 0, 0, 0, 0]);
 
 
