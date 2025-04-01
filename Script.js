@@ -1,4 +1,6 @@
+//Criação das variaveis
 let ultimaRaca = "";
+let ultimoatr = "";
 let checkBoxSelecionadas = 0;
 let checkBoxBonusSelecionadas = 0;
 let totalAtributo = [0, 0, 0, 0, 0, 0];
@@ -14,7 +16,7 @@ const int = 3;
 const sab = 4;
 const car = 5;
 let camposRacas = new Array(6);
-
+//criação do map de raças
 const mapRaca = new Map();
 mapRaca.set('humano', [0, 0, 0, 0, 0, 0]);
 mapRaca.set('anao', [0, -1, 2, 0, 1, 0]);
@@ -80,6 +82,8 @@ mapRaca.set('elfoM', [0, 2, 1, -1, 0, 0]);
 mapRaca.set('nagahM', [1, 1, 1, 0, 0, 0]);
 mapRaca.set('nagahF', [0, 0, 0, 1, 1, 1]);
 mapRaca.set('finntroll', [-1, 0, 1, 2, 0, 0]);
+//mapRaca.set('duende', [0, 0, 0, 0, 0, 0]);
+mapRaca.set('duendeVM', [0, 0, 0, 0, 0, 0]);
 mapRaca.set('eiradaan', [-1, 0, 0, 0, 2, 1]);
 mapRaca.set('meio-elfo', [0, 0, 0, 1, 0, 0]);
 mapRaca.set('meio-gigante', [1, 0, 1, 0, 0, -1]);
@@ -90,8 +94,9 @@ mapRaca.set('personalizado', [0, 0, 0, 0, 0, 0]);
 
 
 
+//função para calculo do custo do atributo baseado no valor digitado. é passado o id do campo de valor preenchido e o id do custo correspondente. A função salva o valor passado e a 
+// partir dele realiza as contas seguindo os valores minimo de -1 e máximo de 4 na distribuição de pontos
 function CalculaCusto(valor, custo) {
-    console.log(valor)
     let atributo = GetAtributo(valor);
     let v1 = window.document.getElementById(valor);
     let n1 = Number(v1.value);
@@ -225,7 +230,9 @@ function CalculaCusto(valor, custo) {
     }
 }
 
-function Bonusderaca() {
+//função para adicionar os bonus raciais. chama a função de atualizar os bônus
+
+function Bonusderaca() {//Ela salva o elemento select, o valor selecionado atualmente e os campos de bônus raciais por atributo
     let raca = document.getElementById("racas");
     let valor = raca.options[raca.selectedIndex].value;
     camposRacas[forca] = document.getElementById("raca_for");
@@ -236,7 +243,7 @@ function Bonusderaca() {
     camposRacas[car] = document.getElementById("raca_car");
 
     atualizarBonusdeRaca(valor);
-    if (valor == "personalizado") {
+    if (valor == "personalizado") { //habilita o personalizado e adiciona os eventos se for o caso,
         for (let i = 0; i < camposRacas.length; i++) {
             camposRacas[i].disabled = false;
         }
@@ -280,54 +287,56 @@ function Bonusderaca() {
     if (valor == "humano" || valor == "lefou" || valor == "osteon" || valor == "sereia" || valor == "meio-orc" || valor == "golemF" || valor == "golemBa" || valor == "golemB" ||
         valor == "golemC" || valor == "golemE" || valor == "golemG" || valor == "golemP" || valor == "golemS" || valor == "minauro" || valor == "kallyanach" || valor == "mashin" ||
         valor == "yidishan" || valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" || valor == "moreauCR"
-        || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU" || valor == "meio-elfo" || valor == "meio-gigante"
-        || valor == "inevitavel") {
+        || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU" || valor == "meio-elfo" /*|| valor == "duende"*/ || valor == "duendeVM"
+        || valor == "meio-gigante" || valor == "inevitavel") { //Se for uma raça de atributo flexivel, chama a função de checkbox 
         CriarCheckbox(valor);
     }
 }
 
 function atualizarBonusdeRaca(racaSelecionada) {
-    checkBoxSelecionadas = 0;
+    checkBoxSelecionadas = 0; //zera as checkbox selecionadas se existirem
     checkBoxBonusSelecionadas = 0;
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 6; i++) { //Se a ultima raça foi o personalizado,para cada campo de bônus racial, desabilita a edição e remove as funções
         if (ultimaRaca == "personalizado") {
             camposRacas[i].disabled = true;
             camposRacas[i].removeAttribute("onblur");
             camposRacas[i].removeAttribute("onkeydown");
         }
     }
-    if (document.getElementById("label_for") || document.getElementById("label_des") || document.getElementById("label_gra")) {
-        ApagarCheckbox(ultimaRaca);
+    if (document.getElementById("label_for") || document.getElementById("label_des") || document.getElementById("label_gra")) { //Caso existam os labels (e por consequencia as checkbox)
+        ApagarCheckbox(ultimaRaca); //chama a função de apagar elas
     }
-    ultimaRaca = racaSelecionada;
-    for (let i = 0; i < 6; i++) {
+    if (document.getElementById("atranimal")) {//mesma coisa que o anterior mas para o select do duende animal
+        ApagarSelectAnimal()
+    }
+    ultimaRaca = racaSelecionada; //salva a uktima raça selecionada como a atual
+    for (let i = 0; i < 6; i++) {//Para cada campo de bônus racial, muda o valor dele para o correspondente da raça no map
         camposRacas[i].value = mapRaca.get(racaSelecionada)[i];
-        SomarTotal(camposRacas[i].id);
-        ultimoBonusRaca[i] = camposRacas[i].value;
+        SomarTotal(camposRacas[i].id); //Chama a função de somar no total do atributo passando o campo de bônus racial do atributo correspondente
+        ultimoBonusRaca[i] = camposRacas[i].value; //salva o valor do ultimo bônus racial daquele atributo como sendo o do campo correspondente
     }
 }
 
-
-function ValorMaior(campo) {
-    let b1 = document.getElementById(campo);
+function ValorMaior(campo) {//Ao ser chamada, essa função armazena o campo passado, adiciona +2 ao seu valor e
+    let b1 = document.getElementById(campo);//chama a função de somar no total do atributo passando o campo de bônus racial do atributo correspondente
     b1.value = Number(b1.value) + 2;
     SomarTotal(campo);
 }
 
-function ValorMenor(campo) {
-    let b1 = document.getElementById(campo);
+function ValorMenor(campo) {//Ao ser chamada, essa função armazena o campo passado, adiciona +1 ao seu valor e
+    let b1 = document.getElementById(campo);//chama a função de somar no total do atributo passando o campo de bônus racial do atributo correspondente
     b1.value = Number(b1.value) + 1;
     SomarTotal(campo);
 }
 
-function Penalidade(campo) {
-    let b1 = document.getElementById(campo);
+function Penalidade(campo) {//Ao ser chamada, essa função armazena o campo passado, diminui -1 ao seu valor e
+    let b1 = document.getElementById(campo);//chama a função de somar no total do atributo passando o campo de bônus racial do atributo correspondente
     b1.value = Number(b1.value) - 1;
     SomarTotal(campo);
 }
 
-function PenalidadeMaior(campo) {
-    let b1 = document.getElementById(campo);
+function PenalidadeMaior(campo) {//Ao ser chamada, essa função armazena o campo passado, diminui -2 ao seu valor e
+    let b1 = document.getElementById(campo);//chama a função de somar no total do atributo passando o campo de bônus racial do atributo correspondente
     b1.value = Number(b1.value) - 2;
     SomarTotal(campo);
 }
@@ -338,13 +347,13 @@ function ResetarValor(campo) {
     SomarTotal(campo);
 }
 
-function CriarCheckbox(raca) {
+function CriarCheckbox(raca) {//Ao ser chamada, essa função, essa função cria os ckeckbox de acordo com a raça passada
     if (raca == "humano" || raca == "sereia" || raca == "minauro" || raca == "mashin" || raca == "moreauC" || raca == "moreauH" || raca == "moreauR" || raca == "moreauS" ||
         raca == "moreauB" || raca == "moreauCO" || raca == "moreauCR" || raca == "moreauG" || raca == "moreauL" || raca == "moreauLO" || raca == "moreauM" || raca == "moreauU"
-        || raca == "meio-gigante") {
+        || raca == "meio-gigante") {//raças que podem ter bônus nos 6 atributos
         CriarTodasCheckbox();
     }
-    else if (raca == "lefou" || raca == "yidishan") {
+    else if (raca == "lefou" || raca == "yidishan") {//raças que podem ter bônus nos 6 atributos exceto carisma
         let labels = new Array(5);
         let box = new Array(5);
         for (let i = 0; i < 5; i++) {
@@ -378,10 +387,10 @@ function CriarCheckbox(raca) {
             document.getElementById("checkracas").appendChild(box[i]);
         }
     }
-    else if (raca == "osteon" || raca == "meio-elfo") {
+    else if (raca == "osteon" || raca == "meio-elfo") {//raças que podem ter bônus nos 6 atributos exceto constituição
         let labels = new Array(5);
         let box = new Array(5);
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 5; i++) {//cria os arrays de labels e boxes, cria os elementos e os armazena e dá a eles os ids e as funções
             labels[i] = document.createElement("label");
             box[i] = document.createElement("input");
             box[i].setAttribute("type", "checkbox");
@@ -412,7 +421,7 @@ function CriarCheckbox(raca) {
             document.getElementById("checkracas").appendChild(box[i]);
         }
     }
-    else if (raca == "meio-orc") {
+    else if (raca == "meio-orc") {//Apenas o meio-orc
         let labels = new Array(4);
         let box = new Array(4);
         for (let i = 0; i < 4; i++) {
@@ -442,20 +451,25 @@ function CriarCheckbox(raca) {
             document.getElementById("checkracas").appendChild(box[i]);
         }
     }
-    else if (raca == "golemB") {
+    else if (raca == "golemB" || raca == "duendeVM") {//raças que podem ter bônus nos 6 atributos e podem ser de tamanhos diferentes
         CriarTodasCheckbox();
-        CriarTamanhos()
+        CriarTamanhos();
     }
-    else if (raca == "kallyanach") {
+    /*else if (raca == "duende") {//Apenas o duende de natureza animal
+        CriarTodasCheckbox();
+        CriarTamanhos();
+        CriarSelectAnimal();
+    }*/
+    else if (raca == "kallyanach") {//Apenas o Kallyanach
         CriarTodasCheckbox();
         CriarAtrKally();
     }
-    else {
-        CriarTamanhos()
+    else {//todas as outras raças que precisam de checkbox (no momento apenas golens)
+        CriarTamanhos();
     }
 }
 
-function CriarTodasCheckbox() {
+function CriarTodasCheckbox() {//cria os arrays de labels e boxes, cria os elementos e os armazena e dá a eles os ids e as funções
     let labels = new Array(6);
     let box = new Array(6);
     for (let i = 0; i < 6; i++) {
@@ -494,7 +508,9 @@ function CriarTodasCheckbox() {
     }
 }
 
-function CriarTamanhos() {
+function CriarTamanhos() {//cria os arrays de labels e boxes, cria os elementos e os armazena e dá a eles os ids e as funções
+    let raca = document.getElementById("racas");
+    let valor = raca.options[raca.selectedIndex].value;
     let labels = new Array(2);
     let box = new Array(2);
     for (let i = 0; i < 2; i++) {
@@ -503,7 +519,12 @@ function CriarTamanhos() {
         box[i].setAttribute("type", "checkbox");
     }
     labels[0].setAttribute("id", "label_peq");
-    labels[0].innerText = "Pequeno";
+    if (/*valor == "duende" ||*/ valor == "duendeVM") {
+        labels[0].innerText = "Minúsculo";
+    }
+    else {
+        labels[0].innerText = "Pequeno";
+    }
     labels[1].setAttribute("id", "label_gra");
     labels[1].innerText = "Grande";
     box[0].setAttribute("id", "selet_peq");
@@ -514,9 +535,10 @@ function CriarTamanhos() {
         document.getElementById("checktamanhos").appendChild(labels[i]);
         document.getElementById("checktamanhos").appendChild(box[i]);
     }
+
 }
 
-function CriarAtrKally() {
+function CriarAtrKally() {//cria os arrays de labels e boxes, cria os elementos e os armazena e dá a eles os ids e as funções
     let labels = new Array(2);
     let box = new Array(2);
     for (let i = 0; i < 2; i++) {
@@ -538,35 +560,70 @@ function CriarAtrKally() {
     }
 }
 
-function BonusRacaCheckbox(checkbox) {
+function CriarSelectAnimal() {
+    let selectanimal = document.createElement("select");
+    selectanimal.id = "atranimal"
+
+    let opcoes = ["Forca", "Destreza", "Constituição", "Inteligência", "Sabedoria", "Carisma"]
+    let placeholder = document.createElement("option")
+    placeholder.textContent = "Selecione o atributo da natureza animal"
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.hidden = true;
+    selectanimal.appendChild(placeholder);
+
+    opcoes.forEach(opcaoTexto => {
+        let opcao = document.createElement("option");//Para cada um dos itens no array, é criada uma opção no select
+        opcao.value = opcaoTexto.toLowerCase();// Definindo um valor para a opção
+        opcao.textContent = opcaoTexto; // Definindo o texto visível
+        selectanimal.appendChild(opcao); //Conecta a opção ao select
+    })
+
+    selectanimal.onchange = function () {//Quando o valor do select mudar 
+        let atratual = document.getElementById("atranimal").options[document.getElementById("atranimal").selectedIndex].value;//armazena o valor atual
+        let campo = getCampoRaca(ultimoatr);//associa para qual atributo é o bônus baseado na opção selecionada
+        ultimoatr = atratual //armazena a  opção como sendo o ultimo atributo selecionado
+        ValorMenor(getCampoRaca(atratual));//Chama a função de valor menor passando o atributo relacionado a opção
+        ultimoBonusRaca[GetAtributo(atratual)] = Number(ultimoBonusRaca[GetAtributo(atratual)]) + 1; //muda o valor do ultimo bônus racial daquele atributo para ele +1
+        if (campo) {//Se existe a varivael campo (ou seja, se uma opção já foi selecionada)
+            console.log(campo);
+            Penalidade(campo);//Chama a função de penalidade passando o atributo relacionado a opção
+            ultimoBonusRaca[GetAtributo(campo)] = Number([GetAtributo(campo)]) - 1;//muda o valor do ultimo bônus racial daquele atributo para ele -1
+        }
+    }
+    document.getElementById("divanimal").appendChild(selectanimal);//Associa o select a div
+
+}
+
+function BonusRacaCheckbox(checkbox) {//A função recebe o id da checkbox que foi clicada
     let raca = document.getElementById("racas");
-    let valor = raca.options[raca.selectedIndex].value;
-    let atributo = GetAtributo(checkbox);
-    let campo = getCampoRaca(checkbox);
-    let c = document.getElementById(checkbox)
+    let valor = raca.options[raca.selectedIndex].value;//Armazena o seletor de raças e seu valor atual
+    let atributo = GetAtributo(checkbox);//Passa o checkbox recebido para uma função que retorna qual o atributo vai ser mudado
+    let campo = getCampoRaca(checkbox);//Passa o checkbox recebido para uma função que retorna qual campo de bônus racial vai ser mudado
+    let c = document.getElementById(checkbox)//Armazena o checkbox pelo id
     if (valor == "golemB" || valor == "mashin" || valor == "minauro" || valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" ||
-        valor == "moreauCR" || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU" || valor == "meio-elfo") {
-        if (c.checked) {
-            if (checkBoxSelecionadas < 2) {
-                ValorMenor(campo);
-                ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) + 1;
-                checkBoxSelecionadas++;
+        valor == "moreauCR" || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU" || /*valor == "duende" ||*/ valor == "duendeVM" || valor == "meio-elfo") {
+        if (c.checked) {//Se a raça selecionada é uma das acima e a ckeckbox está selecionado
+            if (checkBoxSelecionadas < 2) {//Se o total de ckeckbox selecionadas é menor que 2
+                ValorMenor(campo);//Chama a função de valor menor passando o campo relacionado a checkbox
+                ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) + 1;//Muda o valor do ultimo bônus racial daquele atributo para ele +1
+                checkBoxSelecionadas++;//Encrementa a quantidade de checkbox selecionadas
             }
-            else {
-                c.checked = false;
+            else {//Se o total de ckeckbox selecionadas é maior ou igual a 2
+                c.checked = false;//A checkbox não é selecionada
             }
         }
-        else {
-            if (checkBoxSelecionadas >= 0) {
-                Penalidade(campo);
-                ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) - 1;
-                checkBoxSelecionadas--;
+        else {//Se a checkbox não está selecionada
+            if (checkBoxSelecionadas >= 0) {//Se o total de ckeckbox selecionadas é maior ou igual a 0
+                Penalidade(campo);//Chama a função de penalidade passando o atributo relacionado a
+                ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) - 1;//muda o valor do ultimo bônus racial daquele atributo para ele -1
+                checkBoxSelecionadas--;//Decrementa a quantidade de checkbox selecionadas
             }
         }
     }
     else if (valor == "meio-orc" || valor == "meio-gigante") {
         if (c.checked) {
-            if (checkBoxSelecionadas < 1) {
+            if (checkBoxSelecionadas < 1) {//Mesma lógica acima, porem o máximo de checkbox selecionadas por vez é de apenas 1
                 ValorMenor(campo);
                 ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) + 1;
                 checkBoxSelecionadas++;
@@ -585,9 +642,9 @@ function BonusRacaCheckbox(checkbox) {
     }
     else if (valor == "kallyanach") {
         let atrMaisDois = document.getElementById("selet_atr1");
-        let atrMaisUm = document.getElementById("selet_atr2");
-        if (atrMaisDois.checked) {
-            if (c.checked) {
+        let atrMaisUm = document.getElementById("selet_atr2"); //Armazenas as checkbox de +2 em 1 atributo e +1 em 2 atributos
+        if (atrMaisDois.checked) {//Se a checkbox de +2 em 1 atributo for selecionada
+            if (c.checked) {//Segue a lógica acima, mas aqui a soma é de +2
                 if (checkBoxSelecionadas < 1) {
                     ValorMaior(campo);
                     ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) + 2;
@@ -598,16 +655,16 @@ function BonusRacaCheckbox(checkbox) {
                 }
             }
             else {
-                if (checkBoxSelecionadas >= 0) {
+                if (checkBoxSelecionadas >= 0) {//Segue a lógica acima, mas aqui a subtração é de -2
                     PenalidadeMaior(campo);
                     ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) - 2;
                     checkBoxSelecionadas--;
                 }
             }
         }
-        else if (atrMaisUm.checked) {
+        else if (atrMaisUm.checked) {//se a checkbox +1 em 2 atributos
             if (c.checked) {
-                if (checkBoxSelecionadas < 2) {
+                if (checkBoxSelecionadas < 2) {//Mesma lógica vista acima
                     ValorMenor(campo);
                     ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) + 1;
                     checkBoxSelecionadas++;
@@ -628,9 +685,9 @@ function BonusRacaCheckbox(checkbox) {
             c.checked = false;
         }
     }
-    else {
+    else {//todas as outras raças que não apareceram até agora que os atributos não são fixos
         if (c.checked) {
-            if (checkBoxSelecionadas < 3) {
+            if (checkBoxSelecionadas < 3) {//Mesma lógica acima, mas o máximo aqui é 3
                 ValorMenor(campo);
                 ultimoBonusRaca[atributo] = Number(ultimoBonusRaca[atributo]) + 1;
                 checkBoxSelecionadas++;
@@ -649,55 +706,93 @@ function BonusRacaCheckbox(checkbox) {
     }
 }
 
-function BonusTamanho(checkbox) {
-    let c = document.getElementById(checkbox)
-    if (c.checked) {
-        if (checkBoxBonusSelecionadas < 1) {
-            if (checkbox == "selet_peq") {
-                ValorMenor("raca_des");
-                ultimoBonusRaca[des] = Number(ultimoBonusRaca[des]) + 1;
-                checkBoxBonusSelecionadas++;
+function BonusTamanho(checkbox) {//A função recebe o id da checkbox de tamanho que foi clicada
+    let raca = document.getElementById("racas");//Recebe o select de raças
+    let valor = raca.options[raca.selectedIndex].value;//Armazena a raça selecionada
+    let c = document.getElementById(checkbox)//Recebe o id da checkbox selecionada
+    if (/*valor == "duende" ||*/ valor == "duendeVM") {//Se for um dos duendes
+        if (c.checked) {
+            if (checkBoxBonusSelecionadas < 1) {
+                if (checkbox == "selet_peq") {//se o tamanho minúsculo for selecionado
+                    Penalidade("raca_for");//aplica o -1 em força
+                    ultimoBonusRaca[forca] = Number(ultimoBonusRaca[forca]) - 1;//muda o valor do ultimo bônus racial de força para ele-1
+                    checkBoxBonusSelecionadas++;
+                }
+                else {
+                    Penalidade("raca_des");//Mesma lógica acima, mas muda o tamanho pra grande e o atributo pra destreza
+                    ultimoBonusRaca[des] = Number(ultimoBonusRaca[des]) - 1;
+                    checkBoxBonusSelecionadas++;
+                }
             }
             else {
-                Penalidade("raca_des");
-                ultimoBonusRaca[des] = Number(ultimoBonusRaca[des]) - 1;
-                checkBoxBonusSelecionadas++;
+                c.checked = false;
             }
         }
         else {
-            c.checked = false;
+            if (checkBoxBonusSelecionadas >= 0) {//inverte a lógica acima, se deixar de ser selecionado tira o redutor
+                if (checkbox == "selet_peq") {
+                    ValorMenor("raca_for");
+                    ultimoBonusRaca[forca] = Number(ultimoBonusRaca[forca]) + 1;
+                    checkBoxBonusSelecionadas--;
+                }
+                else {
+                    ValorMenor("raca_des");
+                    ultimoBonusRaca[des] = Number(ultimoBonusRaca[des]) + 1;
+                    checkBoxBonusSelecionadas--;
+                }
+            }
         }
     }
-    else {
-        if (checkBoxBonusSelecionadas >= 0) {
-            if (checkbox == "selet_peq") {
-                Penalidade("raca_des");
-                ultimoBonusRaca[des] = Number(ultimoBonusRaca[des]) - 1;
-                checkBoxBonusSelecionadas--;
+    else {//Para todas as outras raças com tamanho variado, segue a mesma lógica 
+        if (c.checked) {
+            if (checkBoxBonusSelecionadas < 1) {
+                if (checkbox == "selet_peq") {
+                    ValorMenor("raca_des");
+                    ultimoBonusRaca[des] = Number(ultimoBonusRaca[des]) + 1;
+                    checkBoxBonusSelecionadas++;
+                }
+                else {
+                    Penalidade("raca_des");
+                    ultimoBonusRaca[des] = Number(ultimoBonusRaca[des]) - 1;
+                    checkBoxBonusSelecionadas++;
+                }
             }
             else {
-                ValorMenor("raca_des");
-                ultimoBonusRaca[des] = Number(ultimoBonusRaca[des]) + 1;
-                checkBoxBonusSelecionadas--;
+                c.checked = false;
+            }
+        }
+        else {
+            if (checkBoxBonusSelecionadas >= 0) {
+                if (checkbox == "selet_peq") {
+                    Penalidade("raca_des");
+                    ultimoBonusRaca[des] = Number(ultimoBonusRaca[des]) - 1;
+                    checkBoxBonusSelecionadas--;
+                }
+                else {
+                    ValorMenor("raca_des");
+                    ultimoBonusRaca[des] = Number(ultimoBonusRaca[des]) + 1;
+                    checkBoxBonusSelecionadas--;
+                }
             }
         }
     }
+
 }
 
-function BonusKallyanach(checkbox) {
-    let c = document.getElementById(checkbox)
-    if (c.checked) {
-        if (checkBoxBonusSelecionadas < 1) {
-            checkBoxBonusSelecionadas++;
+function BonusKallyanach(checkbox) {//A função recebe o id da checkbox de bônus de kallyanach que foi clicada
+    let c = document.getElementById(checkbox)//armazena a checkbox selecionada
+    if (c.checked) {//Se a checkbox está selecionada
+        if (checkBoxBonusSelecionadas < 1) {//Se não tem nenhuma das duas selecionadas
+            checkBoxBonusSelecionadas++;//Encrementa a quantidade
         }
         else {
-            c.checked = false;
+            c.checked = false;//Se não, mantem deselecionada
         }
     }
-    else {
-        if (checkBoxBonusSelecionadas >= 0) {
-            checkBoxBonusSelecionadas--;
-            checkBoxSelecionadas = 0;
+    else {//Se a checkbox não está selecionada
+        //if (checkBoxBonusSelecionadas >= 0) {//Se uma das duas está selecionada
+            checkBoxBonusSelecionadas--;//Decrementa a quantidade
+            checkBoxSelecionadas = 0;//Zera o bônus racial em todos os atributos
             document.getElementById("selet_for").checked = false;
             document.getElementById("selet_des").checked = false;
             document.getElementById("selet_con").checked = false;
@@ -709,11 +804,11 @@ function BonusKallyanach(checkbox) {
                 SomarTotal(camposRacas[i].id);
                 ultimoBonusRaca[i] = camposRacas[i].value;
             }
-        }
+        //}
     }
 }
 
-function ApagarCheckbox(ultimaRaca) {
+function ApagarCheckbox(ultimaRaca) {//Recebe a ultima raça que estava selecionada quando mudou a raça e apaga os checkbox equivalentes
     if (ultimaRaca == "humano" || ultimaRaca == "sereia" || ultimaRaca == "minauro" || ultimaRaca == "moreauC" || ultimaRaca == "moreauH" || ultimaRaca == "moreauR" ||
         ultimaRaca == "moreauS" || ultimaRaca == "moreauB" || ultimaRaca == "moreauCO" || ultimaRaca == "moreauCR" || ultimaRaca == "moreauG" || ultimaRaca == "moreauL" ||
         ultimaRaca == "moreauLO" || ultimaRaca == "moreauM" || ultimaRaca == "moreauU" || ultimaRaca == "meio-gigante") {
@@ -744,7 +839,7 @@ function ApagarCheckbox(ultimaRaca) {
         Apagar("label_int", "selet_int");
         Apagar("label_sab", "selet_sab");
     }
-    else if (ultimaRaca == "golemB") {
+    else if (ultimaRaca == "golemB" || /*ultimaRaca == "duende" ||*/ ultimaRaca == "duendeVM") {
         Apagar("label_for", "selet_for");
         Apagar("label_des", "selet_des");
         Apagar("label_con", "selet_con");
@@ -771,6 +866,11 @@ function ApagarCheckbox(ultimaRaca) {
     }
 }
 
+function ApagarSelectAnimal() {//apaga o seletor de atributo do duende animal
+    let s = document.getElementById("atranimal");
+    s.remove();
+}
+
 function Apagar(label, check) {
     let l = document.getElementById(label);
     let c = document.getElementById(check);
@@ -782,13 +882,13 @@ function SomarTotal(valor) {
     let racas = document.getElementById("racas");
     let raca = racas.options[racas.selectedIndex].value;
     let diferenca = 0;
-    let campo = GetCampo(valor);
-    let atributo = GetAtributo(valor);
-    let valorasomar = Number(document.getElementById(valor).value);
+    let campo = GetCampo(valor);//Armazena o campo pra saber em qual coluna entra o valor
+    let atributo = GetAtributo(valor);//Armazena o atributo certo
+    let valorasomar = Number(document.getElementById(valor).value);//Armazena o valor do campo passado
 
     if (campo == 1) {
-        if (valorasomar == 0) {
-            totalAtributo[atributo] = Number(totalAtributo[atributo]) - Number(ultimovalor[atributo]);
+        if (valorasomar == 0) {//Se o valor a somar é zero
+            totalAtributo[atributo] = Number(totalAtributo[atributo]) - Number(ultimovalor[atributo]);//pega o total daquele atributo e diminui dele o ultimo valor
         }
         else {
             diferenca = ultimovalor[atributo] - valorasomar;
@@ -837,43 +937,43 @@ function GetCampo(campo) {
 }
 
 function GetAtributo(campo) {
-    if (campo == "val_for" || campo == "raca_for" || campo == "bon_for" || campo == "selet_for") {
+    if (campo == "val_for" || campo == "raca_for" || campo == "bon_for" || campo == "selet_for" || campo == "forca") {
         return forca;
     }
-    else if (campo == "val_des" || campo == "raca_des" || campo == "bon_des" || campo == "selet_des") {
+    else if (campo == "val_des" || campo == "raca_des" || campo == "bon_des" || campo == "selet_des" || campo == "destreza") {
         return des;
     }
-    else if (campo == "val_con" || campo == "raca_con" || campo == "bon_con" || campo == "selet_con") {
+    else if (campo == "val_con" || campo == "raca_con" || campo == "bon_con" || campo == "selet_con" || campo == "constituição") {
         return con;
     }
-    else if (campo == "val_int" || campo == "raca_int" || campo == "bon_int" || campo == "selet_int") {
+    else if (campo == "val_int" || campo == "raca_int" || campo == "bon_int" || campo == "selet_int" || campo == "inteligência") {
         return int;
     }
-    else if (campo == "val_sab" || campo == "raca_sab" || campo == "bon_sab" || campo == "selet_sab") {
+    else if (campo == "val_sab" || campo == "raca_sab" || campo == "bon_sab" || campo == "selet_sab" || campo == "sabedoria") {
         return sab;
     }
-    else if (campo == "val_car" || campo == "raca_car" || campo == "bon_car" || campo == "selet_car") {
+    else if (campo == "val_car" || campo == "raca_car" || campo == "bon_car" || campo == "selet_car" || campo == "carisma") {
         return car;
     }
 }
 
 function getCampoRaca(campo) {
-    if (campo == "selet_for") {
+    if (campo == "selet_for" || campo == "forca") {
         return "raca_for"
     }
-    else if (campo == "selet_des") {
+    else if (campo == "selet_des" || campo == "destreza") {
         return "raca_des"
     }
-    else if (campo == "selet_con") {
+    else if (campo == "selet_con" || campo == "constituição") {
         return "raca_con"
     }
-    else if (campo == "selet_int") {
+    else if (campo == "selet_int" || campo == "inteligência") {
         return "raca_int"
     }
-    else if (campo == "selet_sab") {
+    else if (campo == "selet_sab" || campo == "sabedoria") {
         return "raca_sab"
     }
-    else if (campo == "selet_car") {
+    else if (campo == "selet_car" || campo == "carisma") {
         return "raca_car"
     }
 }

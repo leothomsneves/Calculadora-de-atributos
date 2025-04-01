@@ -47,7 +47,7 @@ input:focus{
 
 #controle{
     display: grid;
-    grid-template-areas: "seletor checkracas checktamanhos pontuacao";
+    grid-template-areas: "seletor checktamanhos checkracas selectanimal pontuacao";
     margin-bottom: 5px;
 }
 
@@ -61,6 +61,10 @@ input:focus{
 
 #checktamanhos{
     grid-area: checktamanhos;
+}
+
+#selectanimal{
+    grid-area: selectanimal;
 }
 
 .Celula_header{
