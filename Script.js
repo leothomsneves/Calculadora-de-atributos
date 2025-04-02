@@ -82,7 +82,7 @@ mapRaca.set('elfoM', [0, 2, 1, -1, 0, 0]);
 mapRaca.set('nagahM', [1, 1, 1, 0, 0, 0]);
 mapRaca.set('nagahF', [0, 0, 0, 1, 1, 1]);
 mapRaca.set('finntroll', [-1, 0, 1, 2, 0, 0]);
-//mapRaca.set('duende', [0, 0, 0, 0, 0, 0]);
+mapRaca.set('duende', [0, 0, 0, 0, 0, 0]);
 mapRaca.set('duendeVM', [0, 0, 0, 0, 0, 0]);
 mapRaca.set('eiradaan', [-1, 0, 0, 0, 2, 1]);
 mapRaca.set('meio-elfo', [0, 0, 0, 1, 0, 0]);
@@ -287,7 +287,7 @@ function Bonusderaca() {//Ela salva o elemento select, o valor selecionado atual
     if (valor == "humano" || valor == "lefou" || valor == "osteon" || valor == "sereia" || valor == "meio-orc" || valor == "golemF" || valor == "golemBa" || valor == "golemB" ||
         valor == "golemC" || valor == "golemE" || valor == "golemG" || valor == "golemP" || valor == "golemS" || valor == "minauro" || valor == "kallyanach" || valor == "mashin" ||
         valor == "yidishan" || valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" || valor == "moreauCR"
-        || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU" || valor == "meio-elfo" /*|| valor == "duende"*/ || valor == "duendeVM"
+        || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU" || valor == "meio-elfo" || valor == "duende" || valor == "duendeVM"
         || valor == "meio-gigante" || valor == "inevitavel") { //Se for uma raça de atributo flexivel, chama a função de checkbox 
         CriarCheckbox(valor);
     }
@@ -455,11 +455,11 @@ function CriarCheckbox(raca) {//Ao ser chamada, essa função, essa função cri
         CriarTodasCheckbox();
         CriarTamanhos();
     }
-    /*else if (raca == "duende") {//Apenas o duende de natureza animal
+    else if (raca == "duende") {//Apenas o duende de natureza animal
         CriarTodasCheckbox();
         CriarTamanhos();
         CriarSelectAnimal();
-    }*/
+    }
     else if (raca == "kallyanach") {//Apenas o Kallyanach
         CriarTodasCheckbox();
         CriarAtrKally();
@@ -519,7 +519,7 @@ function CriarTamanhos() {//cria os arrays de labels e boxes, cria os elementos 
         box[i].setAttribute("type", "checkbox");
     }
     labels[0].setAttribute("id", "label_peq");
-    if (/*valor == "duende" ||*/ valor == "duendeVM") {
+    if (valor == "duende" || valor == "duendeVM") {
         labels[0].innerText = "Minúsculo";
     }
     else {
@@ -588,7 +588,7 @@ function CriarSelectAnimal() {
         if (campo) {//Se existe a varivael campo (ou seja, se uma opção já foi selecionada)
             console.log(campo);
             Penalidade(campo);//Chama a função de penalidade passando o atributo relacionado a opção
-            ultimoBonusRaca[GetAtributo(campo)] = Number([GetAtributo(campo)]) - 1;//muda o valor do ultimo bônus racial daquele atributo para ele -1
+            ultimoBonusRaca[GetAtributo(campo)] = Number(ultimoBonusRaca[GetAtributo(campo)]) - 1;//muda o valor do ultimo bônus racial daquele atributo para ele -1
         }
     }
     document.getElementById("divanimal").appendChild(selectanimal);//Associa o select a div
@@ -602,7 +602,7 @@ function BonusRacaCheckbox(checkbox) {//A função recebe o id da checkbox que f
     let campo = getCampoRaca(checkbox);//Passa o checkbox recebido para uma função que retorna qual campo de bônus racial vai ser mudado
     let c = document.getElementById(checkbox)//Armazena o checkbox pelo id
     if (valor == "golemB" || valor == "mashin" || valor == "minauro" || valor == "moreauC" || valor == "moreauH" || valor == "moreauR" || valor == "moreauS" || valor == "moreauB" || valor == "moreauCO" ||
-        valor == "moreauCR" || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU" || /*valor == "duende" ||*/ valor == "duendeVM" || valor == "meio-elfo") {
+        valor == "moreauCR" || valor == "moreauG" || valor == "moreauL" || valor == "moreauLO" || valor == "moreauM" || valor == "moreauU" || valor == "duende" || valor == "duendeVM" || valor == "meio-elfo") {
         if (c.checked) {//Se a raça selecionada é uma das acima e a ckeckbox está selecionado
             if (checkBoxSelecionadas < 2) {//Se o total de ckeckbox selecionadas é menor que 2
                 ValorMenor(campo);//Chama a função de valor menor passando o campo relacionado a checkbox
@@ -710,7 +710,7 @@ function BonusTamanho(checkbox) {//A função recebe o id da checkbox de tamanho
     let raca = document.getElementById("racas");//Recebe o select de raças
     let valor = raca.options[raca.selectedIndex].value;//Armazena a raça selecionada
     let c = document.getElementById(checkbox)//Recebe o id da checkbox selecionada
-    if (/*valor == "duende" ||*/ valor == "duendeVM") {//Se for um dos duendes
+    if (valor == "duende" || valor == "duendeVM") {//Se for um dos duendes
         if (c.checked) {
             if (checkBoxBonusSelecionadas < 1) {
                 if (checkbox == "selet_peq") {//se o tamanho minúsculo for selecionado
@@ -839,7 +839,7 @@ function ApagarCheckbox(ultimaRaca) {//Recebe a ultima raça que estava selecion
         Apagar("label_int", "selet_int");
         Apagar("label_sab", "selet_sab");
     }
-    else if (ultimaRaca == "golemB" || /*ultimaRaca == "duende" ||*/ ultimaRaca == "duendeVM") {
+    else if (ultimaRaca == "golemB" || ultimaRaca == "duende" || ultimaRaca == "duendeVM") {
         Apagar("label_for", "selet_for");
         Apagar("label_des", "selet_des");
         Apagar("label_con", "selet_con");
