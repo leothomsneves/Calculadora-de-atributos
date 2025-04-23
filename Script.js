@@ -585,8 +585,7 @@ function CriarSelectAnimal() {
         ultimoatr = atratual //armazena a  opção como sendo o ultimo atributo selecionado
         ValorMenor(getCampoRaca(atratual));//Chama a função de valor menor passando o atributo relacionado a opção
         ultimoBonusRaca[GetAtributo(atratual)] = Number(ultimoBonusRaca[GetAtributo(atratual)]) + 1; //muda o valor do ultimo bônus racial daquele atributo para ele +1
-        if (campo) {//Se existe a varivael campo (ou seja, se uma opção já foi selecionada)
-            console.log(campo);
+        if (campo) {//Se existe a variavel campo (ou seja, se uma opção já foi selecionada)
             Penalidade(campo);//Chama a função de penalidade passando o atributo relacionado a opção
             ultimoBonusRaca[GetAtributo(campo)] = Number(ultimoBonusRaca[GetAtributo(campo)]) - 1;//muda o valor do ultimo bônus racial daquele atributo para ele -1
         }
@@ -850,7 +849,7 @@ function ApagarCheckbox(ultimaRaca) {//Recebe a ultima raça que estava selecion
         Apagar("label_gra", "selet_gra");
     }
     else if (ultimaRaca == "golemF" || ultimaRaca == "golemBa" || ultimaRaca == "golemC" || ultimaRaca == "golemE" || ultimaRaca == "golemG" || ultimaRaca == "golemP" ||
-        ultimaRaca == "golemS") {
+        ultimaRaca == "golemS" ||ultimaRaca=="inevitavel") {
         Apagar("label_peq", "selet_peq");
         Apagar("label_gra", "selet_gra");
     }
